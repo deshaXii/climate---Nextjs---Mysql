@@ -13,7 +13,6 @@ export default function Home() {
     return async () => {
       const res = await axios.get("http://localhost:3000/api/blog");
       if (res?.data) {
-        console.log(res?.data);
         setLoad(true);
       }
     };
