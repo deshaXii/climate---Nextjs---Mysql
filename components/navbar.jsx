@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
 
@@ -6,9 +7,14 @@ const Navbar = () => {
   return (
     <nav className="navbar navbar-expand-lg">
       <div className="container">
-        <a className="navbar-brand" href="/">
-          <img src="/images/logo-black.svg" alt="climate logo" />
-        </a>
+        <Link className="navbar-brand" href="/">
+          <Image
+            src="/images/logo-black.svg"
+            width="144"
+            height="50"
+            alt="climate logo"
+          />
+        </Link>
         <button
           className="navbar-toggler"
           type="button"
