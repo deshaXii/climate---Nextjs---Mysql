@@ -1,0 +1,53 @@
+@media (max-width: 768px) {
+    .mid-part {
+        flex-direction: column;
+        margin: 25px 0;
+        row-gap: 15px;
+    }
+
+    footer.site-footer .bottom-part ul {
+        flex-direction: column;
+        align-items: unset;
+    }
+
+    footer.site-footer .big-word p {
+        font-size: 20px;
+        font-weight: 400;
+        margin-top: 10px;
+    }
+
+    footer .footer-list h5 {
+        font-size: 18px;
+        margin-bottom: 12px;
+    }
+
+    footer .footer-list ul li a {
+        font-size: 14px;
+    }
+
+    footer .footer-list ul li {
+        margin-bottom: 5px;
+    }
+
+    footer.site-footer {
+        padding: 60px 0;
+    }
+
+    .pt80 {
+        padding: 40px 0;
+    }
+
+    .page-title .page-title-content h2 {
+        font-size: 30px;
+        margin-bottom: 15px;
+    }
+
+    .page-title .page-title-content p {
+        font-size: 14px;
+        line-height: 24px;
+    }
+
+    .page-title .page-title-content .marked {
+        margin-bottom: 10px;
+    }
+}

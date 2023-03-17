@@ -1,5 +1,7 @@
 const mysql = require('mysql2/promise');
 const config = require('./config');
+import * as dotenv from "dotenv";
+dotenv.config();
 
 async function query(sql, params) {
   try {

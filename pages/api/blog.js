@@ -1,10 +1,9 @@
-import nc from 'next-connect'
-import {
-    getMultiple
-} from '../../controllers/blogController'
+import nc from "next-connect";
+import { create, getMultiple } from "../../controllers/blogController";
 
-const handler = nc()
+const handler = nc();
 
-handler.get(getMultiple)
+handler.get(getMultiple);
+handler.post(create);
 
-export default handler
+export default handler;
