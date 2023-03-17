@@ -13,8 +13,8 @@ function NewsIstifyScroll({ onScroll, listInnerRef, userList }) {
           <div className="row justify-content-center">
             {userList.map((item, index) => {
               return (
-                <div className="col-md-9">
-                  <article className="blog-item" key={index}>
+                <div className="col-md-9" key={index}>
+                  <article className="blog-item">
                     <div className="new-inner">
                       <div className="new-media-image">
                         <a href="#">

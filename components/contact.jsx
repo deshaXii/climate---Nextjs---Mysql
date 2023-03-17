@@ -35,7 +35,7 @@ const Contact = () => {
           <div className="col-md-6">
             <div className="section-title">
               <span className="marked">FOR A NEW WORLD</span>
-              <h2>Let's make some change</h2>
+              <h2>Let&apos;s make some change</h2>
               <p>
                 In blandit commodo odio, vitae iaculis felis facilisis sed. Sed
                 tempus porttitor lorem ac eleifend. In sit amet euismod ex.

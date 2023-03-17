@@ -82,7 +82,7 @@ const Navbar = () => {
                   }`}
                   href="/news"
                 >
-                  LET'S TALK
+                  LET&apos;S TALK
                 </Link>
               </li>
               <li>
