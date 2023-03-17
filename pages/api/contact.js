@@ -4,9 +4,9 @@ import cors from "cors";
 
 const handler = nc();
 
-app.use(
+handler.use(
   cors({
-    origin: "https://climate-nextjs-mysql.vercel.app/",
+    origin: "*",
   })
 );
 handler.post(sendMessage);
