@@ -80,7 +80,7 @@ const Navbar = () => {
                   className={`nav-link ${
                     router.pathname === "/news" ? "active" : ""
                   }`}
-                  href="/news"
+                  href="/contact-us"
                 >
                   LET&apos;S TALK
                 </Link>

@@ -2,13 +2,21 @@ const db = require("../db");
 const helper = require("../helper");
 const config = require("../config");
 
-const getMultiple = async (req, res) => {
-  const offset = helper.getOffset(1, config.listPerPage);
-  const rows = await db.query(
-    `SELECT id, title, description, time FROM blogs`
-  );
+const getAllBlogs = async (req, res) => {
+  // const offset = helper.getOffset(1, config.listPerPage);
+  const rows = await db.query(`SELECT * FROM blogs`);
   const data = helper.emptyOrRows(rows);
   res.json(data);
+  return {
+    data,
+  };
+};
+
+const getBlogByID = async (req, res) => {
+  // const offset = helper.getOffset(1, config.listPerPage);
+  const rows = await db.query(`SELECT * FROM blogs WHERE id = ${req.query.id}`);
+  const data = helper.emptyOrRows(rows);
+  res.json(data[0]);
   return {
     data,
   };
@@ -64,7 +72,8 @@ async function remove(id) {
 }
 
 module.exports = {
-  getMultiple,
+  getAllBlogs,
+  getBlogByID,
   create,
   update,
   remove,

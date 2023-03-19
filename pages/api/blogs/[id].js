@@ -1,12 +1,11 @@
-import { getAllTeam } from "@/controllers/teamController";
 import nc from "next-connect";
-
 import cors from "cors";
+import { getBlogByID } from "@/controllers/blogController";
 
 const handler = nc();
 
 handler.use(cors({ origin: "*" }));
 
-handler.get(getAllTeam);
+handler.get(getBlogByID);
 
 export default handler;

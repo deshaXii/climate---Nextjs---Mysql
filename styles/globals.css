@@ -653,10 +653,13 @@ footer.site-footer .bottom-part ul li {
 /* Strat News Page */
 .news-page {
   padding: 100px 0 200px 0;
+  background: #edebe9;
 }
 
 .news-page .blog-item {
-  margin-bottom: 80px;
+  margin-bottom: 30px;
+  background: #fff;
+  box-shadow: -2px 6px 7px 10px #1111;
 }
 
 .news-page .blog-item .qodef-image-date {
@@ -675,11 +678,27 @@ footer.site-footer .bottom-part ul li {
 }
 
 .news-page .blog-item .qodef-image-date .new-info-item.new-info-date svg rect:first-of-type {
-  stroke: #0;
   stroke: #000;
 }
 
 .news-page .blog-item .qodef-image-date .new-info-item.new-info-date a {
   padding: 0;
-  margin-bottom: 10px;
+  margin-bottom: 5px;
+}
+.news-page .blog-item .new-content {
+  padding: 0 20px 20px;
+}
+
+.news-page .blog-item .new-text .new-title {
+  font-size: 18px;
+  line-height: 23px;
+}
+
+.news-page .blog-item .new-info .new-read-more {
+  margin-top: 10px;
+}
+
+.news-page .blog-item .new-text p.new-excerpt {
+  margin-bottom: 0;
+  opacity: 0.7;
 }

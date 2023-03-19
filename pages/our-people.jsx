@@ -105,7 +105,7 @@ export default OurPeople;
 
 export async function getServerSideProps() {
   try {
-    const teamRes = await axios.get("https://climate-nextjs-mysql.vercel.app/api/teams");
+    const teamRes = await axios.get("http://localhost:3000/api/teams");
     return {
       props: {
         data: {

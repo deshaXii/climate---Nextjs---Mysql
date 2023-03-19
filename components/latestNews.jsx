@@ -2,8 +2,9 @@ import React from "react";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import Link from "next/link";
 
-const LatestNews = () => {
+const LatestNews = ({ data }) => {
   var settings = {
     dots: true,
     arrows: false,
@@ -50,798 +51,114 @@ const LatestNews = () => {
           <div className="col-12">
             <div className="news-wrapper">
               <Slider {...settings}>
-                <article className="blog-item">
-                  <div className="new-inner">
-                    <div className="qodef-image-date">
-                      <div className="new-info-item new-info-date entry-date published updated">
-                        <a href="#">
-                          <svg
-                            width="12.07"
-                            height="11.31"
-                            viewBox="0 0 12.07 11.31"
-                          >
-                            <rect
-                              x="0.48"
-                              y="0.48"
-                              width="11.12"
-                              height="10.35"
-                              fill="none"
-                              stroke="#000"
-                              strokeLinecap="square"
-                              strokeWidth="0.95"
-                            ></rect>
-                            <rect
-                              x="1.99"
-                              y="3.37"
-                              width="2.06"
-                              height="1.65"
-                            ></rect>
-                            <rect
-                              x="5.01"
-                              y="3.37"
-                              width="2.06"
-                              height="1.65"
-                            ></rect>
-                            <rect
-                              x="8.02"
-                              y="3.37"
-                              width="2.06"
-                              height="1.65"
-                            ></rect>
-                            <rect
-                              x="1.99"
-                              y="6.29"
-                              width="2.06"
-                              height="1.65"
-                            ></rect>
-                            <rect
-                              x="5.01"
-                              y="6.29"
-                              width="2.06"
-                              height="1.65"
-                            ></rect>
-                            <rect
-                              x="8.02"
-                              y="6.29"
-                              width="2.06"
-                              height="1.65"
-                            ></rect>
-                          </svg>
-                          April 18, 2021
-                        </a>
-                      </div>
-                    </div>
-                    <div className="new-media-image">
-                      <a href="#">
-                        <img
-                          src="https://biotellus.qodeinteractive.com/wp-content/uploads/2021/04/b-h1-img-02.jpg"
-                          className="attachment-full size-full"
-                          alt="c"
-                        />
-                      </a>
-                    </div>
-                    <div className="new-content">
-                      <div className="new-supertitle-holder"></div>
-                      <div className="new-text">
-                        <h4 className="new-title entry-title">
-                          <a className="new-title-link" href="#">
-                            Research that can give us a greener life
-                          </a>
-                        </h4>
-                        <p className="new-excerpt">
-                          Lorem ipsum dolor sit amet donne in, consectetur
-                          adipiscing elit, sed do id eiusmod tempor incididunt
-                          ut eu cras
-                        </p>
-                      </div>
-                      <div className="new-info qodef-info--bottom">
-                        <div className="new-info-left">
-                          <div className="new-read-more">
-                            <a href="#" target="_self">
-                              <span className="qodef-m-text">
-                                Find out more
-                              </span>
-                            </a>
-                          </div>
+                {data.map((item) => (
+                  <article className="blog-item" key={item.id}>
+                    <div className="new-inner">
+                      <div className="qodef-image-date">
+                        <div className="new-info-item new-info-date entry-date published updated">
+                          <Link href={`/news/${item.id}`}>
+                            <svg
+                              width="12.07"
+                              height="11.31"
+                              viewBox="0 0 12.07 11.31"
+                            >
+                              <rect
+                                x="0.48"
+                                y="0.48"
+                                width="11.12"
+                                height="10.35"
+                                fill="none"
+                                stroke="#000"
+                                strokeLinecap="square"
+                                strokeWidth="0.95"
+                              ></rect>
+                              <rect
+                                x="1.99"
+                                y="3.37"
+                                width="2.06"
+                                height="1.65"
+                              ></rect>
+                              <rect
+                                x="5.01"
+                                y="3.37"
+                                width="2.06"
+                                height="1.65"
+                              ></rect>
+                              <rect
+                                x="8.02"
+                                y="3.37"
+                                width="2.06"
+                                height="1.65"
+                              ></rect>
+                              <rect
+                                x="1.99"
+                                y="6.29"
+                                width="2.06"
+                                height="1.65"
+                              ></rect>
+                              <rect
+                                x="5.01"
+                                y="6.29"
+                                width="2.06"
+                                height="1.65"
+                              ></rect>
+                              <rect
+                                x="8.02"
+                                y="6.29"
+                                width="2.06"
+                                height="1.65"
+                              ></rect>
+                            </svg>
+                            {item.time}
+                          </Link>
                         </div>
-                        <div className="new-info-slider"></div>
                       </div>
-                    </div>
-                  </div>
-                </article>
-                <article className="blog-item">
-                  <div className="new-inner">
-                    <div className="qodef-image-date">
-                      <div className="new-info-item new-info-date entry-date published updated">
-                        <a href="#">
-                          <svg
-                            width="12.07"
-                            height="11.31"
-                            viewBox="0 0 12.07 11.31"
-                          >
-                            <rect
-                              x="0.48"
-                              y="0.48"
-                              width="11.12"
-                              height="10.35"
-                              fill="none"
-                              stroke="#000"
-                              strokeLinecap="square"
-                              strokeWidth="0.95"
-                            ></rect>
-                            <rect
-                              x="1.99"
-                              y="3.37"
-                              width="2.06"
-                              height="1.65"
-                            ></rect>
-                            <rect
-                              x="5.01"
-                              y="3.37"
-                              width="2.06"
-                              height="1.65"
-                            ></rect>
-                            <rect
-                              x="8.02"
-                              y="3.37"
-                              width="2.06"
-                              height="1.65"
-                            ></rect>
-                            <rect
-                              x="1.99"
-                              y="6.29"
-                              width="2.06"
-                              height="1.65"
-                            ></rect>
-                            <rect
-                              x="5.01"
-                              y="6.29"
-                              width="2.06"
-                              height="1.65"
-                            ></rect>
-                            <rect
-                              x="8.02"
-                              y="6.29"
-                              width="2.06"
-                              height="1.65"
-                            ></rect>
-                          </svg>
-                          April 18, 2021
-                        </a>
+                      <div className="new-media-image">
+                        <Link href={`/news/${item.id}`}>
+                          <img
+                            src={item.image}
+                            className="attachment-full size-full"
+                            alt="c"
+                          />
+                        </Link>
                       </div>
-                    </div>
-                    <div className="new-media-image">
-                      <a href="#">
-                        <img
-                          src="https://biotellus.qodeinteractive.com/wp-content/uploads/2021/04/b-h1-img-04.jpg"
-                          className="attachment-full size-full"
-                          alt="c"
-                        />
-                      </a>
-                    </div>
-                    <div className="new-content">
-                      <div className="new-supertitle-holder"></div>
-                      <div className="new-text">
-                        <h4 className="new-title entry-title">
-                          <a className="new-title-link" href="#">
-                            Research that can give us a greener life
-                          </a>
-                        </h4>
-                        <p className="new-excerpt">
-                          Lorem ipsum dolor sit amet donne in, consectetur
-                          adipiscing elit, sed do id eiusmod tempor incididunt
-                          ut eu cras
-                        </p>
-                      </div>
-                      <div className="new-info qodef-info--bottom">
-                        <div className="new-info-left">
-                          <div className="new-read-more">
-                            <a href="#" target="_self">
-                              <span className="qodef-m-text">
-                                Find out more
-                              </span>
-                            </a>
-                          </div>
+                      <div className="new-content">
+                        <div className="new-supertitle-holder"></div>
+                        <div className="new-text">
+                          <h4 className="new-title entry-title">
+                            <Link
+                              className="new-title-link"
+                              href={`/news/${item.id}`}
+                            >
+                              Research that can give us a greener life
+                            </Link>
+                          </h4>
+                          {typeof window === "undefined" && (
+                            <div
+                              className="new-excerpt"
+                              dangerouslySetInnerHTML={{
+                                __html:
+                                  item.description,
+                              }}
+                            ></div>
+                          )}
                         </div>
-                        <div className="new-info-slider"></div>
-                      </div>
-                    </div>
-                  </div>
-                </article>
-                <article className="blog-item">
-                  <div className="new-inner">
-                    <div className="qodef-image-date">
-                      <div className="new-info-item new-info-date entry-date published updated">
-                        <a href="#">
-                          <svg
-                            width="12.07"
-                            height="11.31"
-                            viewBox="0 0 12.07 11.31"
-                          >
-                            <rect
-                              x="0.48"
-                              y="0.48"
-                              width="11.12"
-                              height="10.35"
-                              fill="none"
-                              stroke="#000"
-                              strokeLinecap="square"
-                              strokeWidth="0.95"
-                            ></rect>
-                            <rect
-                              x="1.99"
-                              y="3.37"
-                              width="2.06"
-                              height="1.65"
-                            ></rect>
-                            <rect
-                              x="5.01"
-                              y="3.37"
-                              width="2.06"
-                              height="1.65"
-                            ></rect>
-                            <rect
-                              x="8.02"
-                              y="3.37"
-                              width="2.06"
-                              height="1.65"
-                            ></rect>
-                            <rect
-                              x="1.99"
-                              y="6.29"
-                              width="2.06"
-                              height="1.65"
-                            ></rect>
-                            <rect
-                              x="5.01"
-                              y="6.29"
-                              width="2.06"
-                              height="1.65"
-                            ></rect>
-                            <rect
-                              x="8.02"
-                              y="6.29"
-                              width="2.06"
-                              height="1.65"
-                            ></rect>
-                          </svg>
-                          April 18, 2021
-                        </a>
-                      </div>
-                    </div>
-                    <div className="new-media-image">
-                      <a href="#">
-                        <img
-                          src="https://biotellus.qodeinteractive.com/wp-content/uploads/2021/04/b-h1-img-03.jpg"
-                          className="attachment-full size-full"
-                          alt="c"
-                        />
-                      </a>
-                    </div>
-                    <div className="new-content">
-                      <div className="new-supertitle-holder"></div>
-                      <div className="new-text">
-                        <h4 className="new-title entry-title">
-                          <a className="new-title-link" href="#">
-                            Research that can give us a greener life
-                          </a>
-                        </h4>
-                        <p className="new-excerpt">
-                          Lorem ipsum dolor sit amet donne in, consectetur
-                          adipiscing elit, sed do id eiusmod tempor incididunt
-                          ut eu cras
-                        </p>
-                      </div>
-                      <div className="new-info qodef-info--bottom">
-                        <div className="new-info-left">
-                          <div className="new-read-more">
-                            <a href="#" target="_self">
-                              <span className="qodef-m-text">
-                                Find out more
-                              </span>
-                            </a>
+                        <div className="new-info qodef-info--bottom">
+                          <div className="new-info-left">
+                            <div className="new-read-more">
+                              <Link href={`/news/${item.id}`} target="_self">
+                                <span className="qodef-m-text">
+                                  Find out more
+                                </span>
+                              </Link>
+                            </div>
                           </div>
+                          <div className="new-info-slider"></div>
                         </div>
-                        <div className="new-info-slider"></div>
                       </div>
                     </div>
-                  </div>
-                </article>
-                <article className="blog-item">
-                  <div className="new-inner">
-                    <div className="qodef-image-date">
-                      <div className="new-info-item new-info-date entry-date published updated">
-                        <a href="#">
-                          <svg
-                            width="12.07"
-                            height="11.31"
-                            viewBox="0 0 12.07 11.31"
-                          >
-                            <rect
-                              x="0.48"
-                              y="0.48"
-                              width="11.12"
-                              height="10.35"
-                              fill="none"
-                              stroke="#000"
-                              strokeLinecap="square"
-                              strokeWidth="0.95"
-                            ></rect>
-                            <rect
-                              x="1.99"
-                              y="3.37"
-                              width="2.06"
-                              height="1.65"
-                            ></rect>
-                            <rect
-                              x="5.01"
-                              y="3.37"
-                              width="2.06"
-                              height="1.65"
-                            ></rect>
-                            <rect
-                              x="8.02"
-                              y="3.37"
-                              width="2.06"
-                              height="1.65"
-                            ></rect>
-                            <rect
-                              x="1.99"
-                              y="6.29"
-                              width="2.06"
-                              height="1.65"
-                            ></rect>
-                            <rect
-                              x="5.01"
-                              y="6.29"
-                              width="2.06"
-                              height="1.65"
-                            ></rect>
-                            <rect
-                              x="8.02"
-                              y="6.29"
-                              width="2.06"
-                              height="1.65"
-                            ></rect>
-                          </svg>
-                          April 18, 2021
-                        </a>
-                      </div>
-                    </div>
-                    <div className="new-media-image">
-                      <a href="#">
-                        <img
-                          src="https://biotellus.qodeinteractive.com/wp-content/uploads/2021/04/b-h1-img-01.jpg"
-                          className="attachment-full size-full"
-                          alt="c"
-                        />
-                      </a>
-                    </div>
-                    <div className="new-content">
-                      <div className="new-supertitle-holder"></div>
-                      <div className="new-text">
-                        <h4 className="new-title entry-title">
-                          <a className="new-title-link" href="#">
-                            Research that can give us a greener life
-                          </a>
-                        </h4>
-                        <p className="new-excerpt">
-                          Lorem ipsum dolor sit amet donne in, consectetur
-                          adipiscing elit, sed do id eiusmod tempor incididunt
-                          ut eu cras
-                        </p>
-                      </div>
-                      <div className="new-info qodef-info--bottom">
-                        <div className="new-info-left">
-                          <div className="new-read-more">
-                            <a href="#" target="_self">
-                              <span className="qodef-m-text">
-                                Find out more
-                              </span>
-                            </a>
-                          </div>
-                        </div>
-                        <div className="new-info-slider"></div>
-                      </div>
-                    </div>
-                  </div>
-                </article>
-                <article className="blog-item">
-                  <div className="new-inner">
-                    <div className="qodef-image-date">
-                      <div className="new-info-item new-info-date entry-date published updated">
-                        <a href="#">
-                          <svg
-                            width="12.07"
-                            height="11.31"
-                            viewBox="0 0 12.07 11.31"
-                          >
-                            <rect
-                              x="0.48"
-                              y="0.48"
-                              width="11.12"
-                              height="10.35"
-                              fill="none"
-                              stroke="#000"
-                              strokeLinecap="square"
-                              strokeWidth="0.95"
-                            ></rect>
-                            <rect
-                              x="1.99"
-                              y="3.37"
-                              width="2.06"
-                              height="1.65"
-                            ></rect>
-                            <rect
-                              x="5.01"
-                              y="3.37"
-                              width="2.06"
-                              height="1.65"
-                            ></rect>
-                            <rect
-                              x="8.02"
-                              y="3.37"
-                              width="2.06"
-                              height="1.65"
-                            ></rect>
-                            <rect
-                              x="1.99"
-                              y="6.29"
-                              width="2.06"
-                              height="1.65"
-                            ></rect>
-                            <rect
-                              x="5.01"
-                              y="6.29"
-                              width="2.06"
-                              height="1.65"
-                            ></rect>
-                            <rect
-                              x="8.02"
-                              y="6.29"
-                              width="2.06"
-                              height="1.65"
-                            ></rect>
-                          </svg>
-                          April 18, 2021
-                        </a>
-                      </div>
-                    </div>
-                    <div className="new-media-image">
-                      <a href="#">
-                        <img
-                          src="https://biotellus.qodeinteractive.com/wp-content/uploads/2021/04/b-h1-img-02.jpg"
-                          className="attachment-full size-full"
-                          alt="c"
-                        />
-                      </a>
-                    </div>
-                    <div className="new-content">
-                      <div className="new-supertitle-holder"></div>
-                      <div className="new-text">
-                        <h4 className="new-title entry-title">
-                          <a className="new-title-link" href="#">
-                            Research that can give us a greener life
-                          </a>
-                        </h4>
-                        <p className="new-excerpt">
-                          Lorem ipsum dolor sit amet donne in, consectetur
-                          adipiscing elit, sed do id eiusmod tempor incididunt
-                          ut eu cras
-                        </p>
-                      </div>
-                      <div className="new-info qodef-info--bottom">
-                        <div className="new-info-left">
-                          <div className="new-read-more">
-                            <a href="#" target="_self">
-                              <span className="qodef-m-text">
-                                Find out more
-                              </span>
-                            </a>
-                          </div>
-                        </div>
-                        <div className="new-info-slider"></div>
-                      </div>
-                    </div>
-                  </div>
-                </article>
-                <article className="blog-item">
-                  <div className="new-inner">
-                    <div className="qodef-image-date">
-                      <div className="new-info-item new-info-date entry-date published updated">
-                        <a href="#">
-                          <svg
-                            width="12.07"
-                            height="11.31"
-                            viewBox="0 0 12.07 11.31"
-                          >
-                            <rect
-                              x="0.48"
-                              y="0.48"
-                              width="11.12"
-                              height="10.35"
-                              fill="none"
-                              stroke="#000"
-                              strokeLinecap="square"
-                              strokeWidth="0.95"
-                            ></rect>
-                            <rect
-                              x="1.99"
-                              y="3.37"
-                              width="2.06"
-                              height="1.65"
-                            ></rect>
-                            <rect
-                              x="5.01"
-                              y="3.37"
-                              width="2.06"
-                              height="1.65"
-                            ></rect>
-                            <rect
-                              x="8.02"
-                              y="3.37"
-                              width="2.06"
-                              height="1.65"
-                            ></rect>
-                            <rect
-                              x="1.99"
-                              y="6.29"
-                              width="2.06"
-                              height="1.65"
-                            ></rect>
-                            <rect
-                              x="5.01"
-                              y="6.29"
-                              width="2.06"
-                              height="1.65"
-                            ></rect>
-                            <rect
-                              x="8.02"
-                              y="6.29"
-                              width="2.06"
-                              height="1.65"
-                            ></rect>
-                          </svg>
-                          April 18, 2021
-                        </a>
-                      </div>
-                    </div>
-                    <div className="new-media-image">
-                      <a href="#">
-                        <img
-                          src="https://biotellus.qodeinteractive.com/wp-content/uploads/2021/04/b-h1-img-04.jpg"
-                          className="attachment-full size-full"
-                          alt="c"
-                        />
-                      </a>
-                    </div>
-                    <div className="new-content">
-                      <div className="new-supertitle-holder"></div>
-                      <div className="new-text">
-                        <h4 className="new-title entry-title">
-                          <a className="new-title-link" href="#">
-                            Research that can give us a greener life
-                          </a>
-                        </h4>
-                        <p className="new-excerpt">
-                          Lorem ipsum dolor sit amet donne in, consectetur
-                          adipiscing elit, sed do id eiusmod tempor incididunt
-                          ut eu cras
-                        </p>
-                      </div>
-                      <div className="new-info qodef-info--bottom">
-                        <div className="new-info-left">
-                          <div className="new-read-more">
-                            <a href="#" target="_self">
-                              <span className="qodef-m-text">
-                                Find out more
-                              </span>
-                            </a>
-                          </div>
-                        </div>
-                        <div className="new-info-slider"></div>
-                      </div>
-                    </div>
-                  </div>
-                </article>
-                <article className="blog-item">
-                  <div className="new-inner">
-                    <div className="qodef-image-date">
-                      <div className="new-info-item new-info-date entry-date published updated">
-                        <a href="#">
-                          <svg
-                            width="12.07"
-                            height="11.31"
-                            viewBox="0 0 12.07 11.31"
-                          >
-                            <rect
-                              x="0.48"
-                              y="0.48"
-                              width="11.12"
-                              height="10.35"
-                              fill="none"
-                              stroke="#000"
-                              strokeLinecap="square"
-                              strokeWidth="0.95"
-                            ></rect>
-                            <rect
-                              x="1.99"
-                              y="3.37"
-                              width="2.06"
-                              height="1.65"
-                            ></rect>
-                            <rect
-                              x="5.01"
-                              y="3.37"
-                              width="2.06"
-                              height="1.65"
-                            ></rect>
-                            <rect
-                              x="8.02"
-                              y="3.37"
-                              width="2.06"
-                              height="1.65"
-                            ></rect>
-                            <rect
-                              x="1.99"
-                              y="6.29"
-                              width="2.06"
-                              height="1.65"
-                            ></rect>
-                            <rect
-                              x="5.01"
-                              y="6.29"
-                              width="2.06"
-                              height="1.65"
-                            ></rect>
-                            <rect
-                              x="8.02"
-                              y="6.29"
-                              width="2.06"
-                              height="1.65"
-                            ></rect>
-                          </svg>
-                          April 18, 2021
-                        </a>
-                      </div>
-                    </div>
-                    <div className="new-media-image">
-                      <a href="#">
-                        <img
-                          src="https://biotellus.qodeinteractive.com/wp-content/uploads/2021/04/b-h1-img-03.jpg"
-                          className="attachment-full size-full"
-                          alt="c"
-                        />
-                      </a>
-                    </div>
-                    <div className="new-content">
-                      <div className="new-supertitle-holder"></div>
-                      <div className="new-text">
-                        <h4 className="new-title entry-title">
-                          <a className="new-title-link" href="#">
-                            Research that can give us a greener life
-                          </a>
-                        </h4>
-                        <p className="new-excerpt">
-                          Lorem ipsum dolor sit amet donne in, consectetur
-                          adipiscing elit, sed do id eiusmod tempor incididunt
-                          ut eu cras
-                        </p>
-                      </div>
-                      <div className="new-info qodef-info--bottom">
-                        <div className="new-info-left">
-                          <div className="new-read-more">
-                            <a href="#" target="_self">
-                              <span className="qodef-m-text">
-                                Find out more
-                              </span>
-                            </a>
-                          </div>
-                        </div>
-                        <div className="new-info-slider"></div>
-                      </div>
-                    </div>
-                  </div>
-                </article>
-                <article className="blog-item">
-                  <div className="new-inner">
-                    <div className="qodef-image-date">
-                      <div className="new-info-item new-info-date entry-date published updated">
-                        <a href="#">
-                          <svg
-                            width="12.07"
-                            height="11.31"
-                            viewBox="0 0 12.07 11.31"
-                          >
-                            <rect
-                              x="0.48"
-                              y="0.48"
-                              width="11.12"
-                              height="10.35"
-                              fill="none"
-                              stroke="#000"
-                              strokeLinecap="square"
-                              strokeWidth="0.95"
-                            ></rect>
-                            <rect
-                              x="1.99"
-                              y="3.37"
-                              width="2.06"
-                              height="1.65"
-                            ></rect>
-                            <rect
-                              x="5.01"
-                              y="3.37"
-                              width="2.06"
-                              height="1.65"
-                            ></rect>
-                            <rect
-                              x="8.02"
-                              y="3.37"
-                              width="2.06"
-                              height="1.65"
-                            ></rect>
-                            <rect
-                              x="1.99"
-                              y="6.29"
-                              width="2.06"
-                              height="1.65"
-                            ></rect>
-                            <rect
-                              x="5.01"
-                              y="6.29"
-                              width="2.06"
-                              height="1.65"
-                            ></rect>
-                            <rect
-                              x="8.02"
-                              y="6.29"
-                              width="2.06"
-                              height="1.65"
-                            ></rect>
-                          </svg>
-                          April 18, 2021
-                        </a>
-                      </div>
-                    </div>
-                    <div className="new-media-image">
-                      <a href="#">
-                        <img
-                          src="https://biotellus.qodeinteractive.com/wp-content/uploads/2021/04/b-h1-img-01.jpg"
-                          className="attachment-full size-full"
-                          alt="c"
-                        />
-                      </a>
-                    </div>
-                    <div className="new-content">
-                      <div className="new-supertitle-holder"></div>
-                      <div className="new-text">
-                        <h4 className="new-title entry-title">
-                          <a className="new-title-link" href="#">
-                            Research that can give us a greener life
-                          </a>
-                        </h4>
-                        <p className="new-excerpt">
-                          Lorem ipsum dolor sit amet donne in, consectetur
-                          adipiscing elit, sed do id eiusmod tempor incididunt
-                          ut eu cras
-                        </p>
-                      </div>
-                      <div className="new-info qodef-info--bottom">
-                        <div className="new-info-left">
-                          <div className="new-read-more">
-                            <a href="#" target="_self">
-                              <span className="qodef-m-text">
-                                Find out more
-                              </span>
-                            </a>
-                          </div>
-                        </div>
-                        <div className="new-info-slider"></div>
-                      </div>
-                    </div>
-                  </div>
-                </article>
+                  </article>
+                ))}
               </Slider>
             </div>
           </div>

@@ -11,7 +11,7 @@ const Contact = () => {
   const sendMessage = (e) => {
     e.preventDefault();
     axios
-      .post("https://climate-nextjs-mysql.vercel.app/api/contact", {
+      .post("http://localhost:3000/api/contact", {
         name,
         email,
         message,

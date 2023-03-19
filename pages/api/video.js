@@ -5,11 +5,8 @@ import cors from "cors";
 
 const handler = nc();
 
-handler.use(
-  cors({
-    origin: "*",
-  })
-);
+handler.use(cors({ origin: "*" }));
+
 handler.get(getVideoInfo);
 
 export default handler;

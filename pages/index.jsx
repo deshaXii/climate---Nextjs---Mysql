@@ -8,6 +8,7 @@ import Video from "@/components/video";
 import LatestNews from "@/components/latestNews";
 
 export default function Home({ data, error }) {
+  console.log(data);
   return (
     <>
       <Head>
@@ -22,7 +23,7 @@ export default function Home({ data, error }) {
         <AboutSimple />
         <Video data={data.video} />
         <Team data={data.teams} />
-        <LatestNews />
+        <LatestNews data={data.blogs.slice(0, 6)} />
       </Default>
     </>
   );
@@ -30,9 +31,9 @@ export default function Home({ data, error }) {
 
 export async function getServerSideProps() {
   try {
-    const blogRes = await axios.get("https://climate-nextjs-mysql.vercel.app/api/blog");
-    const teamRes = await axios.get("https://climate-nextjs-mysql.vercel.app/api/teams");
-    const videoRes = await axios.get("https://climate-nextjs-mysql.vercel.app/api/video");
+    const blogRes = await axios.get("http://localhost:3000/api/blogs");
+    const teamRes = await axios.get("http://localhost:3000/api/teams");
+    const videoRes = await axios.get("http://localhost:3000/api/video");
     return {
       props: {
         data: {
