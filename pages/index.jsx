@@ -31,9 +31,9 @@ export default function Home({ data, error }) {
 
 export async function getServerSideProps() {
   try {
-    const blogRes = await axios.get("http://localhost:3000/api/blogs");
-    const teamRes = await axios.get("http://localhost:3000/api/teams");
-    const videoRes = await axios.get("http://localhost:3000/api/video");
+    const blogRes = await axios.get("https://climate-nextjs-mysql.vercel.app/api/blogs");
+    const teamRes = await axios.get("https://climate-nextjs-mysql.vercel.app/api/teams");
+    const videoRes = await axios.get("https://climate-nextjs-mysql.vercel.app/api/video");
     return {
       props: {
         data: {

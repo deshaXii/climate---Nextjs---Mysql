@@ -52,7 +52,7 @@ export default Blog;
 export async function getServerSideProps({ query }) {
   try {
     const blogRes = await axios.get(
-      `http://localhost:3000/api/blogs/${query.id}`
+      `https://climate-nextjs-mysql.vercel.app/api/blogs/${query.id}`
     );
     return {
       props: {

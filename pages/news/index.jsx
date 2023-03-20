@@ -158,7 +158,7 @@ export default News;
 
 export async function getServerSideProps() {
   try {
-    const blogRes = await axios.get("http://localhost:3000/api/blogs");
+    const blogRes = await axios.get("https://climate-nextjs-mysql.vercel.app/api/blogs");
     return {
       props: {
         data: {
