@@ -8,7 +8,6 @@ import Video from "@/components/video";
 import LatestNews from "@/components/latestNews";
 
 export default function Home({ data, error }) {
-  console.log(data);
   return (
     <>
       <Head>
@@ -22,7 +21,7 @@ export default function Home({ data, error }) {
         <Intro />
         <AboutSimple />
         <Video data={data.video} />
-        <Team data={data.teams} />
+        <Team data={data.teams.slice(0, 4)} />
         <LatestNews data={data.blogs.slice(0, 6)} />
       </Default>
     </>

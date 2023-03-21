@@ -133,15 +133,7 @@ const LatestNews = ({ data }) => {
                               Research that can give us a greener life
                             </Link>
                           </h4>
-                          {typeof window === "undefined" && (
-                            <div
-                              className="new-excerpt"
-                              dangerouslySetInnerHTML={{
-                                __html:
-                                  item.description,
-                              }}
-                            ></div>
-                          )}
+                          {item.description.substring(0, 100) + "..."}
                         </div>
                         <div className="new-info qodef-info--bottom">
                           <div className="new-info-left">

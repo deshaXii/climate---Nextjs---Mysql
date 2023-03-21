@@ -6,7 +6,6 @@ import React from "react";
 
 const Blog = ({ data }) => {
   const { blog } = data;
-  console.log(blog);
   return (
     <>
       <Head>
@@ -21,8 +20,8 @@ const Blog = ({ data }) => {
         />
         <section className="pt80">
           <div className="container">
-            <div className="row">
-              <div className="col-12">
+            <div className="row justify-content-center">
+              <div className="col-8">
                 <div className="blog-page">
                   <div className="blog-image-box">
                     <img src={blog?.image} alt={blog?.title} />
@@ -30,12 +29,7 @@ const Blog = ({ data }) => {
                   <div className="blog?-content-box">
                     <h1>{blog?.title}</h1>
                     <span>{blog?.time}</span>
-                    <p></p>
-                    <div
-                      dangerouslySetInnerHTML={{
-                        __html: blog?.description,
-                      }}
-                    ></div>
+                    <p>{blog?.description}</p>
                   </div>
                 </div>
               </div>

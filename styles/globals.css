@@ -685,6 +685,7 @@ footer.site-footer .bottom-part ul li {
   padding: 0;
   margin-bottom: 5px;
 }
+
 .news-page .blog-item .new-content {
   padding: 0 20px 20px;
 }
@@ -701,4 +702,303 @@ footer.site-footer .bottom-part ul li {
 .news-page .blog-item .new-text p.new-excerpt {
   margin-bottom: 0;
   opacity: 0.7;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* Admin Styles */
+aside.admin-sidebar {
+  width: 300px;
+  background: #333;
+  padding: 20px;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-direction: column;
+}
+
+aside.admin-sidebar .logo-area a img {
+  width: 80%;
+}
+
+aside.admin-sidebar .logo-area a {
+  display: block;
+  width: 100%;
+  text-align: center;
+}
+
+aside.admin-sidebar .sidebar-copyright {
+  margin: 0;
+  color: #fff;
+  text-transform: capitalize;
+}
+
+.admin-layout-wrapper {
+  display: flex;
+}
+
+.admin-layout-wrapper .admin-page-contnet {
+  flex: 1;
+  overflow: hidden;
+  height: 100vh;
+}
+
+aside.admin-sidebar ul {
+  display: flex;
+  flex-direction: column;
+  row-gap: 20px;
+  padding: 0 20px;
+}
+
+aside.admin-sidebar ul li a.active {
+  color: #fff;
+  opacity: 1;
+}
+
+aside.admin-sidebar ul li a {
+  font-size: 18px;
+  font-weight: 500;
+  color: #ddd;
+  transition: all .3s linear;
+  opacity: .8;
+}
+
+aside.admin-sidebar ul li a:hover {
+  color: #fff;
+  opacity: 1;
+}
+
+.admin-page-contnet .container {
+  max-width: 1140px;
+}
+
+
+.our-people-page {
+  padding: 50px 0;
+  height: 100vh;
+  overflow-y: scroll;
+}
+
+.page-top-header {
+  margin-bottom: 30px;
+  padding-bottom: 30px;
+  border-bottom: 1px solid #ddd;
+}
+
+.admin-page-contnet .team-box {
+  margin: 0;
+  margin-bottom: 40px;
+}
+
+.admin-section-title h2 {
+  margin: 0;
+  font-size: 24px;
+  font-weight: bold;
+  color: #171819;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+}
+
+.admin-section-title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.admin-section-title a,
+.admin-section-title button {
+  background: #333;
+  color: #fff;
+  padding: 8px 20px;
+  display: inline-block;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  transition: all .3s linear;
+  border: 1px solid #333;
+}
+
+.admin-section-title a:hover,
+.admin-section-title button:hover {
+  background: transparent;
+  color: #333;
+}
+
+.admin-section-title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.admin-section-title a {
+  background: #333;
+  color: #fff;
+  padding: 8px 20px;
+  display: inline-block;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  transition: all .3s linear;
+  border: 1px solid #333;
+}
+
+.admin-section-title a:hover {
+  background: transparent;
+  color: #333;
+}
+
+.qodef-e-inner {
+  position: relative;
+  overflow: hidden;
+}
+
+.admin-btns {
+  position: absolute;
+  z-index: 3;
+  background: #222;
+  top: 0;
+  right: -40px;
+  display: flex;
+  flex-direction: column;
+  transition: all .3s linear;
+  opacity: 0;
+  visibility: hidden;
+}
+
+.admin-btns .btn {
+  width: 40px;
+  color: #fff;
+  height: 40px;
+}
+
+.admin-btns .btn:first-of-type {
+  border-bottom: 1px solid #fff;
+  border-radius: 0;
+}
+
+.admin-btns .btn i {
+  font-size: 12px;
+}
+
+.team-box:hover .admin-btns {
+  opacity: 1;
+  right: 0;
+  visibility: visible;
+}
+
+.add-new-member .form-group input {
+  width: 100%;
+  height: 50px;
+  padding: 0 10px;
+  border: 1px solid #ccc;
+  background: #f6f6f6;
+}
+
+.add-new-member .form-group label {
+  display: block;
+  text-transform: uppercase;
+  font-weight: bold;
+  font-size: 13px;
+  margin-bottom: 5px;
+  letter-spacing: 0.7px;
+}
+
+.add-new-member .form-group {
+  margin-bottom: 30px;
+}
+
+.form-group.image-uploader-area img {
+  width: 260px;
+  height: 260px;
+  object-fit: cover;
+  border-radius: 300px;
+}
+
+.form-group.image-uploader-area {
+  text-align: center;
+}
+
+.image-uploader-area {
+  position: relative;
+}
+
+.upload__image-wrapper {
+  position: absolute;
+  top: 80%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 260px;
+  display: flex;
+  flex-direction: column;
+}
+
+.drag-box {
+  width: 100%;
+}
+
+.drag-box span {
+  color: #171819;
+  text-transform: capitalize;
+  display: block;
+  font-size: 14px;
+  background: #959595b5;
+  border-radius: 400px;
+}
+
+.drag-box button,
+.image-item__btn-wrapper button {
+  background: #111;
+  color: #fff;
+  border: none;
+  padding: 4px 20px;
+  display: inline-block;
+  margin-top: 6px;
+  font-size: 13px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.form-submit .btn {
+  background: #111;
+  border-radius: 0;
+  padding: 12px 30px;
+  color: #fff;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-size: 14px;
 }
