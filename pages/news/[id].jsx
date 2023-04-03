@@ -1,41 +1,54 @@
 import PageTitle from "@/components/pageTitle";
 import Default from "@/layout/default";
-import axios from "axios";
+import axios from "@/components/axios";
+import moment from "moment";
 import Head from "next/head";
-import React from "react";
+import React, { useRef } from "react";
+import LatestNews from "@/components/latestNews";
+import Author from "@/components/author";
+import ScrollBar from "@/components/scrollBar";
 
 const Blog = ({ data }) => {
-  const { blog } = data;
+  const { blog, blogs } = data;
+  const blogRef = useRef();
   return (
     <>
       <Head>
-        <title>new - climate</title>
+        <title>Climate - {blog.title}</title>
       </Head>
-      <Default>
-        <PageTitle
-          title={blog.title}
-          description={blog.description.substring(0, 50)}
-          image={blog.image}
-          marked={`Home - News - ${blog.title}`}
-        />
-        <section className="pt80">
-          <div className="container">
-            <div className="row justify-content-center">
-              <div className="col-8">
-                <div className="blog-page">
-                  <div className="blog-image-box">
-                    <img src={blog?.image} alt={blog?.title} />
-                  </div>
-                  <div className="blog?-content-box">
-                    <h1>{blog?.title}</h1>
-                    <span>{blog?.time}</span>
-                    <p>{blog?.description}</p>
+      <ScrollBar element={blogRef} />
+      <Default siteInfo={data.info}>
+        <div className="blog-page">
+          <PageTitle
+            title={blog.title}
+            time={moment(blog.time).format("Do MMMM YYYY, h:mm a")}
+            image={blog.image}
+            marked={`Home - News - ${blog.title}`}
+          />
+          <section className="pt80" ref={blogRef}>
+            <div className="container">
+              <div className="row justify-content-center">
+                <div className="col-8">
+                  <div className="blog-content">
+                    <div className="blog-image-box">
+                      <img src={blog?.image} alt={blog?.title} />
+                    </div>
+                    <div className="blog-content-box">
+                      <h1>{blog?.title}</h1>
+                      <div
+                        dangerouslySetInnerHTML={{
+                          __html: blog?.description,
+                        }}
+                      ></div>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
-          </div>
-        </section>
+          </section>
+          <Author />
+          <LatestNews data={blogs} />
+        </div>
       </Default>
     </>
   );
@@ -45,13 +58,15 @@ export default Blog;
 
 export async function getServerSideProps({ query }) {
   try {
-    const blogRes = await axios.get(
-      `https://climate-nextjs-mysql.vercel.app/api/blogs/${query.id}`
-    );
+    const blogsRes = await axios.get(`/api/blogs`);
+    const blogRes = await axios.get(`/api/blogs/${query.id}`);
+    const siteInfo = await axios.get("/api/site-information");
     return {
       props: {
         data: {
           blog: blogRes?.data,
+          blogs: blogsRes?.data,
+          info: siteInfo?.data[0],
         },
       },
     };

@@ -4,8 +4,9 @@ import Default from "@/layout/default";
 import PageTitle from "@/components/pageTitle";
 import Pagination from "@/components/pagination";
 import { paginate } from "@/helpers/pagination";
-import axios from "axios";
+import axios from "@/components/axios";
 import Link from "next/link";
+import { htmlToText } from "html-to-text";
 
 function News({ data }) {
   const [currentPage, setCurrentPage] = useState(1);
@@ -22,7 +23,7 @@ function News({ data }) {
       <Head>
         <title>News - climate</title>
       </Head>
-      <Default>
+      <Default siteInfo={data.info}>
         <PageTitle
           title="Read the latest news"
           description="Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic amet repellat odit odio nam nisi excepturi fuga libero eligendi natus."
@@ -116,7 +117,9 @@ function News({ data }) {
                             </Link>
                           </h4>
                           <p className="new-excerpt">
-                            {item.description.substring(0, 100) + "..."}
+                            {htmlToText(item.description.substring(0, 500), {
+                              wordwrap: 130,
+                            })}
                           </p>
                         </div>
                         <div className="new-info qodef-info--bottom">
@@ -158,11 +161,13 @@ export default News;
 
 export async function getServerSideProps() {
   try {
-    const blogRes = await axios.get("https://climate-nextjs-mysql.vercel.app/api/blogs");
+    const blogRes = await axios.get("/api/blogs");
+    const siteInfo = await axios.get("/api/site-information");
     return {
       props: {
         data: {
           blogs: blogRes?.data,
+          info: siteInfo?.data[0],
         },
       },
     };

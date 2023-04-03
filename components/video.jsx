@@ -4,7 +4,7 @@ const Video = ({data}) => {
   return (
     <section
       className="video pt80"
-      style={{ backgroundImage: `url(${data[0]?.image})` }}
+      style={{ backgroundImage: `url(${data?.image})` }}
     >
       <div className="video-play-btn">
         <button className="video-play">

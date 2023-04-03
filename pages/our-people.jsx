@@ -1,11 +1,11 @@
 import Contact from "@/components/contact";
 import PageTitle from "@/components/pageTitle";
 import Default from "@/layout/default";
-import axios from "axios";
+import axios from "@/components/axios";
 import Head from "next/head";
 import React from "react";
 
-const OurPeople = ({ data, error }) => {
+const OurPeople = ({ data, error, info }) => {
   return (
     <>
       <Head>
@@ -15,7 +15,7 @@ const OurPeople = ({ data, error }) => {
           content="CLIMATE is an international privately owned engineering and sustainability firm providing legendary client service and smart solutions in sustainability, climate, environmental, social, and governance (ESG) and energy transition —from the A to Z. CLIMATE was founded with a commitment to maintain the enduring pursuit of excellence, putting our responsibility to our clients second only to our responsibility to the public. By being true to our promise for almost a decade, we’ve forged massive, long-standing relationships, believing responsiveness is the core of serving our clients. We invest in our people, technology and tools to find better solutions and foster careers. Whether you’re a client, employee, partner or stakeholder – trust that we’re the partners you want to be working with. We are collaborating with our clients to lead a wave of sustainable innovation and economic growth that safeguards the planet and advances sustainability practices. We are CLIMATE. "
         />
       </Head>
-      <Default>
+      <Default siteInfo={info}>
         <PageTitle
           title="Meet our team"
           description="Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic amet repellat odit odio nam nisi excepturi fuga libero eligendi natus."
@@ -105,11 +105,13 @@ export default OurPeople;
 
 export async function getServerSideProps() {
   try {
-    const teamRes = await axios.get("https://climate-nextjs-mysql.vercel.app/api/teams");
+    const teamRes = await axios.get("/api/teams");
+    const siteInfo = await axios.get("/api/site-information");
     return {
       props: {
         data: {
           teams: teamRes?.data,
+          info: siteInfo?.data[0],
         },
       },
     };

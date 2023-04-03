@@ -3,6 +3,8 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Link from "next/link";
+import moment from "moment/moment";
+import { htmlToText } from "html-to-text";
 
 const LatestNews = ({ data }) => {
   var settings = {
@@ -39,7 +41,7 @@ const LatestNews = ({ data }) => {
     ],
   };
   return (
-    <section className="pt80 latest-news bg-light">
+    <section className="pt80 latest-news bg-light news-slider">
       <div className="container">
         <div className="row">
           <div className="col-12">
@@ -51,7 +53,7 @@ const LatestNews = ({ data }) => {
           <div className="col-12">
             <div className="news-wrapper">
               <Slider {...settings}>
-                {data.map((item) => (
+                {data?.map((item) => (
                   <article className="blog-item" key={item.id}>
                     <div className="new-inner">
                       <div className="qodef-image-date">
@@ -109,7 +111,7 @@ const LatestNews = ({ data }) => {
                                 height="1.65"
                               ></rect>
                             </svg>
-                            {item.time}
+                            {moment(item.time).format("Do MMMM YYYY, h:mm a")}
                           </Link>
                         </div>
                       </div>
@@ -133,7 +135,11 @@ const LatestNews = ({ data }) => {
                               Research that can give us a greener life
                             </Link>
                           </h4>
-                          {item.description.substring(0, 100) + "..."}
+                          <p className="new-excerpt">
+                            {htmlToText(item.description.substring(0, 500), {
+                              wordwrap: 130,
+                            })}
+                          </p>
                         </div>
                         <div className="new-info qodef-info--bottom">
                           <div className="new-info-left">

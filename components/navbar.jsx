@@ -1,11 +1,16 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
+import { useEffect } from "react";
 
-const Navbar = () => {
+const Navbar = ({ siteInfo }) => {
+  useEffect(() => {
+    let navHeight = document.querySelector("nav.navbar.fixed-top").offsetHeight;
+    document.body.style.paddingTop = navHeight + "px";
+  }, []);
   const router = useRouter();
   return (
-    <nav className="navbar navbar-expand-lg">
+    <nav className="navbar navbar-expand-lg fixed-top bg-white bb-gray">
       <div className="container">
         <Link className="navbar-brand" href="/">
           <Image
@@ -78,28 +83,41 @@ const Navbar = () => {
               <li className="nav-item">
                 <Link
                   className={`nav-link ${
-                    router.pathname === "/news" ? "active" : ""
+                    router.pathname === "/contact-us" ? "active" : ""
                   }`}
                   href="/contact-us"
                 >
                   LET&apos;S TALK
                 </Link>
               </li>
-              <li>
-                <a href="#">
-                  <span className="fab fa-facebook"></span>
-                </a>
-              </li>
-              <li>
-                <a href="#">
-                  <span className="fab fa-twitter"></span>
-                </a>
-              </li>
-              <li>
-                <a href="#">
-                  <span className="fab fa-linkedin"></span>
-                </a>
-              </li>
+              {siteInfo?.facebook && siteInfo?.facebook !== "#" && (
+                <li>
+                  <a href={siteInfo?.facebook}>
+                    <i className="fab fa-facebook"></i>
+                  </a>
+                </li>
+              )}
+              {siteInfo?.twitter && siteInfo?.twitter !== "#" && (
+                <li>
+                  <a href={siteInfo?.twitter}>
+                    <i className="fab fa-twitter"></i>
+                  </a>
+                </li>
+              )}
+              {siteInfo?.linkedin && siteInfo?.linkedin !== "#" && (
+                <li>
+                  <a href={siteInfo?.linkedin}>
+                    <i className="fab fa-linkedin"></i>
+                  </a>
+                </li>
+              )}
+              {siteInfo?.instagram && siteInfo?.instagram !== "#" && (
+                <li>
+                  <a href={siteInfo?.instagram}>
+                    <i className="fab fa-instagram"></i>
+                  </a>
+                </li>
+              )}
             </ul>
           </div>
         </div>

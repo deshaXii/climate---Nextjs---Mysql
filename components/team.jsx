@@ -15,7 +15,7 @@ const Team = ({ data }) => {
           <div className="col-12">
             <div className="team-wrapper">
               <div className="row">
-                {data.map((team) => (
+                {data?.map((team) => (
                   <div className="col-md-3" key={team.id}>
                     <TeamCard team={team} />
                   </div>

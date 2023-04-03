@@ -6,12 +6,12 @@ const font = Roboto({
   weight: ["400", "500", "700", "900"],
 });
 
-const Default = ({ children }) => {
+const Default = ({ children, siteInfo }) => {
   return (
     <div className={font.className}>
-      <Navbar />
+      <Navbar siteInfo={siteInfo} />
       {children}
-      <Footer />
+      <Footer siteInfo={siteInfo} />
     </div>
   );
 };

@@ -1,9 +1,9 @@
 const config = {
   db: {
-    host: process.env.host,
-    user: process.env.user,
-    password: process.env.password,
-    database: process.env.database,
+    host: "127.0.0.1",
+    user: "root",
+    password: "",
+    database: "climate",
   },
   listPerPage: 10,
 };

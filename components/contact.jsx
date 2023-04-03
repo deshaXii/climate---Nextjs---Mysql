@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios from "@/components/axios";
 import { useRouter } from "next/router";
 import { useState } from "react";
 
@@ -11,7 +11,7 @@ const Contact = () => {
   const sendMessage = (e) => {
     e.preventDefault();
     axios
-      .post("https://climate-nextjs-mysql.vercel.app/api/contact", {
+      .post("/api/contact", {
         name,
         email,
         message,

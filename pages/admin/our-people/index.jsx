@@ -1,6 +1,7 @@
 import TeamCard from "@/components/teamCard";
 import AdminLayout from "@/layout/admin";
-import axios from "axios";
+import axios from "@/components/axios";
+import Head from "next/head";
 import Link from "next/link";
 import { useState } from "react";
 
@@ -9,9 +10,9 @@ const AdminOurPeople = ({ teams }) => {
 
   const removeMember = async (id) => {
     axios
-      .delete(`https://climate-nextjs-mysql.vercel.app/api/teams/${id}`)
+      .delete(`/api/teams/${id}`)
       .then((res) => {
-        axios.get("https://climate-nextjs-mysql.vercel.app/api/teams").then((response) => {
+        axios.get("/api/teams").then((response) => {
           setData(response.data);
         });
       })
@@ -20,9 +21,13 @@ const AdminOurPeople = ({ teams }) => {
       });
   };
   return (
+    <>
+    <Head>
+      <title>Climate - Admin \ Team</title>
+    </Head>
     <AdminLayout>
       <div className="our-people-page">
-        <div className="container">
+        <div className="container-fluid">
           <div className="row">
             <div className="col-12">
               <div className="page-top-header admin-section-title">
@@ -48,7 +53,7 @@ const AdminOurPeople = ({ teams }) => {
           </div>
         </div>
       </div>
-    </AdminLayout>
+    </AdminLayout></>
   );
 };
 
@@ -56,7 +61,7 @@ export default AdminOurPeople;
 
 export async function getServerSideProps() {
   try {
-    const teamRes = await axios.get("https://climate-nextjs-mysql.vercel.app/api/teams");
+    const teamRes = await axios.get("/api/teams");
     return {
       props: {
         teams: teamRes?.data,

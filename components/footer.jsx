@@ -1,7 +1,7 @@
 import Link from "next/link";
 import React from "react";
 
-const Footer = () => {
+const Footer = ({ siteInfo }) => {
   return (
     <footer className="site-footer">
       <div className="container">
@@ -16,10 +16,7 @@ const Footer = () => {
           <div className="col-md-9">
             <div className="top-part">
               <div className="big-word">
-                <p>
-                Bold actions for a net zero future
-
-                </p>
+                <p>{siteInfo?.description}</p>
               </div>
             </div>
             <div className="mid-part">
@@ -27,10 +24,10 @@ const Footer = () => {
                 <h5>Start Conversation:</h5>
                 <ul>
                   <li>
-                    <a href="#">mail@email.com</a>
+                    <a href={siteInfo?.email}>{siteInfo?.email}</a>
                   </li>
                   <li>
-                    <a href="#">010234567865</a>
+                    <a href="#">{siteInfo?.phone}</a>
                   </li>
                 </ul>
               </div>
@@ -38,40 +35,63 @@ const Footer = () => {
                 <h5>Find Our Address:</h5>
                 <ul>
                   <li>
-                    <a href="#">
-                      Old Westbury 256, New York 11201, United States
-                    </a>
+                    <a href="#">{siteInfo?.address}</a>
                   </li>
                 </ul>
               </div>
               <div className="footer-list footer-social-list">
                 <h5>Our Social:</h5>
                 <ul>
-                  <li>
-                    <a href="#">
-                      <i className="fab fa-facebook"></i>
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#">
-                      <i className="fab fa-twitter"></i>
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#">
-                      <i className="fab fa-linkedin"></i>
-                    </a>
-                  </li>
+                  {siteInfo?.facebook && siteInfo?.facebook !== "#" && (
+                    <li>
+                      <a href={siteInfo?.facebook}>
+                        <i className="fab fa-facebook"></i>
+                      </a>
+                    </li>
+                  )}
+                  {siteInfo?.twitter && siteInfo?.twitter !== "#" && (
+                    <li>
+                      <a href={siteInfo?.twitter}>
+                        <i className="fab fa-twitter"></i>
+                      </a>
+                    </li>
+                  )}
+                  {siteInfo?.linkedin && siteInfo?.linkedin !== "#" && (
+                    <li>
+                      <a href={siteInfo?.linkedin}>
+                        <i className="fab fa-linkedin"></i>
+                      </a>
+                    </li>
+                  )}
+                  {siteInfo?.instagram && siteInfo?.instagram !== "#" && (
+                    <li>
+                      <a href={siteInfo?.instagram}>
+                        <i className="fab fa-instagram"></i>
+                      </a>
+                    </li>
+                  )}
                 </ul>
               </div>
             </div>
             <div className="bottom-part">
               <ul>
                 <li>
-                  <a href="#">Terms & Conditions</a>
+                  <Link href="/our-people">Our people</Link>
+                  <span>&nbsp;</span>
+                  <span>&nbsp;</span>
+                  <span>&nbsp;</span>
+                  <span>&nbsp;</span>
+                  <span>&nbsp;</span>
+                  <Link href="/our-vision">OUR VISION</Link>
                 </li>
                 <li>
-                  <a href="#">Privacy Policy</a>
+                  <Link href="/contact-us">Latest News</Link>
+                  <span>&nbsp;</span>
+                  <span>&nbsp;</span>
+                  <span>&nbsp;</span>
+                  <span>&nbsp;</span>
+                  <span>&nbsp;</span>
+                  <Link href="/contact-us">Contact Us</Link>
                 </li>
                 <li className="copyright">
                   <p>© 2023 Climate, All Rights Reserved</p>

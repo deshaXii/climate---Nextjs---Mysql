@@ -60,9 +60,9 @@ const AdminSidebar = () => {
         <li className="nav-item">
           <Link
             className={`nav-link ${
-              router.pathname === "/news" ? "active" : ""
+              router.pathname === "/admin/news" ? "active" : ""
             }`}
-            href="/news"
+            href="/admin/news"
           >
             NEWS
           </Link>

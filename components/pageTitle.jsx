@@ -1,6 +1,6 @@
 import React from "react";
 
-const PageTitle = ({ title, description, marked, image }) => {
+const PageTitle = ({ title, time, marked, image }) => {
   return (
     <div
       className="page-title pt80"
@@ -12,7 +12,7 @@ const PageTitle = ({ title, description, marked, image }) => {
             <div className="page-title-content">
               <span className="marked">{marked}</span>
               <h2>{title}</h2>
-              <p>{description}</p>
+              <p>{time}</p>
             </div>
           </div>
         </div>

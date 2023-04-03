@@ -22,6 +22,18 @@ const getBlogByID = async (req, res) => {
   };
 };
 
+const deleteBlogById = async (req, res) => {
+  const result = await db.query(`DELETE FROM blogs WHERE id=${req.query.id};`);
+  let message = "Error in deleting blog";
+  if (result.affectedRows) {
+    message = "blog deleted successfully";
+  }
+  res.send(message);
+  return {
+    message,
+  };
+};
+
 async function create(req, res) {
   const result = await db.query(
     `INSERT INTO blogs (title, description, time) VALUES (?,?,?)`,
@@ -38,20 +50,17 @@ async function create(req, res) {
   };
 }
 
-async function update(id, data) {
+async function update(req, res) {
   const result = await db.query(
-    `UPDATE blogs 
-    SET name="${data.name}", released_year=${data.released_year}, githut_rank=${data.githut_rank}, 
-    pypl_rank=${data.pypl_rank}, tiobe_rank=${data.tiobe_rank} 
-    WHERE id=${id}`
+    `UPDATE blogs SET title = ?, image = ?, description = ? WHERE id=${req.query.id}`,
+    [req.body.title, req.body.image, req.body.description]
   );
 
-  let message = "Error in updating blogs";
-
+  let message = "Error in edit blog item";
   if (result.affectedRows) {
-    message = "blogs updated successfully";
+    message = "blog item info updated successfully";
   }
-
+  res.send(message);
   return {
     message,
   };
@@ -74,6 +83,7 @@ async function remove(id) {
 module.exports = {
   getAllBlogs,
   getBlogByID,
+  deleteBlogById,
   create,
   update,
   remove,
