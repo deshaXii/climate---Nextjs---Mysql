@@ -71,15 +71,17 @@ const DescriptionCell = ({ rowData, dataKey, ...props }) => (
   </Cell>
 );
 
-const AdminNews = ({ data }) => {
-  const [news, setNews] = React.useState(data.blogs);
+const AdminMessages = ({ data }) => {
+  const router = useRouter();
+  const [contacts, setContacts] = React.useState(data?.messages);
+  console.log(contacts);
   const tableRef = React.useRef();
   const removeNew = async (id) => {
     console.log(id);
     axios
-      .delete(`/api/blogs/${id}`)
+      .delete(`/api/contacts/${id}`)
       .then((res) => {
-        axios.get("/api/blogs").then((response) => {
+        axios.get("/api/contacts").then((response) => {
           setNews(response.data);
         });
       })
@@ -97,19 +99,21 @@ const AdminNews = ({ data }) => {
           <div className="container-fluid">
             <section className="">
               <div className="page-top-header admin-section-title">
-                <h2>The News</h2>
-                <Link href="/admin/news/add">Add New Blog</Link>
+                <h2>Contacts Messages</h2>
+                <button onClick={() => router.back()}>Go Back</button>
               </div>
+              id name email message phone
+              {/* 
               <Table virtualized height={600} data={news} ref={tableRef}>
                 <Column width={70} sortable fixed>
                   <HeaderCell>ID</HeaderCell>
                   <Cell dataKey="id" />
                 </Column>
-
-                <Column width={80} sortable resizable>
-                  <HeaderCell>Image</HeaderCell>
-                  <ImageCell dataKey="image" />
+                <Column width={70} fullText>
+                  <HeaderCell>ID</HeaderCell>
+                  <Cell dataKey="id" />
                 </Column>
+
 
                 <Column flexGrow={1} fullText>
                   <HeaderCell>Title</HeaderCell>
@@ -133,7 +137,7 @@ const AdminNews = ({ data }) => {
                   <HeaderCell>Delete</HeaderCell>
                   <DeleteCell handleClick={removeNew} dataKey="id" />
                 </Column>
-              </Table>
+              </Table> */}
             </section>
           </div>
         </div>
@@ -142,15 +146,15 @@ const AdminNews = ({ data }) => {
   );
 };
 
-export default AdminNews;
+export default AdminMessages;
 
 export async function getServerSideProps() {
   try {
-    const blogRes = await axios.get("/api/blogs");
+    const contactsRes = await axios.get("/api/contact");
     return {
       props: {
         data: {
-          blogs: blogRes?.data,
+          messages: contactsRes?.data,
         },
       },
     };

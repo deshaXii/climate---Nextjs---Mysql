@@ -1,11 +1,13 @@
 import axios from "@/components/axios";
 import { useRouter } from "next/router";
 import { useState } from "react";
-
-const Contact = () => {
+import "react-phone-number-input/style.css";
+import PhoneInput from "react-phone-number-input";
+const Contact = ({ siteInfo }) => {
   const router = useRouter();
   const [name, setName] = useState();
   const [email, setEmail] = useState();
+  const [phone, setPhone] = useState();
   const [message, setMessage] = useState();
 
   const sendMessage = (e) => {
@@ -14,12 +16,14 @@ const Contact = () => {
       .post("/api/contact", {
         name,
         email,
+        phone,
         message,
       })
       .then((res) => {
         if (res.data?.statues === "success") {
           setName("");
           setEmail("");
+          setPhone("");
           setMessage("");
           router.push("/");
         }
@@ -45,15 +49,15 @@ const Contact = () => {
               <ul>
                 <li>
                   <i className="fa fa-phone"></i>
-                  <span>875 665 874 99</span>
+                  <span>{siteInfo?.phone}</span>
                 </li>
                 <li>
                   <i className="fa fa-map-marker"></i>
-                  <span>New York 11201, US</span>
+                  <span>{siteInfo?.address}</span>
                 </li>
                 <li>
                   <i className="fa fa-envelope"></i>
-                  <span>biotellus@qode.com</span>
+                  <span>{siteInfo?.email}</span>
                 </li>
               </ul>
             </div>
@@ -83,6 +87,13 @@ const Contact = () => {
                     </div>
                   </div>
                   <div className="col-12">
+                    <div className="form-group phone-number">
+                      <PhoneInput
+                        placeholder="Enter phone number"
+                        value={phone}
+                        onChange={setPhone}
+                      />
+                    </div>
                     <div className="form-group">
                       <textarea
                         value={message}

@@ -37,7 +37,7 @@ async function addMember(req, res) {
     [
       req.body.name,
       req.body.jobname,
-      req.body.image,
+      req.file.filename,
       req.body.facebook,
       req.body.instagram,
       req.body.linkedin,
@@ -60,7 +60,7 @@ async function editMember(req, res) {
     [
       req.body.name,
       req.body.jobname,
-      req.body.image,
+      req.file.filename,
       req.body.facebook,
       req.body.instagram,
       req.body.linkedin,

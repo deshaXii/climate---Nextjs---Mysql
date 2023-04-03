@@ -26,7 +26,7 @@ const TeamCard = ({ team, adminView, removeMember }) => {
         )}
         <div className="qodef-e-team-item-holder">
           <div className="qodef-e-media-image">
-            <img src={team.image} alt={team.name + " image"} />
+            <img src={`/uploads/${team.image}`} alt={team.name + " image"} />
           </div>
           <p className="qodef-e-role">Founder</p>
           <h5 className="qodef-e-title entry-title">{team.name}</h5>

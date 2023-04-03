@@ -24,15 +24,15 @@ const AdminSidebar = () => {
           </a>
         </li>
         <li className="nav-item">
-          <a
+          <Link
             className={`nav-link ${
               router.pathname === "/admin/our-vision" ? "active" : ""
             }`}
             aria-current="page"
-            href="/our-vision"
+            href="/admin/our-vision"
           >
             OUR VISION
-          </a>
+          </Link>
         </li>
 
         <li className="nav-item">
@@ -65,6 +65,16 @@ const AdminSidebar = () => {
             href="/admin/news"
           >
             NEWS
+          </Link>
+        </li>
+        <li className="nav-item">
+          <Link
+            className={`nav-link ${
+              router.pathname === "/admin/messages" ? "active" : ""
+            }`}
+            href="/admin/messages"
+          >
+            Messages
           </Link>
         </li>
       </ul>

@@ -1,6 +1,6 @@
 import Head from "next/head";
 import axios from "@/components/axios";
-import Default from "@/layout/default";
+import Default from "@/helpers/layout/default";
 import AboutSimple from "@/components/aboutSimple";
 import Intro from "@/components/intro";
 import Team from "@/components/team";

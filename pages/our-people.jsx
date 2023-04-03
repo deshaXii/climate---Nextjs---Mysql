@@ -1,11 +1,11 @@
 import Contact from "@/components/contact";
 import PageTitle from "@/components/pageTitle";
-import Default from "@/layout/default";
+import Default from "@/helpers/layout/default";
 import axios from "@/components/axios";
 import Head from "next/head";
 import React from "react";
 
-const OurPeople = ({ data, error, info }) => {
+const OurPeople = ({ data, error }) => {
   return (
     <>
       <Head>
@@ -15,7 +15,7 @@ const OurPeople = ({ data, error, info }) => {
           content="CLIMATE is an international privately owned engineering and sustainability firm providing legendary client service and smart solutions in sustainability, climate, environmental, social, and governance (ESG) and energy transition —from the A to Z. CLIMATE was founded with a commitment to maintain the enduring pursuit of excellence, putting our responsibility to our clients second only to our responsibility to the public. By being true to our promise for almost a decade, we’ve forged massive, long-standing relationships, believing responsiveness is the core of serving our clients. We invest in our people, technology and tools to find better solutions and foster careers. Whether you’re a client, employee, partner or stakeholder – trust that we’re the partners you want to be working with. We are collaborating with our clients to lead a wave of sustainable innovation and economic growth that safeguards the planet and advances sustainability practices. We are CLIMATE. "
         />
       </Head>
-      <Default siteInfo={info}>
+      <Default siteInfo={data.info}>
         <PageTitle
           title="Meet our team"
           description="Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic amet repellat odit odio nam nisi excepturi fuga libero eligendi natus."
@@ -35,7 +35,7 @@ const OurPeople = ({ data, error, info }) => {
                             <div className="qodef-e-team-item-holder">
                               <div className="qodef-e-media-image">
                                 <img
-                                  src={team.image}
+                                  src={`/uploads/${team.image}`}
                                   alt={team.name + " image"}
                                 />
                               </div>
@@ -95,7 +95,7 @@ const OurPeople = ({ data, error, info }) => {
             </div>
           </div>
         </section>
-        <Contact />
+        <Contact siteInfo={data.info} />
       </Default>
     </>
   );

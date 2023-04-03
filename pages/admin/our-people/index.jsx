@@ -1,5 +1,5 @@
 import TeamCard from "@/components/teamCard";
-import AdminLayout from "@/layout/admin";
+import AdminLayout from "@/helpers/layout/admin";
 import axios from "@/components/axios";
 import Head from "next/head";
 import Link from "next/link";

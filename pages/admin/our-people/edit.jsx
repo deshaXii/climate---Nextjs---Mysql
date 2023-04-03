@@ -1,4 +1,4 @@
-import AdminLayout from "@/layout/admin";
+import AdminLayout from "@/helpers/layout/admin";
 import axios from "@/components/axios";
 import Head from "next/head";
 import { useRouter } from "next/router";
@@ -24,17 +24,30 @@ const AdminOurPeopleEdit = ({ team }) => {
   const [facebook, setFacebook] = useState(team.facebook);
   const [instagram, setInstagram] = useState(team.instagram);
   const [linkedin, setLinkedin] = useState(team.linkedin);
+  const config = {
+    headers: { "content-type": "multipart/form-data" },
+    onUploadProgress: (event) => {
+      console.log(
+        `Current progress:`,
+        Math.round((event.loaded * 100) / event.total)
+      );
+    },
+  };
   const editMember = async (e) => {
     e.preventDefault();
     axios
-      .put(`/api/teams/${team.id}`, {
-        name,
-        jobname,
-        image,
-        facebook,
-        instagram,
-        linkedin,
-      })
+      .put(
+        `/api/teams/${team.id}`,
+        {
+          name,
+          jobname,
+          image,
+          facebook,
+          instagram,
+          linkedin,
+        },
+        config
+      )
       .then((res) => {
         router.push("/admin/our-people");
       })

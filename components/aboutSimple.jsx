@@ -1,3 +1,4 @@
+import Link from "next/link";
 import React from "react";
 
 const AboutSimple = () => {
@@ -13,7 +14,9 @@ const AboutSimple = () => {
           <div className="col-md-6">
             <div className="about-simple-content">
               <span className="marked">BEST SOLUTIONS</span>
-              <h1>Reshaping energy <br /> for the future!</h1>
+              <h1>
+                Reshaping energy <br /> for the future!
+              </h1>
               <h4>Bold actions for a net zero future</h4>
               <p>
                 CLIMATE is an international privately owned engineering and
@@ -26,9 +29,9 @@ const AboutSimple = () => {
                 pursuit of excellence, putting our responsibility to our clients
                 second only to our responsibility to the public.
               </p>
-              <a href="#" className="btn main-btn">
+              <Link href="/our-vision" className="btn main-btn">
                 FIND OUT MORE
-              </a>
+              </Link>
             </div>
           </div>
         </div>

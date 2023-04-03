@@ -1,13 +1,12 @@
-const mysql = require('mysql2/promise');
-const config = require('./config');
+const mysql = require("mysql2/promise");
+const config = require("./config");
 import * as dotenv from "dotenv";
 dotenv.config();
 
 async function query(sql, params) {
   try {
     const connection = await mysql.createConnection(config.db);
-    const [results, ] = await connection.execute(sql, params);
-    console.log(results);
+    const [results] = await connection.execute(sql, params);
     return results;
   } catch (err) {
     console.log(err);
@@ -15,5 +14,5 @@ async function query(sql, params) {
 }
 
 module.exports = {
-  query
-}
+  query,
+};

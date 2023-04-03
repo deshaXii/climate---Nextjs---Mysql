@@ -1,4 +1,4 @@
-import AdminLayout from "@/layout/admin";
+import AdminLayout from "@/helpers/layout/admin";
 import axios from "@/components/axios";
 import Head from "next/head";
 import { useRouter } from "next/router";
@@ -29,7 +29,7 @@ const Admin = ({ info }) => {
       twitter,
       linkedin,
     };
-    if (email && phone && address) {
+    if (info.email && info.phone && info.address) {
       await axios
         .put("/api/site-information", data)
         .then((res) => {

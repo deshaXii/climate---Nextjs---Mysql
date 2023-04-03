@@ -1,4 +1,4 @@
-import AdminLayout from "@/layout/admin";
+import AdminLayout from "@/helpers/layout/admin";
 import axios from "@/components/axios";
 import Head from "next/head";
 import { useRouter } from "next/router";
@@ -24,18 +24,30 @@ const AdminOurPeopleAdd = () => {
   const [facebook, setFacebook] = useState("");
   const [instagram, setInstagram] = useState("");
   const [linkedin, setLinkedin] = useState("");
+  const config = {
+    headers: { "content-type": "multipart/form-data" },
+    onUploadProgress: (event) => {
+      console.log(
+        `Current progress:`,
+        Math.round((event.loaded * 100) / event.total)
+      );
+    },
+  };
   const addMember = async (e) => {
     e.preventDefault();
     axios
-      .post("/api/teams", {
-        name,
-        jobname,
-        image:
-          "https://biotellus.qodeinteractive.com/wp-content/uploads/2021/06/Team-img-06.jpg",
-        facebook,
-        instagram,
-        linkedin,
-      })
+      .post(
+        "/api/teams",
+        {
+          name,
+          jobname,
+          image,
+          facebook,
+          instagram,
+          linkedin,
+        },
+        config
+      )
       .then((res) => {
         router.push("/admin/our-people");
       })

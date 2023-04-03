@@ -1,11 +1,11 @@
+import {
+  addOurVision,
+  getOurVision,
+  editOurVision,
+} from "@/controllers/ourVisionController";
 import nc from "next-connect";
 import multer from "multer";
 import cors from "cors";
-import {
-  showMember,
-  deleteMember,
-  editMember,
-} from "@/controllers/teamController";
 
 const handler = nc();
 
@@ -18,11 +18,13 @@ const upload = multer({
 
 handler.use(cors({ origin: "*" }));
 
-handler.get(showMember);
-handler.delete(deleteMember);
-const uploadMiddleware = upload.single("image");
+handler.get(getOurVision);
+
+const uploadMiddleware = upload.any();
 handler.use(uploadMiddleware);
-handler.put(editMember);
+
+handler.put(editOurVision);
+handler.post(addOurVision);
 
 export default handler;
 

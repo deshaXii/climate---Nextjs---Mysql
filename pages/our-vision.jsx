@@ -1,10 +1,10 @@
-import Default from "@/layout/default";
+import Default from "@/helpers/layout/default";
 import axios from "@/components/axios";
 import Head from "next/head";
 import React from "react";
 import PageTitle from "@/components/pageTitle";
 
-const OurVision = ({ info }) => {
+const OurVision = ({ info, vision }) => {
   return (
     <>
       <Head>
@@ -18,28 +18,45 @@ const OurVision = ({ info }) => {
             image="/images/Our-teaam-title-img.jpg"
             marked="True experince"
           />
-          <section className="pt80">
+          <section className="pt80 top-vis">
             <div className="container">
-              <div className="row">
+              <div className="row align-items-center">
                 <div className="col-md-6">
                   <div className="vision--card">
                     <div className="vc-p">
-                      <h3>As President and CEO of CLIMATE</h3>
-                      <p>
-                        it's my mission to make decisions aligned with our
-                        vision, and to connect and empower our staff to deliver
-                        on our four differentiators of providing legendary
-                        client experiences, unmatched employee experiences, to
-                        innovate and differentiate, and to remain private. With
-                        more than 15 years in the career, I give this advice to
-                        an upcoming engineer:
-                      </p>
-                      <blockquote>
-                        "While it's important to be an expert in your field,
-                        always maintain a broad perspective and get as much
-                        exposure to other areas as you can. Don't limit
-                        yourself.”
-                      </blockquote>
+                      <h3>{vision.first_section_title}</h3>
+                      <p>{vision.first_section_description}</p>
+                      <blockquote>{vision.first_section_advice}</blockquote>
+                    </div>
+                  </div>
+                </div>
+                <div className="col-md-6">
+                  <div className="vision--card">
+                    <img
+                      src={`/uploads/${vision.first_section_image}`}
+                      alt=""
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+          <section className="pt80 bot-vis">
+            <div className="container">
+              <div className="row align-items-center">
+                <div className="col-md-6">
+                  <div className="vision--card">
+                    <img
+                      src={`/uploads/${vision.second_section_image}`}
+                      alt=""
+                    />
+                  </div>
+                </div>
+                <div className="col-md-6">
+                  <div className="vision--card">
+                    <div className="vc-p">
+                      <h3> {vision.second_section_title}</h3>
+                      <p>{vision.second_section_description}</p>
                     </div>
                   </div>
                 </div>
@@ -57,9 +74,12 @@ export default OurVision;
 export async function getServerSideProps() {
   try {
     const siteInfo = await axios.get("/api/site-information");
+    const siteVision = await axios.get("/api/our-vision");
+
     return {
       props: {
         info: siteInfo.data[0],
+        vision: siteVision.data[0],
       },
     };
   } catch (err) {

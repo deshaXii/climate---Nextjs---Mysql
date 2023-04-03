@@ -1,5 +1,5 @@
 import PageTitle from "@/components/pageTitle";
-import Default from "@/layout/default";
+import Default from "@/helpers/layout/default";
 import axios from "@/components/axios";
 import moment from "moment";
 import Head from "next/head";
