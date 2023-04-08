@@ -7,6 +7,7 @@ import { paginate } from "@/helpers/pagination";
 import axios from "@/components/axios";
 import Link from "next/link";
 import { htmlToText } from "html-to-text";
+import moment from "moment";
 
 function News({ data }) {
   const [currentPage, setCurrentPage] = useState(1);
@@ -40,7 +41,7 @@ function News({ data }) {
                       <div className="new-media-image">
                         <Link href={`/news/${item.id}`}>
                           <img
-                            src={item.image}
+                            src={`/uploads/${item.image}`}
                             className="attachment-full size-full"
                             alt={item.name}
                           />
@@ -102,7 +103,7 @@ function News({ data }) {
                                   height="1.65"
                                 ></rect>
                               </svg>
-                              April 18, 2021
+                              {moment(item.time).format("Do MMMM YYYY, h:mm a")}
                             </Link>
                           </div>
                         </div>

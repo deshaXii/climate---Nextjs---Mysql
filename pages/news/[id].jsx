@@ -22,7 +22,7 @@ const Blog = ({ data }) => {
           <PageTitle
             title={blog.title}
             time={moment(blog.time).format("Do MMMM YYYY, h:mm a")}
-            image={blog.image}
+            image={`/uploads/${blog.image}`}
             marked={`Home - News - ${blog.title}`}
           />
           <section className="pt80" ref={blogRef}>
@@ -31,7 +31,7 @@ const Blog = ({ data }) => {
                 <div className="col-8">
                   <div className="blog-content">
                     <div className="blog-image-box">
-                      <img src={blog?.image} alt={blog?.title} />
+                      <img src={`/uploads/${blog?.image}`} alt={blog?.title} />
                     </div>
                     <div className="blog-content-box">
                       <h1>{blog?.title}</h1>

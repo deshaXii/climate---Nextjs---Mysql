@@ -22,7 +22,7 @@ const ImageCell = ({ rowData, dataKey, ...props }) => (
       }}
     >
       <img
-        src={rowData[dataKey]}
+        src={`/uploads/${rowData[dataKey]}`}
         width="50"
         height="100%"
         style={{ objectFit: "cover" }}

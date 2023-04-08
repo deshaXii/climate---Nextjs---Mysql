@@ -8,5 +8,6 @@ handler.use(cors({ origin: "*" }));
 
 handler.post(sendMessage);
 handler.get(getMessages);
+handler.delete(deleteMessageById);
 
 export default handler;

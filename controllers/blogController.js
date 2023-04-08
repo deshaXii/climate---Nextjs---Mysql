@@ -53,7 +53,7 @@ async function create(req, res) {
 async function update(req, res) {
   const result = await db.query(
     `UPDATE blogs SET title = ?, image = ?, description = ? WHERE id=${req.query.id}`,
-    [req.body.title, req.body.image, req.body.description]
+    [req.body.title, req.file.filename, req.body.description]
   );
 
   let message = "Error in edit blog item";

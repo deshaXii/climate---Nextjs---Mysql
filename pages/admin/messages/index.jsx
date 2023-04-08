@@ -102,33 +102,35 @@ const AdminMessages = ({ data }) => {
                 <h2>Contacts Messages</h2>
                 <button onClick={() => router.back()}>Go Back</button>
               </div>
-              id name email message phone
-              {/* 
-              <Table virtualized height={600} data={news} ref={tableRef}>
+              <Table virtualized height={600} data={data.messages} ref={tableRef}>
                 <Column width={70} sortable fixed>
                   <HeaderCell>ID</HeaderCell>
                   <Cell dataKey="id" />
                 </Column>
-                <Column width={70} fullText>
-                  <HeaderCell>ID</HeaderCell>
-                  <Cell dataKey="id" />
+                <Column width={200} fullText>
+                  <HeaderCell>Name</HeaderCell>
+                  <Cell dataKey="name" />
                 </Column>
 
-
                 <Column flexGrow={1} fullText>
-                  <HeaderCell>Title</HeaderCell>
-                  <Cell dataKey="title" />
+                  <HeaderCell>Email</HeaderCell>
+                  <Cell dataKey="email" />
+                </Column>
+
+                <Column width={200} fullText>
+                  <HeaderCell>Phone</HeaderCell>
+                  <Cell dataKey="phone" />
                 </Column>
 
                 <Column flexGrow={2} fullText>
-                  <HeaderCell>Description</HeaderCell>
-                  <DescriptionCell dataKey="description" />
+                  <HeaderCell>Message</HeaderCell>
+                  <DescriptionCell dataKey="message" />
                 </Column>
-
+{/* 
                 <Column width={250} resizable fullText>
                   <HeaderCell>Time</HeaderCell>
                   <TimeCell dataKey="time" />
-                </Column>
+                </Column> */}
                 <Column width={70} align="center">
                   <HeaderCell>Edit</HeaderCell>
                   <EditCell dataKey="id" />
@@ -137,7 +139,7 @@ const AdminMessages = ({ data }) => {
                   <HeaderCell>Delete</HeaderCell>
                   <DeleteCell handleClick={removeNew} dataKey="id" />
                 </Column>
-              </Table> */}
+              </Table>
             </section>
           </div>
         </div>
