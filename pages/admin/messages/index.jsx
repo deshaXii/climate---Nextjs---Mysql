@@ -102,7 +102,7 @@ const AdminMessages = ({ data }) => {
                 <h2>Contacts Messages</h2>
                 <button onClick={() => router.back()}>Go Back</button>
               </div>
-              <Table virtualized height={600} data={data.messages} ref={tableRef}>
+              <Table virtualized height={600} data={data.messages.reverse()} ref={tableRef}>
                 <Column width={70} sortable fixed>
                   <HeaderCell>ID</HeaderCell>
                   <Cell dataKey="id" />

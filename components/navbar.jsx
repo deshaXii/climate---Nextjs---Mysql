@@ -1,16 +1,20 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 const Navbar = ({ siteInfo }) => {
+  const [open, setOpen] = useState(false);
   useEffect(() => {
     let navHeight = document.querySelector("nav.navbar.fixed-top").offsetHeight;
     document.body.style.paddingTop = navHeight + "px";
   }, []);
   const router = useRouter();
   return (
-    <nav className="navbar navbar-expand-lg fixed-top bg-white bb-gray">
+    <nav
+      className="navbar navbar-expand-lg fixed-top bg-white bb-gray"
+      style={open ? { boxShadow: "-1px 1px 15px 6px #3333332e" } : {}}
+    >
       <div className="container">
         <Link className="navbar-brand" href="/">
           <Image
@@ -21,6 +25,10 @@ const Navbar = ({ siteInfo }) => {
           />
         </Link>
         <button
+          onClick={(e) => {
+            e.preventDefault();
+            setOpen(!open);
+          }}
           className="navbar-toggler"
           type="button"
           data-bs-toggle="collapse"
@@ -31,7 +39,10 @@ const Navbar = ({ siteInfo }) => {
         >
           <span className="navbar-toggler-icon"></span>
         </button>
-        <div className="collapse navbar-collapse" id="slimateNavbar">
+        <div
+          className={`collapse navbar-collapse ${open ? "active" : ""}`}
+          id="slimateNavbar"
+        >
           <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
             <li className="nav-item">
               <a

@@ -1,8 +1,8 @@
 import axios from "@/components/axios";
 import { useRouter } from "next/router";
 import { useState } from "react";
-import "react-phone-number-input/style.css";
-import PhoneInput from "react-phone-number-input";
+import PhoneInput from "react-phone-input-2";
+import "react-phone-input-2/lib/style.css";
 const Contact = ({ siteInfo }) => {
   const router = useRouter();
   const [name, setName] = useState();
@@ -89,9 +89,10 @@ const Contact = ({ siteInfo }) => {
                   <div className="col-12">
                     <div className="form-group phone-number">
                       <PhoneInput
-                        placeholder="Enter phone number"
+                        country={"eg"}
+                        placeholder="Phone Number"
                         value={phone}
-                        onChange={setPhone}
+                        onChange={(value) => setPhone(value)}
                       />
                     </div>
                     <div className="form-group">

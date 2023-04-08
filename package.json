@@ -25,7 +25,7 @@
     "react-dom": "18.2.0",
     "react-images-uploading": "^3.1.7",
     "react-modal-video": "^2.0.0",
-    "react-phone-number-input": "^3.2.19",
+    "react-phone-input-2": "^2.15.1",
     "react-quill": "^2.0.0",
     "react-slick": "^0.29.0",
     "rsuite-table": "^5.10.2",

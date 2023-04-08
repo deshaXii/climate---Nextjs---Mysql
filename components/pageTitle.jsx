@@ -11,7 +11,7 @@ const PageTitle = ({ title, time, marked, image }) => {
           <div className="col-12 col-md-6">
             <div className="page-title-content">
               <span className="marked">{marked}</span>
-              <h2>{title}</h2>
+              <h1>{title}</h1>
               <p>{time}</p>
             </div>
           </div>

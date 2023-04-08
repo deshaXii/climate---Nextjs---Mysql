@@ -53,112 +53,239 @@ const LatestNews = ({ data }) => {
           <div className="col-12">
             <div className="news-wrapper">
               <Suspense>
-                <Slider {...settings}>
-                  {data?.map((item) => (
-                    <article className="blog-item" key={item.id}>
-                      <div className="new-inner">
-                        <div className="qodef-image-date">
-                          <div className="new-info-item new-info-date entry-date published updated">
+                {data.length > 4 ? (
+                  <Slider {...settings}>
+                    {data?.map((item) => (
+                      <article className="blog-item" key={item.id}>
+                        <div className="new-inner">
+                          <div className="qodef-image-date">
+                            <div className="new-info-item new-info-date entry-date published updated">
+                              <Link href={`/news/${item.id}`}>
+                                <svg
+                                  width="12.07"
+                                  height="11.31"
+                                  viewBox="0 0 12.07 11.31"
+                                >
+                                  <rect
+                                    x="0.48"
+                                    y="0.48"
+                                    width="11.12"
+                                    height="10.35"
+                                    fill="none"
+                                    stroke="#000"
+                                    strokeLinecap="square"
+                                    strokeWidth="0.95"
+                                  ></rect>
+                                  <rect
+                                    x="1.99"
+                                    y="3.37"
+                                    width="2.06"
+                                    height="1.65"
+                                  ></rect>
+                                  <rect
+                                    x="5.01"
+                                    y="3.37"
+                                    width="2.06"
+                                    height="1.65"
+                                  ></rect>
+                                  <rect
+                                    x="8.02"
+                                    y="3.37"
+                                    width="2.06"
+                                    height="1.65"
+                                  ></rect>
+                                  <rect
+                                    x="1.99"
+                                    y="6.29"
+                                    width="2.06"
+                                    height="1.65"
+                                  ></rect>
+                                  <rect
+                                    x="5.01"
+                                    y="6.29"
+                                    width="2.06"
+                                    height="1.65"
+                                  ></rect>
+                                  <rect
+                                    x="8.02"
+                                    y="6.29"
+                                    width="2.06"
+                                    height="1.65"
+                                  ></rect>
+                                </svg>
+                                {moment(item.time).format(
+                                  "Do MMMM YYYY, h:mm a"
+                                )}
+                              </Link>
+                            </div>
+                          </div>
+                          <div className="new-media-image">
                             <Link href={`/news/${item.id}`}>
-                              <svg
-                                width="12.07"
-                                height="11.31"
-                                viewBox="0 0 12.07 11.31"
-                              >
-                                <rect
-                                  x="0.48"
-                                  y="0.48"
-                                  width="11.12"
-                                  height="10.35"
-                                  fill="none"
-                                  stroke="#000"
-                                  strokeLinecap="square"
-                                  strokeWidth="0.95"
-                                ></rect>
-                                <rect
-                                  x="1.99"
-                                  y="3.37"
-                                  width="2.06"
-                                  height="1.65"
-                                ></rect>
-                                <rect
-                                  x="5.01"
-                                  y="3.37"
-                                  width="2.06"
-                                  height="1.65"
-                                ></rect>
-                                <rect
-                                  x="8.02"
-                                  y="3.37"
-                                  width="2.06"
-                                  height="1.65"
-                                ></rect>
-                                <rect
-                                  x="1.99"
-                                  y="6.29"
-                                  width="2.06"
-                                  height="1.65"
-                                ></rect>
-                                <rect
-                                  x="5.01"
-                                  y="6.29"
-                                  width="2.06"
-                                  height="1.65"
-                                ></rect>
-                                <rect
-                                  x="8.02"
-                                  y="6.29"
-                                  width="2.06"
-                                  height="1.65"
-                                ></rect>
-                              </svg>
-                              {moment(item.time).format("Do MMMM YYYY, h:mm a")}
+                              <img
+                                src={`/uploads/${item.image}`}
+                                className="attachment-full size-full"
+                                alt="c"
+                              />
                             </Link>
                           </div>
-                        </div>
-                        <div className="new-media-image">
-                          <Link href={`/news/${item.id}`}>
-                            <img
-                              src={`/uploads/${item.image}`}
-                              className="attachment-full size-full"
-                              alt="c"
-                            />
-                          </Link>
-                        </div>
-                        <div className="new-content">
-                          <div className="new-supertitle-holder"></div>
-                          <div className="new-text">
-                            <h4 className="new-title entry-title">
-                              <Link
-                                className="new-title-link"
-                                href={`/news/${item.id}`}
-                              >
-                                Research that can give us a greener life
-                              </Link>
-                            </h4>
-                            <p className="new-excerpt">
-                              {htmlToText(item.description.substring(0, 500), {
-                                wordwrap: 130,
-                              })}
-                            </p>
+                          <div className="new-content">
+                            <div className="new-supertitle-holder"></div>
+                            <div className="new-text">
+                              <h4 className="new-title entry-title">
+                                <Link
+                                  className="new-title-link"
+                                  href={`/news/${item.id}`}
+                                >
+                                  Research that can give us a greener life
+                                </Link>
+                              </h4>
+                              <p className="new-excerpt">
+                                {htmlToText(
+                                  item.description.substring(0, 500),
+                                  {
+                                    wordwrap: 130,
+                                  }
+                                )}
+                              </p>
+                            </div>
+                            <div className="new-info qodef-info--bottom">
+                              <div className="new-info-left">
+                                <div className="new-read-more">
+                                  <Link
+                                    href={`/news/${item.id}`}
+                                    target="_self"
+                                  >
+                                    <span className="qodef-m-text">
+                                      Find out more
+                                    </span>
+                                  </Link>
+                                </div>
+                              </div>
+                              <div className="new-info-slider"></div>
+                            </div>
                           </div>
-                          <div className="new-info qodef-info--bottom">
-                            <div className="new-info-left">
-                              <div className="new-read-more">
-                                <Link href={`/news/${item.id}`} target="_self">
-                                  <span className="qodef-m-text">
-                                    Find out more
-                                  </span>
+                        </div>
+                      </article>
+                    ))}
+                  </Slider>
+                ) : (
+                  <div className="row">
+                    {data?.map((item) => (
+                      <div className="col-md-3"  key={item.id}>
+                        <article className="blog-item">
+                          <div className="new-inner">
+                            <div className="qodef-image-date">
+                              <div className="new-info-item new-info-date entry-date published updated">
+                                <Link href={`/news/${item.id}`}>
+                                  <svg
+                                    width="12.07"
+                                    height="11.31"
+                                    viewBox="0 0 12.07 11.31"
+                                  >
+                                    <rect
+                                      x="0.48"
+                                      y="0.48"
+                                      width="11.12"
+                                      height="10.35"
+                                      fill="none"
+                                      stroke="#000"
+                                      strokeLinecap="square"
+                                      strokeWidth="0.95"
+                                    ></rect>
+                                    <rect
+                                      x="1.99"
+                                      y="3.37"
+                                      width="2.06"
+                                      height="1.65"
+                                    ></rect>
+                                    <rect
+                                      x="5.01"
+                                      y="3.37"
+                                      width="2.06"
+                                      height="1.65"
+                                    ></rect>
+                                    <rect
+                                      x="8.02"
+                                      y="3.37"
+                                      width="2.06"
+                                      height="1.65"
+                                    ></rect>
+                                    <rect
+                                      x="1.99"
+                                      y="6.29"
+                                      width="2.06"
+                                      height="1.65"
+                                    ></rect>
+                                    <rect
+                                      x="5.01"
+                                      y="6.29"
+                                      width="2.06"
+                                      height="1.65"
+                                    ></rect>
+                                    <rect
+                                      x="8.02"
+                                      y="6.29"
+                                      width="2.06"
+                                      height="1.65"
+                                    ></rect>
+                                  </svg>
+                                  {moment(item.time).format(
+                                    "Do MMMM YYYY, h:mm a"
+                                  )}
                                 </Link>
                               </div>
                             </div>
-                            <div className="new-info-slider"></div>
+                            <div className="new-media-image">
+                              <Link href={`/news/${item.id}`}>
+                                <img
+                                  src={`/uploads/${item.image}`}
+                                  className="attachment-full size-full"
+                                  alt="c"
+                                />
+                              </Link>
+                            </div>
+                            <div className="new-content">
+                              <div className="new-supertitle-holder"></div>
+                              <div className="new-text">
+                                <h4 className="new-title entry-title">
+                                  <Link
+                                    className="new-title-link"
+                                    href={`/news/${item.id}`}
+                                  >
+                                    Research that can give us a greener life
+                                  </Link>
+                                </h4>
+                                <p className="new-excerpt">
+                                  {htmlToText(
+                                    item.description.substring(0, 500),
+                                    {
+                                      wordwrap: 130,
+                                    }
+                                  )}
+                                </p>
+                              </div>
+                              <div className="new-info qodef-info--bottom">
+                                <div className="new-info-left">
+                                  <div className="new-read-more">
+                                    <Link
+                                      href={`/news/${item.id}`}
+                                      target="_self"
+                                    >
+                                      <span className="qodef-m-text">
+                                        Find out more
+                                      </span>
+                                    </Link>
+                                  </div>
+                                </div>
+                                <div className="new-info-slider"></div>
+                              </div>
+                            </div>
                           </div>
-                        </div>
+                        </article>
                       </div>
-                    </article>
-                  ))}
-                </Slider>
+                    ))}
+                  </div>
+                )}
               </Suspense>
             </div>
           </div>

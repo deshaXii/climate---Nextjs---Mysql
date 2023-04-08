@@ -94,6 +94,7 @@ a:active {
   color: #fff;
 }
 
+.page-title .page-title-content h1,
 .page-title .page-title-content h2 {
   font-size: 52px;
   font-weight: bold;
@@ -777,7 +778,6 @@ footer.site-footer .bottom-part ul li {
 
 .form-group.phone-number {
   border-bottom: 1px solid #b7b7b7;
-  padding: 0 20px;
 }
 
 .contact-form form .col-6:first-of-type {
@@ -828,6 +828,26 @@ footer.site-footer .bottom-part ul li {
 
 .contact-form form .col-9 {
   padding: 0;
+}
+
+.contact-form .react-tel-input .flag-dropdown {
+  border: 0;
+  border-right: 1px solid #b7b7b7;
+}
+
+.contact-form .react-tel-input .selected-flag {
+  width: 60px;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.contact-form form .form-group .react-tel-input .form-control {
+  padding: 0;
+  box-shadow: none !important;
+  text-indent: 80px;
+  outline: none;
 }
 
 .contact-form form .col-9 .form-group .btn {

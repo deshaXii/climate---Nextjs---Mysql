@@ -92,7 +92,7 @@ const AdminEditBlog = () => {
               <div className="row">
                 <div className="col-12">
                   <div className="page-top-header admin-section-title">
-                    <h2>Edit {blog.title} blog</h2>
+                    <h2>Add New blog</h2>
                     <div>
                       <button
                         onClick={() => {
@@ -101,18 +101,12 @@ const AdminEditBlog = () => {
                       >
                         Go Back
                       </button>
-                      <span>&nbsp;</span>
-                      <span>&nbsp;</span>
-                      <span>&nbsp;</span>
-                      <span>&nbsp;</span>
-                      <span>&nbsp;</span>
-                      <Link href={`/news/${blog.id}`}>See Blog</Link>
                     </div>
                   </div>
                 </div>
                 <div className="col-md-12">
                   <div className="blog-edit-form">
-                    <form onSubmit={(e) => editBlogById(e, blog.id)}>
+                    <form onSubmit={(e) => addNew(e, blog.id)}>
                       <div className="row">
                         <div className="col-md-4">
                           <div className="form-group">
@@ -215,20 +209,3 @@ const AdminEditBlog = () => {
 };
 
 export default AdminEditBlog;
-
-export async function getServerSideProps({ params, query }) {
-  try {
-    const blogRes = await axios.get(`/api/blogs/${query.id}`);
-    return {
-      props: {
-        blog: blogRes.data,
-      },
-    };
-  } catch (err) {
-    return {
-      props: {
-        error: err.message,
-      },
-    };
-  }
-}

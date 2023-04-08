@@ -28,13 +28,12 @@ const Blog = ({ data }) => {
           <section className="pt80" ref={blogRef}>
             <div className="container">
               <div className="row justify-content-center">
-                <div className="col-8">
+                <div className="col-md-8 col-12">
                   <div className="blog-content">
                     <div className="blog-image-box">
                       <img src={`/uploads/${blog?.image}`} alt={blog?.title} />
                     </div>
                     <div className="blog-content-box">
-                      <h1>{blog?.title}</h1>
                       <div
                         dangerouslySetInnerHTML={{
                           __html: blog?.description,
@@ -46,7 +45,6 @@ const Blog = ({ data }) => {
               </div>
             </div>
           </section>
-          <Author />
           <LatestNews data={blogs} />
         </div>
       </Default>

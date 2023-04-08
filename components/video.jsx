@@ -1,5 +1,6 @@
+import dynamic from "next/dynamic";
 import React, { useState } from "react";
-import ModalVideo from "react-modal-video";
+const ModalVideo = dynamic(() => import("react-modal-video"));
 import "react-modal-video/css/modal-video.css";
 
 const Video = ({ data }) => {
