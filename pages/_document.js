@@ -1,3 +1,4 @@
+import ScrollToTop from "@/components/scrollToTop";
 import { Html, Head, Main, NextScript } from "next/document";
 
 export default function Document() {
@@ -8,6 +9,7 @@ export default function Document() {
       </Head>
       <body>
         <Main />
+        <ScrollToTop />
         <NextScript />
       </body>
     </Html>

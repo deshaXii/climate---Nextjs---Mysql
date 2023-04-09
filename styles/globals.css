@@ -60,6 +60,133 @@ a:active {
   transition: width 0.2s ease-in-out;
 }
 
+/* Loading Style */
+.custom-loader {
+  width: 32px;
+  height: 32px;
+  --c: radial-gradient(farthest-side, #007575 90%, #0000);
+  background: var(--c), var(--c), var(--c), var(--c);
+  background-size: 12px 12px;
+  background-repeat: no-repeat;
+  animation: d6 1s infinite;
+}
+
+@keyframes d6 {
+  0% {
+    background-position: 0 0, 100% 0, 100% 100%, 0 100%
+  }
+
+  40%,
+  50% {
+    background-position: 100% 100%, 100% 0, 0 0, 0 100%
+  }
+
+  90%,
+  100% {
+    background-position: 100% 100%, 0 100%, 0 0, 100% 0
+  }
+}
+
+.loading {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  row-gap: 10px;
+  background: #fff;
+}
+
+.loading>span {
+  font-size: 20px;
+  display: block;
+  text-transform: uppercase;
+  letter-spacing: 22px;
+  margin-top: 20px;
+  animation: opacityy 1s infinite;
+  transition: opacity .3s linear;
+}
+
+@keyframes opacityy {
+  0% {
+    opacity: .5
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+/* Scroll To Top Style */
+.progress-wrap {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  height: 44px;
+  width: 44px;
+  cursor: pointer;
+  display: block;
+  border-radius: 50px;
+  z-index: 100;
+  opacity: 0;
+  visibility: hidden;
+  -webkit-transform: translateY(20px);
+  -ms-transform: translateY(20px);
+  transform: translateY(20px);
+  -webkit-transition: all 400ms linear;
+  -o-transition: all 400ms linear;
+  transition: all 400ms linear;
+}
+
+.progress-wrap.active-progress {
+  opacity: 1;
+  visibility: visible;
+  -webkit-transform: translateY(0);
+  -ms-transform: translateY(0);
+  transform: translateY(0);
+}
+
+.progress-wrap::after {
+  position: absolute;
+  font-family: "Font Awesome 5 Free";
+  content: "\f077";
+  text-align: center;
+  line-height: 44px;
+  font-size: 13px;
+  font-weight: 900;
+  color: #12c2e9;
+  left: 0;
+  top: 0;
+  height: 44px;
+  width: 44px;
+  cursor: pointer;
+  display: block;
+  z-index: 1;
+  -webkit-transition: all 400ms linear;
+  -o-transition: all 400ms linear;
+  transition: all 400ms linear;
+}
+
+.progress-wrap svg path {
+  fill: none;
+}
+
+.progress-wrap svg.progress-circle path {
+  stroke: #12c2e9;
+  stroke-width: 4;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  -webkit-transition: all 400ms linear;
+  -o-transition: all 400ms linear;
+  transition: all 400ms linear;
+}
+
+
 /* Page Title Styles */
 .page-title {
   background-size: cover;

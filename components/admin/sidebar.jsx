@@ -1,11 +1,21 @@
 import Link from "next/link";
 import { useRouter } from "next/router";
-import React from "react";
+import React, { useState } from "react";
 
 const AdminSidebar = () => {
+  const [hide, setHide] = useState(true);
   const router = useRouter();
   return (
-    <aside className="admin-sidebar">
+    <aside className={`admin-sidebar ${hide ? "hide" : ""}`}>
+      <button
+        className="sidebar-btn"
+        onClick={(e) => {
+          e.preventDefault();
+          setHide(!hide);
+        }}
+      >
+        <i className="fa fa-home"></i>
+      </button>
       <div className="logo-area">
         <a href="/">
           <img src="/images/logo-white.svg" alt="climate logo" />

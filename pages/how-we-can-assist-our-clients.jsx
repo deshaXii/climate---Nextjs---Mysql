@@ -21,7 +21,7 @@ const HowWeCanAssistOurClients = ({ info }) => {
           <section className="pt80">
             <div className="container">
               <div className="row text-center justify-content-center">
-                <div className="col-10">
+                <div className="col-md-10 col-12">
                   <div className="hwcaocp-content">
                     <h2 className="letter-space-max">SUSTAINABILITY</h2>
                     <div

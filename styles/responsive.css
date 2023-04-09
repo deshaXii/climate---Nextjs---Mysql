@@ -5,6 +5,14 @@
         row-gap: 15px;
     }
 
+    a.navbar-brand img {
+        height: 40px;
+    }
+
+    nav.navbar {
+        padding: 10px 0;
+    }
+
     nav.navbar .ms-auto ul li.nav-item {
         flex: 1;
     }
@@ -80,6 +88,90 @@
         margin-bottom: 12px;
     }
 
+
+
+    aside.admin-sidebar.hide {
+        left: -290px;
+        position: absolute;
+    }
+
+    aside.admin-sidebar.hide button.sidebar-btn {
+        right: -20px;
+
+    }
+
+    button.sidebar-btn {
+        cursor: pointer;
+        position: absolute;
+        top: 10px;
+        right: 80px;
+        width: 30px;
+        height: 30px;
+        background: #111;
+        border: none;
+        color: #fff;
+        font-size: 12px;
+    }
+
+
+
+    .hwcaocp-content .list-box ul li {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: auto;
+    }
+
+    .bot-vis .vision--card .vc-p {
+        margin-top: 20px;
+    }
+
+    .admin-layout-wrapper .container-fluid {
+        padding: 0 12px;
+    }
+
+    .contact-us-info {
+        margin-bottom: 30px;
+    }
+
+    .contact-form {
+        overflow: hidden;
+    }
+
+    .contact-us-section .section-title h2 {
+        font-size: 26px;
+        margin-bottom: 15px;
+    }
+
+    .contact-us-section .section-title p {
+        font-size: 15px;
+        line-height: 25px;
+    }
+
+    .hwcaocp-content .list-box ul {
+        grid-template-columns: 1fr;
+    }
+
+    .hwcaocp-content .list-box>span:before,
+    .hwcaocp-content .list-box>span:after {
+        display: none;
+    }
+
+    .hwcaocp-content h2.letter-space-max {
+        letter-spacing: 5px;
+    }
+
+    .contact-us-section .section-title .marked {
+        margin-bottom: 4px;
+        font-size: 12px;
+    }
+
+    .contact-us-section .section-title {
+        margin-bottom: 22px;
+        padding-bottom: 10px;
+        margin-right: 10px;
+    }
+
     footer .footer-list ul li a {
         font-size: 14px;
     }
@@ -109,5 +201,11 @@
 
     .page-title .page-title-content .marked {
         margin-bottom: 10px;
+    }
+}
+
+@media (min-width: 769px) {
+    button.sidebar-btn {
+        display: none;
     }
 }
