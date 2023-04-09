@@ -56,7 +56,7 @@ a:active {
 
 .bar {
   height: 100%;
-  background-color: #007bff;
+  background-color: #007575;
   transition: width 0.2s ease-in-out;
 }
 
@@ -542,6 +542,8 @@ section.video .video-play-btn button.video-play i {
 /* Start News Style */
 .new-media-image a img {
   width: 100%;
+  aspect-ratio: 3/2;
+  object-fit: cover;
 }
 
 .new-inner {
@@ -1134,12 +1136,14 @@ figure img {
   width: 100%;
 }
 
-
-
+.blog-content-box img {
+  width: 100%;
+}
 
 .blog-content-box p {
   margin-bottom: 20px;
   color: #323432;
+  overflow-wrap: break-word;
 }
 
 .blog-content-box a {

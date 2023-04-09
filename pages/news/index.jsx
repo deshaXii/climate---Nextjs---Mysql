@@ -35,7 +35,7 @@ function News({ data }) {
           <div className="container">
             <div className="row">
               {paginatedPosts.map((item) => (
-                <div className="col-md-3" key={item.id}>
+                <div className="col-md-4 col-lg-3 col-sm-6 col-12" key={item.id}>
                   <article className="blog-item">
                     <div className="new-inner">
                       <div className="new-media-image">
