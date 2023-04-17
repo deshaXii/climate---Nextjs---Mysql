@@ -6,7 +6,7 @@ import Link from "next/link";
 import moment from "moment/moment";
 import { htmlToText } from "html-to-text";
 
-const LatestNews = ({ data }) => {
+const LatestNews = ({ data, title, description, subtitle }) => {
   var settings = {
     dots: true,
     arrows: false,
@@ -46,8 +46,8 @@ const LatestNews = ({ data }) => {
         <div className="row">
           <div className="col-12">
             <div className="section-title">
-              <span className="marked">Everything new</span>
-              <h2>Read the latest news</h2>
+              <span className="marked">{subtitle}</span>
+              <h2>{title}</h2>
             </div>
           </div>
           <div className="col-12">
@@ -171,7 +171,7 @@ const LatestNews = ({ data }) => {
                 ) : (
                   <div className="row">
                     {data?.map((item) => (
-                      <div className="col-md-3"  key={item.id}>
+                      <div className="col-md-3" key={item.id}>
                         <article className="blog-item">
                           <div className="new-inner">
                             <div className="qodef-image-date">

@@ -9,7 +9,7 @@ import Link from "next/link";
 import { htmlToText } from "html-to-text";
 import moment from "moment";
 
-function News({ data }) {
+function News({ data, seoData }) {
   const [currentPage, setCurrentPage] = useState(1);
   const pageSize = 8;
   const { blogs } = data;
@@ -22,12 +22,13 @@ function News({ data }) {
   return (
     <>
       <Head>
-        <title>News - climate</title>
+        <title>News - {seoData.news_title}</title>
+        <meta name="description" content={seoData.news_description} />
       </Head>
       <Default siteInfo={data.info}>
         <PageTitle
-          title="Read the latest news"
-          description="Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic amet repellat odit odio nam nisi excepturi fuga libero eligendi natus."
+          title={seoData.news_title}
+          description={seoData.news_description}
           image="/images/news-background-img.jpg"
           marked="Everything new"
         />
@@ -35,7 +36,10 @@ function News({ data }) {
           <div className="container">
             <div className="row">
               {paginatedPosts.map((item) => (
-                <div className="col-md-4 col-lg-3 col-sm-6 col-12" key={item.id}>
+                <div
+                  className="col-md-4 col-lg-3 col-sm-6 col-12"
+                  key={item.id}
+                >
                   <article className="blog-item">
                     <div className="new-inner">
                       <div className="new-media-image">

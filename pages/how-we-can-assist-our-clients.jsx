@@ -4,17 +4,18 @@ import Head from "next/head";
 import React from "react";
 import PageTitle from "@/components/pageTitle";
 
-const HowWeCanAssistOurClients = ({ info }) => {
+const HowWeCanAssistOurClients = ({ info, seoData }) => {
   return (
     <>
       <Head>
-        <title>Climate - How we can assist our clients</title>
+        <title>Climate - {seoData.how_can_title}</title>
+        <meta name="description" content={seoData.how_can_description} />
       </Head>
       <Default siteInfo={info}>
         <div className="how-we-can-assist-our-clients-page">
           <PageTitle
-            title="How we can assist our clients"
-            description="Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic amet repellat odit odio nam nisi excepturi fuga libero eligendi natus."
+            title={seoData.how_can_title}
+            description={seoData.how_can_description}
             image="/images/Our-teaam-title-img.jpg"
             marked="True experince"
           />

@@ -5,6 +5,10 @@
         row-gap: 15px;
     }
 
+    .bar-container {
+        top: 72px;
+    }
+
     a.navbar-brand img {
         height: 40px;
     }

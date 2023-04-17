@@ -1,15 +1,15 @@
 import React from "react";
 import TeamCard from "./teamCard";
 
-const Team = ({ data }) => {
+const Team = ({ data, title, description, subtitle }) => {
   return (
     <section className="pt80">
       <div className="container">
         <div className="row">
           <div className="col-12">
             <div className="section-title">
-              <span className="marked">True Experince</span>
-              <h2>Meet the team</h2>
+              <span className="marked">{subtitle}</span>
+              <h2>{title}</h2>
             </div>
           </div>
           <div className="col-12">

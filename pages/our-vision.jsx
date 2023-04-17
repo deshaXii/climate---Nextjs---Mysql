@@ -4,17 +4,18 @@ import Head from "next/head";
 import React from "react";
 import PageTitle from "@/components/pageTitle";
 
-const OurVision = ({ info, vision }) => {
+const OurVision = ({ info, vision, seoData }) => {
   return (
     <>
       <Head>
-        <title>Climate - Our Vision</title>
+        <title>Climate - {seoData.vision_title}</title>
+        <meta name="description" content={seoData.vision_description} />
       </Head>
       <Default siteInfo={info}>
         <div className="our-vision-page">
           <PageTitle
-            title="Our Vision"
-            description="Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic amet repellat odit odio nam nisi excepturi fuga libero eligendi natus."
+            title={seoData.vision_title}
+            description={seoData.vision_description}
             image="/images/Our-teaam-title-img.jpg"
             marked="True experince"
           />

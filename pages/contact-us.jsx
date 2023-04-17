@@ -5,11 +5,12 @@ import Head from "next/head";
 import React from "react";
 import axios from "@/components/axios";
 
-const ContactUs = ({ info }) => {
+const ContactUs = ({ info, seoData }) => {
   return (
     <>
       <Head>
-        <title>Climate - Contact Us</title>
+        <title>Climate - {seoData.contact_title}</title>
+        <meta name="description" content={seoData.contact_description} />
       </Head>
       <Default siteInfo={info}>
         <Map mapIframe={info.map_iframe} />
