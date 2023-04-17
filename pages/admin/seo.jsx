@@ -7,67 +7,67 @@ import { useRouter } from "next/router";
 const AdminSeo = ({ seoData }) => {
   const router = useRouter();
   const [intro_title, setIntro_title] = useState(
-    seoData ? seoData.intro_title : ""
+    seoData ? seoData?.intro_title : ""
   );
   const [intro_subtitle, setIntro_subtitle] = useState(
-    seoData ? seoData.intro_subtitle : ""
+    seoData ? seoData?.intro_subtitle : ""
   );
   const [intro_description, setIntro_description] = useState(
-    seoData ? seoData.intro_description : ""
+    seoData ? seoData?.intro_description : ""
   );
   const [meet_the_team_title, setMeet_the_team_title] = useState(
-    seoData ? seoData.meet_the_team_title : ""
+    seoData ? seoData?.meet_the_team_title : ""
   );
   const [meet_the_team_subtitle, setMeet_the_team_subtitle] = useState(
-    seoData ? seoData.meet_the_team_subtitle : ""
+    seoData ? seoData?.meet_the_team_subtitle : ""
   );
   const [meet_the_team_description, setMeet_the_team_description] = useState(
-    seoData ? seoData.meet_the_team_description : ""
+    seoData ? seoData?.meet_the_team_description : ""
   );
   const [latest_news_title, setLatest_news_title] = useState(
-    seoData ? seoData.latest_news_title : ""
+    seoData ? seoData?.latest_news_title : ""
   );
   const [latest_news_subtitle, setLatest_news_subtitle] = useState(
-    seoData ? seoData.latest_news_subtitle : ""
+    seoData ? seoData?.latest_news_subtitle : ""
   );
   const [latest_news_description, setLatest_news_description] = useState(
-    seoData ? seoData.latest_news_description : ""
+    seoData ? seoData?.latest_news_description : ""
   );
   const [contact_title, setContact_title] = useState(
-    seoData ? seoData.contact_title : ""
+    seoData ? seoData?.contact_title : ""
   );
   const [contact_description, setContact_description] = useState(
-    seoData ? seoData.contact_description : ""
+    seoData ? seoData?.contact_description : ""
   );
   const [news_title, setNews_title] = useState(
-    seoData ? seoData.news_title : ""
+    seoData ? seoData?.news_title : ""
   );
   const [news_description, setNews_description] = useState(
-    seoData ? seoData.news_description : ""
+    seoData ? seoData?.news_description : ""
   );
   const [team_title, setTeam_title] = useState(
-    seoData ? seoData.team_title : ""
+    seoData ? seoData?.team_title : ""
   );
   const [team_description, setTeam_description] = useState(
-    seoData ? seoData.team_description : ""
+    seoData ? seoData?.team_description : ""
   );
   const [how_can_title, setHow_can_title] = useState(
-    seoData ? seoData.how_can_title : ""
+    seoData ? seoData?.how_can_title : ""
   );
   const [how_can_description, setHow_can_description] = useState(
-    seoData ? seoData.how_can_description : ""
+    seoData ? seoData?.how_can_description : ""
   );
   const [vision_title, setVision_title] = useState(
-    seoData ? seoData.vision_title : ""
+    seoData ? seoData?.vision_title : ""
   );
   const [vision_description, setVision_description] = useState(
-    seoData ? seoData.vision_description : ""
+    seoData ? seoData?.vision_description : ""
   );
   const [home_title, setHome_title] = useState(
-    seoData ? seoData.home_title : ""
+    seoData ? seoData?.home_title : ""
   );
   const [home_description, setHome_description] = useState(
-    seoData ? seoData.home_description : ""
+    seoData ? seoData?.home_description : ""
   );
 
   const addSeoData = async (e) => {

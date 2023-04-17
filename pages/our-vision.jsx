@@ -8,14 +8,14 @@ const OurVision = ({ info, vision, seoData }) => {
   return (
     <>
       <Head>
-        <title>Climate - {seoData.vision_title}</title>
-        <meta name="description" content={seoData.vision_description} />
+        <title>Climate - {seoData?.vision_title}</title>
+        <meta name="description" content={seoData?.vision_description} />
       </Head>
       <Default siteInfo={info}>
         <div className="our-vision-page">
           <PageTitle
-            title={seoData.vision_title}
-            description={seoData.vision_description}
+            title={seoData?.vision_title}
+            description={seoData?.vision_description}
             image="/images/Our-teaam-title-img.jpg"
             marked="True experince"
           />

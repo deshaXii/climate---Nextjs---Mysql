@@ -6,13 +6,14 @@ import Intro from "@/components/intro";
 import Team from "@/components/team";
 import Video from "@/components/video";
 import LatestNews from "@/components/latestNews";
+import AboutSimple2 from "@/components/aboutSimple2";
 
 export default function Home({ data, error, seoData }) {
   return (
     <>
       <Head>
-        <title>Climate - {seoData.home_title}</title>
-        <meta name="description" content={seoData.home_description} />
+        <title>Climate - {seoData?.home_title}</title>
+        <meta name="description" content={seoData?.home_description} />
       </Head>
       <Default siteInfo={data?.info}>
         <Intro />
@@ -22,17 +23,18 @@ export default function Home({ data, error, seoData }) {
         ) : (
           "Add Video From DB"
         )}
+        <AboutSimple2 />
         <Team
           data={data?.teams?.slice(0, 4)}
-          title={seoData.meet_the_team_title}
-          description={seoData.meet_the_team_description}
-          subtitle={seoData.meet_the_team_subtitle}
+          title={seoData?.meet_the_team_title}
+          description={seoData?.meet_the_team_description}
+          subtitle={seoData?.meet_the_team_subtitle}
         />
         <LatestNews
           data={data?.blogs?.slice(0, 6)}
-          title={seoData.latest_news_title}
-          description={seoData.latest_news_description}
-          subtitle={seoData.latest_news_subtitle}
+          title={seoData?.latest_news_title}
+          description={seoData?.latest_news_description}
+          subtitle={seoData?.latest_news_subtitle}
         />
       </Default>
     </>

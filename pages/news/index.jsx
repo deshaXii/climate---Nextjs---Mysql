@@ -22,13 +22,13 @@ function News({ data, seoData }) {
   return (
     <>
       <Head>
-        <title>News - {seoData.news_title}</title>
-        <meta name="description" content={seoData.news_description} />
+        <title>News - {seoData?.news_title}</title>
+        <meta name="description" content={seoData?.news_description} />
       </Head>
       <Default siteInfo={data.info}>
         <PageTitle
-          title={seoData.news_title}
-          description={seoData.news_description}
+          title={seoData?.news_title}
+          description={seoData?.news_description}
           image="/images/news-background-img.jpg"
           marked="Everything new"
         />

@@ -8,14 +8,14 @@ const HowWeCanAssistOurClients = ({ info, seoData }) => {
   return (
     <>
       <Head>
-        <title>Climate - {seoData.how_can_title}</title>
-        <meta name="description" content={seoData.how_can_description} />
+        <title>Climate - {seoData?.how_can_title}</title>
+        <meta name="description" content={seoData?.how_can_description} />
       </Head>
       <Default siteInfo={info}>
         <div className="how-we-can-assist-our-clients-page">
           <PageTitle
-            title={seoData.how_can_title}
-            description={seoData.how_can_description}
+            title={seoData?.how_can_title}
+            description={seoData?.how_can_description}
             image="/images/Our-teaam-title-img.jpg"
             marked="True experince"
           />

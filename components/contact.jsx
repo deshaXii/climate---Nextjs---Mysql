@@ -3,7 +3,7 @@ import { useRouter } from "next/router";
 import { useState } from "react";
 import PhoneInput from "react-phone-input-2";
 import "react-phone-input-2/lib/style.css";
-const Contact = ({ siteInfo }) => {
+const Contact = ({ siteInfo, title, description }) => {
   const router = useRouter();
   const [name, setName] = useState();
   const [email, setEmail] = useState();
@@ -39,11 +39,8 @@ const Contact = ({ siteInfo }) => {
           <div className="col-md-6">
             <div className="section-title">
               <span className="marked">FOR A NEW WORLD</span>
-              <h2>Let&apos;s make some change</h2>
-              <p>
-                In blandit commodo odio, vitae iaculis felis facilisis sed. Sed
-                tempus porttitor lorem ac eleifend. In sit amet euismod ex.
-              </p>
+              <h2>{title}</h2>
+              <p>{description}</p>
             </div>
             <div className="contact-us-info">
               <ul>

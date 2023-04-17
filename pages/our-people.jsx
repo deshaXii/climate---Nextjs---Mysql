@@ -9,13 +9,13 @@ const OurPeople = ({ data, error, seoData }) => {
   return (
     <>
       <Head>
-        <title>Our People - {seoData.team_title}</title>
-        <meta name="description" content={seoData.team_description} />
+        <title>Our People - {seoData?.team_title}</title>
+        <meta name="description" content={seoData?.team_description} />
       </Head>
       <Default siteInfo={data.info}>
         <PageTitle
-          title={seoData.team_title}
-          description={seoData.team_description}
+          title={seoData?.team_title}
+          description={seoData?.team_description}
           image="/images/Our-teaam-title-img.jpg"
           marked="True experince"
         />

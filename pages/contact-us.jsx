@@ -9,12 +9,16 @@ const ContactUs = ({ info, seoData }) => {
   return (
     <>
       <Head>
-        <title>Climate - {seoData.contact_title}</title>
-        <meta name="description" content={seoData.contact_description} />
+        <title>Climate - {seoData?.contact_title}</title>
+        <meta name="description" content={seoData?.contact_description} />
       </Head>
       <Default siteInfo={info}>
         <Map mapIframe={info.map_iframe} />
-        <Contact siteInfo={info} />
+        <Contact
+          siteInfo={info}
+          title={seoData?.contact_title}
+          description={seoData?.contact_description}
+        />
       </Default>
     </>
   );
