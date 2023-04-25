@@ -60,7 +60,7 @@ async function editMember(req, res) {
     [
       req.body.name,
       req.body.jobname,
-      req.file.filename,
+      req.file?.filename || req.body.image,
       req.body.facebook,
       req.body.instagram,
       req.body.linkedin,

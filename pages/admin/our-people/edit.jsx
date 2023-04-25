@@ -1,9 +1,10 @@
-import AdminLayout from "@/helpers/layout/admin";
+import AdminLayout from "@/layout/admin";
 import axios from "@/components/axios";
 import Head from "next/head";
 import { useRouter } from "next/router";
 import { useState } from "react";
 import ImageUploading from "react-images-uploading";
+import { parseCookies } from "@/helpers/parseCookies";
 
 const AdminOurPeopleEdit = ({ team }) => {
   const [image, setImage] = useState(team.image);
@@ -67,7 +68,7 @@ const AdminOurPeopleEdit = ({ team }) => {
             <div className="row">
               <div className="col-12">
                 <div className="page-top-header admin-section-title">
-                  <h2>Add Member in the team</h2>
+                  <h2>Edit Member</h2>
                   <button
                     onClick={() => {
                       router.back();
@@ -91,7 +92,9 @@ const AdminOurPeopleEdit = ({ team }) => {
                           <div className="form-group image-uploader-area">
                             <label>Image</label>
                             <img
-                              src={images[0]?.data_url || team.image}
+                              src={
+                                images[0]?.data_url || `/uploads/${team.image}`
+                              }
                               alt="user image"
                             />
                             <ImageUploading
@@ -194,7 +197,7 @@ const AdminOurPeopleEdit = ({ team }) => {
                           </div>
                           <div className="form-submit">
                             <button type="submit" className="btn main-btn">
-                              Add Member
+                              Save Changes
                             </button>
                           </div>
                         </div>
@@ -213,7 +216,17 @@ const AdminOurPeopleEdit = ({ team }) => {
 
 export default AdminOurPeopleEdit;
 
-export async function getServerSideProps({ params, query }) {
+export async function getServerSideProps({ params, query, req }) {
+  const cookies = parseCookies(req);
+  const token = cookies.userToken;
+  if (!token) {
+    return {
+      redirect: {
+        destination: "/admin/login",
+      },
+      props: {},
+    };
+  }
   try {
     const teamRes = await axios.get(`/api/teams/${query.id}`);
     return {

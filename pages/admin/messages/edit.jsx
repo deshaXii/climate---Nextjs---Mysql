@@ -1,10 +1,11 @@
-import AdminLayout from "@/helpers/layout/admin";
+import AdminLayout from "@/layout/admin";
 import axios from "@/components/axios";
 import dynamic from "next/dynamic";
 import { useRouter } from "next/router";
 import React, { useState } from "react";
 import "react-quill/dist/quill.snow.css";
 import Link from "next/link";
+import { parseCookies } from "@/helpers/parseCookies";
 const ReactQuill = dynamic(() => import("react-quill"), {
   ssr: false,
 });
@@ -128,7 +129,17 @@ const AdminEditBlog = ({ blog }) => {
 
 export default AdminEditBlog;
 
-export async function getServerSideProps({ params, query }) {
+export async function getServerSideProps({ params, query, req }) {
+  const cookies = parseCookies(req);
+  const token = cookies.userToken;
+  if (!token) {
+    return {
+      redirect: {
+        destination: "/admin/login",
+      },
+      props: {},
+    };
+  } 
   try {
     const blogRes = await axios.get(`/api/blogs/${query.id}`);
     return {

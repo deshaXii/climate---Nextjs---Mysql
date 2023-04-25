@@ -1,6 +1,6 @@
 import Contact from "@/components/contact";
 import Map from "@/components/map";
-import Default from "@/helpers/layout/default";
+import Default from "@/layout/default";
 import Head from "next/head";
 import React from "react";
 import axios from "@/components/axios";

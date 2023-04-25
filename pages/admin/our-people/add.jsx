@@ -1,9 +1,10 @@
-import AdminLayout from "@/helpers/layout/admin";
+import AdminLayout from "@/layout/admin";
 import axios from "@/components/axios";
 import Head from "next/head";
 import { useRouter } from "next/router";
 import { useState } from "react";
 import ImageUploading from "react-images-uploading";
+import { parseCookies } from "@/helpers/parseCookies";
 
 const AdminOurPeopleAdd = () => {
   const [image, setImage] = useState([]);
@@ -215,3 +216,20 @@ const AdminOurPeopleAdd = () => {
 };
 
 export default AdminOurPeopleAdd;
+
+export async function getServerSideProps({ res, req }) {
+  const cookies = parseCookies(req);
+  const token = cookies.userToken;
+  if (!token) {
+    return {
+      redirect: {
+        destination: "/admin/login",
+      },
+      props: {},
+    };
+  } else {
+    return {
+      props: {},
+    };
+  }
+}

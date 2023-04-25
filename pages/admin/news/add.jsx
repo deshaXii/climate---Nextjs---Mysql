@@ -1,4 +1,4 @@
-import AdminLayout from "@/helpers/layout/admin";
+import AdminLayout from "@/layout/admin";
 import axios from "@/components/axios";
 import dynamic from "next/dynamic";
 import { useRouter } from "next/router";
@@ -6,6 +6,7 @@ import React, { useState } from "react";
 import "react-quill/dist/quill.snow.css";
 import Link from "next/link";
 import ImageUploading from "react-images-uploading";
+import { parseCookies } from "@/helpers/parseCookies";
 const ReactQuill = dynamic(() => import("react-quill"), {
   ssr: false,
 });
@@ -209,3 +210,20 @@ const AdminEditBlog = () => {
 };
 
 export default AdminEditBlog;
+
+export async function getServerSideProps({ res, req }) {
+  const cookies = parseCookies(req);
+  const token = cookies.userToken;
+  if (!token) {
+    return {
+      redirect: {
+        destination: "/admin/login",
+      },
+      props: {},
+    };
+  } else {
+    return {
+      props: {},
+    };
+  }
+}

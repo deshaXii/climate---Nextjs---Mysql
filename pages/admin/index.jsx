@@ -1,13 +1,15 @@
-import AdminLayout from "@/helpers/layout/admin";
+import AdminLayout from "@/layout/admin";
 import axios from "@/components/axios";
 import Head from "next/head";
 import { useRouter } from "next/router";
 import React, { useState } from "react";
+import { parseCookies } from "@/helpers/parseCookies";
 
 const Admin = ({ info }) => {
   const router = useRouter();
   const [description, setDescription] = useState(info.description);
   const [email, setEmail] = useState(info.email);
+  const [video_url, setVideo_url] = useState(info.video_url);
   const [address, setAddress] = useState(info.address);
   const [map_url, setMap_url] = useState(info.map_url);
   const [phone, setPhone] = useState(info.phone);
@@ -23,13 +25,14 @@ const Admin = ({ info }) => {
       email,
       address,
       map_url,
+      video_url,
       phone,
       facebook,
       instagram,
       twitter,
       linkedin,
     };
-    if (info.email && info.phone && info.address) {
+    if (info.email || info.phone || info.address) {
       await axios
         .put("/api/site-information", data)
         .then((res) => {
@@ -102,6 +105,17 @@ const Admin = ({ info }) => {
                             placeholder="map url"
                           />
                         </div>
+
+                        <div className="form-group">
+                          <label> video url</label>
+                          <input
+                            type="text"
+                            value={video_url}
+                            onChange={(e) => setVideo_url(e.target.value)}
+                            placeholder="map url"
+                          />
+                        </div>
+
                         <div className="form-group">
                           <label>facebook</label>
                           <input
@@ -180,7 +194,18 @@ const Admin = ({ info }) => {
 
 export default Admin;
 
-export async function getServerSideProps() {
+export async function getServerSideProps({ req }) {
+  const cookies = parseCookies(req);
+  console.log('parseCookies ', cookies);
+  const token = cookies.userToken;
+  if (!token) {
+    return {
+      redirect: {
+        destination: "/admin/login",
+      },
+      props: {},
+    };
+  }
   try {
     const siteInfo = await axios.get("/api/site-information");
     return {

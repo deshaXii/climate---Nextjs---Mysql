@@ -1,6 +1,6 @@
 import Head from "next/head";
 import axios from "@/components/axios";
-import Default from "@/helpers/layout/default";
+import Default from "@/layout/default";
 import AboutSimple from "@/components/aboutSimple";
 import Intro from "@/components/intro";
 import Team from "@/components/team";
@@ -19,7 +19,10 @@ export default function Home({ data, error, seoData }) {
         <Intro />
         <AboutSimple />
         {data?.video?.image.length ? (
-          <Video data={data?.video} />
+          <Video
+            data={data?.video}
+            vide_url={data.info?.video_url || "Uszj_k0DGsg"}
+          />
         ) : (
           "Add Video From DB"
         )}
@@ -42,6 +45,7 @@ export default function Home({ data, error, seoData }) {
 }
 
 export async function getServerSideProps() {
+ 
   try {
     const blogRes = await axios.get("/api/blogs");
     const teamRes = await axios.get("/api/teams");

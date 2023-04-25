@@ -1,4 +1,4 @@
-import Default from "@/helpers/layout/default";
+import Default from "@/layout/default";
 import axios from "@/components/axios";
 import Head from "next/head";
 import React from "react";
@@ -19,22 +19,34 @@ const OurVision = ({ info, vision, seoData }) => {
             image="/images/Our-teaam-title-img.jpg"
             marked="True experince"
           />
+          <section className="pt-40 first-ceo-word">
+            <div className="container">
+              <div className="row justify-content-center">
+                <div className="col-8">
+                  {vision.first_section_description && (
+                    <p>{vision.first_section_description}</p>
+                  )}
+                  <h4>"ceo word"</h4>
+                </div>
+              </div>
+            </div>
+          </section>
           <section className="pt80 top-vis">
             <div className="container">
               <div className="row align-items-center">
                 <div className="col-md-6">
                   <div className="vision--card">
                     <div className="vc-p">
-                      <h3>{vision.first_section_title}</h3>
-                      <p>{vision.first_section_description}</p>
-                      <blockquote>{vision.first_section_advice}</blockquote>
+                      {vision.second_section_description && (
+                        <p>{vision.second_section_description}</p>
+                      )}
                     </div>
                   </div>
                 </div>
                 <div className="col-md-6">
                   <div className="vision--card">
                     <img
-                      src={`/uploads/${vision.first_section_image}`}
+                      src={`/uploads/${vision.second_section_image}`}
                       alt=""
                     />
                   </div>
@@ -48,7 +60,7 @@ const OurVision = ({ info, vision, seoData }) => {
                 <div className="col-md-6">
                   <div className="vision--card">
                     <img
-                      src={`/uploads/${vision.second_section_image}`}
+                      src={`/uploads/${vision.third_section_image}`}
                       alt=""
                     />
                   </div>
@@ -56,9 +68,33 @@ const OurVision = ({ info, vision, seoData }) => {
                 <div className="col-md-6">
                   <div className="vision--card">
                     <div className="vc-p">
-                      <h3> {vision.second_section_title}</h3>
-                      <p>{vision.second_section_description}</p>
+                      {vision.third_section_description && (
+                        <p>{vision.third_section_description}</p>
+                      )}
                     </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+          <section className="pt80 top-vis">
+            <div className="container">
+              <div className="row align-items-center">
+                <div className="col-md-6">
+                  <div className="vision--card">
+                    <div className="vc-p">
+                      {vision.fourth_section_description && (
+                        <p>{vision.fourth_section_description}</p>
+                      )}
+                    </div>
+                  </div>
+                </div>
+                <div className="col-md-6">
+                  <div className="vision--card">
+                    <img
+                      src={`/uploads/${vision.fourth_section_image}`}
+                      alt=""
+                    />
                   </div>
                 </div>
               </div>

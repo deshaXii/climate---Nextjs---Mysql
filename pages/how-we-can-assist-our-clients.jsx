@@ -1,4 +1,4 @@
-import Default from "@/helpers/layout/default";
+import Default from "@/layout/default";
 import axios from "@/components/axios";
 import Head from "next/head";
 import React from "react";

@@ -1,8 +1,9 @@
-import AdminLayout from "@/helpers/layout/admin";
+import AdminLayout from "@/layout/admin";
 import axios from "@/components/axios";
 import Head from "next/head";
 import React, { useState } from "react";
 import { useRouter } from "next/router";
+import { parseCookies } from "@/helpers/parseCookies";
 
 const AdminSeo = ({ seoData }) => {
   const router = useRouter();
@@ -426,7 +427,19 @@ const AdminSeo = ({ seoData }) => {
 
 export default AdminSeo;
 
-export async function getServerSideProps() {
+export async function getServerSideProps({ res, req }) {
+  const cookies = parseCookies(req);
+  console.log("cookies ", cookies);
+  const token = cookies.userToken;
+  console.log("token ", token);
+  if (!token) {
+    return {
+      redirect: {
+        destination: "/admin/login",
+      },
+      props: {},
+    };
+  }
   try {
     const seoInfo = await axios.get("/api/seo");
     if (seoInfo.data[0]) {

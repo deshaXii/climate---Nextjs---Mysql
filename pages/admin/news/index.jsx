@@ -1,4 +1,4 @@
-import AdminLayout from "@/helpers/layout/admin";
+import AdminLayout from "@/layout/admin";
 import axios from "@/components/axios";
 import moment from "moment";
 import Head from "next/head";
@@ -7,6 +7,7 @@ import { useRouter } from "next/router";
 import React from "react";
 import { Table, Column, HeaderCell, Cell } from "rsuite-table";
 import "rsuite-table/dist/css/rsuite-table.css";
+import { parseCookies } from "@/helpers/parseCookies";
 
 const ImageCell = ({ rowData, dataKey, ...props }) => (
   <Cell {...props} style={{ padding: 0 }}>
@@ -144,7 +145,17 @@ const AdminNews = ({ data }) => {
 
 export default AdminNews;
 
-export async function getServerSideProps() {
+export async function getServerSideProps({ res, req }) {
+  const cookies = parseCookies(req);
+  const token = cookies.userToken;
+  if (!token) {
+    return {
+      redirect: {
+        destination: "/admin/login",
+      },
+      props: {},
+    };
+  }
   try {
     const blogRes = await axios.get("/api/blogs");
     return {

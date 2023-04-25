@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import Head from "next/head";
-import Default from "@/helpers/layout/default";
+import Default from "@/layout/default";
 import PageTitle from "@/components/pageTitle";
 import Pagination from "@/components/pagination";
 import { paginate } from "@/helpers/pagination";

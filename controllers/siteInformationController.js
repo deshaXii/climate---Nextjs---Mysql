@@ -12,10 +12,11 @@ const getSiteInformation = async (req, res) => {
 
 async function addSiteInformation(req, res) {
   const result = await db.query(
-    `INSERT INTO information (description, email, address, map_url, phone, facebook, instagram, twitter, linkedin) VALUES (?,?,?,?,?,?,?,?,?)`,
+    `INSERT INTO information (description, email, video_url, address, map_url, phone, facebook, instagram, twitter, linkedin) VALUES (?,?,?,?,?,?,?,?,?)`,
     [
       req.body.description,
       req.body.email,
+      req.body.video_url,
       req.body.address,
       req.body.map_url,
       req.body.phone,
@@ -38,10 +39,11 @@ async function addSiteInformation(req, res) {
 
 async function editSiteInformation(req, res) {
   const result = await db.query(
-    `UPDATE information SET description = ?, email = ?, address = ?, map_url = ?, phone = ?, facebook = ?, instagram = ?, twitter = ?, linkedin = ?`,
+    `UPDATE information SET description = ?, email = ?, video_url = ?, address = ?, map_url = ?, phone = ?, facebook = ?, instagram = ?, twitter = ?, linkedin = ?`,
     [
       req.body.description,
       req.body.email,
+      req.body.video_url,
       req.body.address,
       req.body.map_url,
       req.body.phone,

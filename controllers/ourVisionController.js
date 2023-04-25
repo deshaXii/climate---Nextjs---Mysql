@@ -1,6 +1,35 @@
 const db = require("../db");
 const helper = require("../helper");
 
+function setDataArray(req) {
+  const { body, files } = req;
+  const data = [
+    body.first_section_description,
+    body.second_section_description,
+    body.second_section_image || "",
+    body.third_section_description,
+    body.third_section_image || "",
+    body.fourth_section_description,
+    body.fourth_section_image || "",
+  ];
+
+  files.forEach((file) => {
+    switch (file.fieldname) {
+      case "second_section_image":
+        data[2] = file.filename;
+        break;
+      case "third_section_image":
+        data[4] = file.filename;
+        break;
+      case "fourth_section_image":
+        data[6] = file.filename;
+        break;
+    }
+  });
+
+  return data;
+}
+
 const getOurVision = async (req, res) => {
   const rows = await db.query(`SELECT * FROM vision`);
   const data = helper.emptyOrRows(rows);
@@ -12,16 +41,8 @@ const getOurVision = async (req, res) => {
 
 async function addOurVision(req, res) {
   const result = await db.query(
-    `INSERT INTO vision (first_section_title, first_section_description, first_section_advice, first_section_image, second_section_title, second_section_description, second_section_image) VALUES (?,?,?,?,?,?,?)`,
-    [
-      req.body.first_section_title,
-      req.body.first_section_description,
-      req.body.first_section_advice,
-      req.files[0].filename,
-      req.body.second_section_title,
-      req.body.second_section_description,
-      req.files[1].filename,
-    ]
+    `INSERT INTO vision (first_section_description, second_section_description, second_section_image, third_section_description, third_section_image, fourth_section_description, fourth_section_image) VALUES (?,?,?,?,?,?,?)`,
+    setDataArray(req)
   );
   let message = "Error while adding site vision";
   if (result.affectedRows) {
@@ -34,23 +55,9 @@ async function addOurVision(req, res) {
 }
 
 async function editOurVision(req, res) {
-  console.log(req.files.length);
-  // 0 && fieldname == 'first_section_image'
-  // 1 && fieldname == 'second_section_image'
-  console.log(req.files);
   const result = await db.query(
-    `UPDATE vision SET first_section_title = ?, first_section_description = ?, first_section_advice = ?, first_section_image = ?, second_section_title = ?, second_section_description = ?, second_section_image = ?`,
-    [
-      req.body.first_section_title,
-      req.body.first_section_description,
-      req.body.first_section_advice,
-      req.files.length >= 1 && req.files[0].fieldname === "first_section_image"
-        ? req.files[0].filename
-        : req.body.first_section_image,
-      req.body.second_section_title,
-      req.body.second_section_description,
-      req.files.length ? req.files[1].filename : req.body.second_section_image,
-    ]
+    `UPDATE vision SET first_section_description = ?, second_section_description = ?, second_section_image = ?, third_section_description = ?, third_section_image = ?, fourth_section_description = ?, fourth_section_image = ?`,
+    setDataArray(req)
   );
 
   let message = "Error While update site vision";

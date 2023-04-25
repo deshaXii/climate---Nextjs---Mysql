@@ -3,16 +3,16 @@ import React, { useState } from "react";
 const ModalVideo = dynamic(() => import("react-modal-video"));
 import "react-modal-video/css/modal-video.css";
 
-const Video = ({ data }) => {
+const Video = ({ data, vide_url }) => {
   const [isOpen, setOpen] = useState(false);
   return (
     <>
       {typeof window !== "undefined" && (
         <ModalVideo
-          channel="vimeo"
+          channel="youtube"
           autoplay
           isOpen={isOpen}
-          videoId="127203262"
+          videoId={vide_url}
           onClose={() => setOpen(false)}
         />
       )}
