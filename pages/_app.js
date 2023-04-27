@@ -8,7 +8,6 @@ import App from "next/app";
 import { Component } from "react";
 
 function MyApp({ Component, pageProps, seoData }) {
-  console.log(seoData);
   return (
     <>
       <Head>

@@ -16,10 +16,6 @@ const AdminLogin = () => {
       .then((res) => {
         if (res.data.status === "sucsses") {
           setUserToken(res.data.token);
-          // Cookies.setItem("userToken", res.data.token, {
-          //   path: "/",
-          //   secure: true,
-          // });
         }
       })
       .catch((err) => {
@@ -28,7 +24,7 @@ const AdminLogin = () => {
   };
   useEffect(() => {
     if (userToken) {
-      router.back();
+      router.push("/admin");
     }
   }, [userToken]);
   return (

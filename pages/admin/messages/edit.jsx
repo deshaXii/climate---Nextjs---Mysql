@@ -55,7 +55,7 @@ const AdminEditBlog = ({ blog }) => {
     await axios
       .put(`/api/blogs/${id}`, data)
       .then((res) => {
-        console.log(res.data);
+
       })
       .catch((err) => {
         console.log(err);

@@ -75,10 +75,8 @@ const DescriptionCell = ({ rowData, dataKey, ...props }) => (
 const AdminMessages = ({ data }) => {
   const router = useRouter();
   const [contacts, setContacts] = React.useState(data?.messages);
-  console.log(contacts);
   const tableRef = React.useRef();
   const removeNew = async (id) => {
-    console.log(id);
     axios
       .delete(`/api/contacts/${id}`)
       .then((res) => {

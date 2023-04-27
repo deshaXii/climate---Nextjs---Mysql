@@ -76,7 +76,6 @@ const AdminNews = ({ data }) => {
   const [news, setNews] = React.useState(data.blogs);
   const tableRef = React.useRef();
   const removeNew = async (id) => {
-    console.log(id);
     axios
       .delete(`/api/blogs/${id}`)
       .then((res) => {

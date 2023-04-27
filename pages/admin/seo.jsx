@@ -107,8 +107,8 @@ const AdminSeo = ({ seoData }) => {
       await axios
         .post("/api/seo", data)
         .then((res) => {
-          console.log(res.data);
         })
+
         .catch((err) => {
           console.log(err);
         });
@@ -429,9 +429,7 @@ export default AdminSeo;
 
 export async function getServerSideProps({ res, req }) {
   const cookies = parseCookies(req);
-  console.log("cookies ", cookies);
   const token = cookies.userToken;
-  console.log("token ", token);
   if (!token) {
     return {
       redirect: {

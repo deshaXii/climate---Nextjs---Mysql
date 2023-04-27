@@ -92,7 +92,7 @@ const AdminOurVision = ({ vision }) => {
       await axios
         .put("/api/our-vision", data, config)
         .then((res) => {
-          console.log(res.data);
+
         })
         .catch((err) => {
           console.log(err);
@@ -101,7 +101,7 @@ const AdminOurVision = ({ vision }) => {
       await axios
         .post("/api/our-vision", data, config)
         .then((res) => {
-          console.log(res.data);
+
         })
         .catch((err) => {
           console.log(err);

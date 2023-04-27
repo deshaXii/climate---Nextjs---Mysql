@@ -36,7 +36,7 @@ const Admin = ({ info }) => {
       await axios
         .put("/api/site-information", data)
         .then((res) => {
-          console.log(res.data);
+          
         })
         .catch((err) => {
           console.log(err);
@@ -45,7 +45,7 @@ const Admin = ({ info }) => {
       await axios
         .post("/api/site-information", data)
         .then((res) => {
-          console.log(res.data);
+
         })
         .catch((err) => {
           console.log(err);
@@ -196,7 +196,6 @@ export default Admin;
 
 export async function getServerSideProps({ req }) {
   const cookies = parseCookies(req);
-  console.log('parseCookies ', cookies);
   const token = cookies.userToken;
   if (!token) {
     return {
