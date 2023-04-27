@@ -35,8 +35,6 @@ const loginAdmin = async (req, res) => {
         emailFound.password = undefined;
         setCookie(res, "userToken", token, {
           httpOnly: true,
-          secure: process.env.NODE_ENV === "production",
-          sameSite: "strict",
           maxAge: 3600,
           path: "/",
         });

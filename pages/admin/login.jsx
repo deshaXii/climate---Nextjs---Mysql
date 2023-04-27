@@ -15,6 +15,7 @@ const AdminLogin = () => {
       .post("/api/login", { email, password })
       .then((res) => {
         if (res.data.status === "sucsses") {
+          Cookies.setItem("userToken", res.data.token);
           setUserToken(res.data.token);
         }
       })
