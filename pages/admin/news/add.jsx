@@ -7,6 +7,7 @@ import "react-quill/dist/quill.snow.css";
 import Link from "next/link";
 import ImageUploading from "react-images-uploading";
 import { parseCookies } from "@/helpers/parseCookies";
+import { toast } from "react-toastify";
 const ReactQuill = dynamic(() => import("react-quill"), {
   ssr: false,
 });
@@ -75,12 +76,29 @@ const AdminEditBlog = () => {
       description: value,
     };
     await axios
-      .put(`/api/blogs/${id}`, data, config)
+      .post(`/api/blogs`, data, config)
       .then((res) => {
-
+        if (res.data?.status === "success") {
+          toast.success(res.data.message, {
+            position: "top-right",
+            autoClose: 5000,
+            hideProgressBar: true,
+            closeOnClick: true,
+            draggable: true,
+            theme: "light",
+          });
+          router.push("/admin/news");
+        }
       })
       .catch((err) => {
-        console.log(err);
+        toast.error(err.message, {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: true,
+          closeOnClick: true,
+          draggable: true,
+          theme: "light",
+        });
       });
   };
 
@@ -107,7 +125,7 @@ const AdminEditBlog = () => {
                 </div>
                 <div className="col-md-12">
                   <div className="blog-edit-form">
-                    <form onSubmit={(e) => addNew(e, blog.id)}>
+                    <form onSubmit={(e) => addNew(e)}>
                       <div className="row">
                         <div className="col-md-4">
                           <div className="form-group">

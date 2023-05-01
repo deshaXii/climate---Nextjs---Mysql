@@ -8,6 +8,7 @@ import React from "react";
 import { Table, Column, HeaderCell, Cell } from "rsuite-table";
 import "rsuite-table/dist/css/rsuite-table.css";
 import { parseCookies } from "@/helpers/parseCookies";
+import { toast } from "react-toastify";
 
 const ImageCell = ({ rowData, dataKey, ...props }) => (
   <Cell {...props} style={{ padding: 0 }}>
@@ -79,12 +80,29 @@ const AdminNews = ({ data }) => {
     axios
       .delete(`/api/blogs/${id}`)
       .then((res) => {
-        axios.get("/api/blogs").then((response) => {
-          setNews(response.data);
-        });
+        if (res.data?.status === "success") {
+          toast.success(res.data.message, {
+            position: "top-right",
+            autoClose: 5000,
+            hideProgressBar: true,
+            closeOnClick: true,
+            draggable: true,
+            theme: "light",
+          });
+          axios.get("/api/blogs").then((response) => {
+            setNews(response.data);
+          });
+        }
       })
       .catch((err) => {
-        console.log(err);
+        toast.error(err.message, {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: true,
+          closeOnClick: true,
+          draggable: true,
+          theme: "light",
+        });
       });
   };
   return (

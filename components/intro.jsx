@@ -1,6 +1,6 @@
 import React from "react";
 
-const Intro = () => {
+const Intro = ({ title, subTitle }) => {
   return (
     <div
       className="intor"
@@ -10,11 +10,8 @@ const Intro = () => {
         <div className="row">
           <div className="col-12">
             <div className="intro-content">
-              <h1>
-                unlocking innovation inline with science to translate ambitions
-                to actions
-              </h1>
-              <h4>bridging the gap between the targets and reaching them</h4>
+              <h1>{title && title}</h1>
+              <h4>{subTitle && subTitle}</h4>
             </div>
           </div>
         </div>

@@ -22,7 +22,7 @@ const OurVision = ({ info, vision, seoData }) => {
           <section className="pt-40 first-ceo-word">
             <div className="container">
               <div className="row justify-content-center">
-                <div className="col-8">
+                <div className="col-md-8 col-12">
                   {vision.first_section_description && (
                     <p>{vision.first_section_description}</p>
                   )}

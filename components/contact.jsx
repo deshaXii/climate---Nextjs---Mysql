@@ -3,6 +3,7 @@ import { useRouter } from "next/router";
 import { useState } from "react";
 import PhoneInput from "react-phone-input-2";
 import "react-phone-input-2/lib/style.css";
+import { toast } from "react-toastify";
 const Contact = ({ siteInfo, title, description }) => {
   const router = useRouter();
   const [name, setName] = useState();
@@ -12,6 +13,39 @@ const Contact = ({ siteInfo, title, description }) => {
 
   const sendMessage = (e) => {
     e.preventDefault();
+    if (!name) {
+      toast.error("Please enter your name", {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: true,
+        closeOnClick: true,
+        draggable: true,
+        theme: "light",
+      });
+      return;
+    }
+    if (!phone) {
+      toast.error("Please enter your phone", {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: true,
+        closeOnClick: true,
+        draggable: true,
+        theme: "light",
+      });
+      return;
+    }
+    if (!message) {
+      toast.error("Please enter your message", {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: true,
+        closeOnClick: true,
+        draggable: true,
+        theme: "light",
+      });
+      return;
+    }
     axios
       .post("/api/contact", {
         name,
@@ -20,7 +54,15 @@ const Contact = ({ siteInfo, title, description }) => {
         message,
       })
       .then((res) => {
-        if (res.data?.statues === "success") {
+        if (res.data?.status === "success") {
+          toast.success(res.data.message, {
+            position: "top-right",
+            autoClose: 5000,
+            hideProgressBar: true,
+            closeOnClick: true,
+            draggable: true,
+            theme: "light",
+          });
           setName("");
           setEmail("");
           setPhone("");
@@ -29,7 +71,14 @@ const Contact = ({ siteInfo, title, description }) => {
         }
       })
       .catch((err) => {
-        console.log(err);
+        toast.error(err.message, {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: true,
+          closeOnClick: true,
+          draggable: true,
+          theme: "light",
+        });
       });
   };
   return (
@@ -76,6 +125,7 @@ const Contact = ({ siteInfo, title, description }) => {
                   <div className="col-6">
                     <div className="form-group">
                       <input
+                        required
                         type="email"
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}

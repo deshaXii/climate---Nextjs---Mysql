@@ -4,6 +4,7 @@ import Head from "next/head";
 import { useRouter } from "next/router";
 import React, { useState } from "react";
 import { parseCookies } from "@/helpers/parseCookies";
+import { toast } from "react-toastify";
 
 const Admin = ({ info }) => {
   const router = useRouter();
@@ -36,7 +37,16 @@ const Admin = ({ info }) => {
       await axios
         .put("/api/site-information", data)
         .then((res) => {
-          
+          if (res.data?.status === "success") {
+            toast.success(res.data.message, {
+              position: "top-right",
+              autoClose: 5000,
+              hideProgressBar: true,
+              closeOnClick: true,
+              draggable: true,
+              theme: "light",
+            });
+          }
         })
         .catch((err) => {
           console.log(err);
@@ -44,9 +54,7 @@ const Admin = ({ info }) => {
     } else {
       await axios
         .post("/api/site-information", data)
-        .then((res) => {
-
-        })
+        .then((res) => {})
         .catch((err) => {
           console.log(err);
         });

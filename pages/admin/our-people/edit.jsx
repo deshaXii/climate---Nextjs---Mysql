@@ -5,6 +5,7 @@ import { useRouter } from "next/router";
 import { useState } from "react";
 import ImageUploading from "react-images-uploading";
 import { parseCookies } from "@/helpers/parseCookies";
+import { toast } from "react-toastify";
 
 const AdminOurPeopleEdit = ({ team }) => {
   const [image, setImage] = useState(team.image);
@@ -50,10 +51,27 @@ const AdminOurPeopleEdit = ({ team }) => {
         config
       )
       .then((res) => {
-        router.push("/admin/our-people");
+        if (res.data?.status === "success") {
+          toast.success(res.data.message, {
+            position: "top-right",
+            autoClose: 5000,
+            hideProgressBar: true,
+            closeOnClick: true,
+            draggable: true,
+            theme: "light",
+          });
+          router.push("/admin/our-people");
+        }
       })
       .catch((err) => {
-        console.log(err);
+        toast.error(err.message, {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: true,
+          closeOnClick: true,
+          draggable: true,
+          theme: "light",
+        });
       });
   };
 

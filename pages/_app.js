@@ -4,15 +4,28 @@ import "@/styles/globals.css";
 import "@/styles/responsive.css";
 import axios from "@/components/axios";
 import Head from "next/head";
-import App from "next/app";
 import { Component } from "react";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function MyApp({ Component, pageProps, seoData }) {
+  const notify = () => toast("Wow so easy !");
+
   return (
     <>
       <Head>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
+      <ToastContainer
+        position="top-right"
+        autoClose={5000}
+        hideProgressBar={true}
+        closeOnClick
+        rtl={false}
+        draggable
+        pauseOnHover
+        theme="light"
+      />
       <Component {...pageProps} seoData={seoData} />
     </>
   );

@@ -8,6 +8,7 @@ import React from "react";
 import { Table, Column, HeaderCell, Cell } from "rsuite-table";
 import "rsuite-table/dist/css/rsuite-table.css";
 import { parseCookies } from "@/helpers/parseCookies";
+import { toast } from "react-toastify";
 
 const ImageCell = ({ rowData, dataKey, ...props }) => (
   <Cell {...props} style={{ padding: 0 }}>
@@ -76,16 +77,33 @@ const AdminMessages = ({ data }) => {
   const router = useRouter();
   const [contacts, setContacts] = React.useState(data?.messages);
   const tableRef = React.useRef();
-  const removeNew = async (id) => {
+  const removeMessage = async (id) => {
     axios
-      .delete(`/api/contacts/${id}`)
+      .delete(`/api/contact/${id}`)
       .then((res) => {
-        axios.get("/api/contacts").then((response) => {
-          setNews(response.data);
+        if (res.data.status === "success") {
+          toast.success(res.data.message, {
+            position: "top-right",
+            autoClose: 5000,
+            hideProgressBar: true,
+            closeOnClick: true,
+            draggable: true,
+            theme: "light",
+          });
+        }
+        axios.get("/api/contact").then((response) => {
+          setContacts(response.data);
         });
       })
       .catch((err) => {
-        console.log(err);
+        toast.error(err.message, {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: true,
+          closeOnClick: true,
+          draggable: true,
+          theme: "light",
+        });
       });
   };
   return (
@@ -104,7 +122,7 @@ const AdminMessages = ({ data }) => {
               <Table
                 virtualized
                 height={600}
-                data={data.messages.reverse()}
+                data={contacts.reverse()}
                 ref={tableRef}
               >
                 <Column width={70} sortable fixed>
@@ -135,13 +153,13 @@ const AdminMessages = ({ data }) => {
                   <HeaderCell>Time</HeaderCell>
                   <TimeCell dataKey="time" />
                 </Column> */}
-                <Column width={70} align="center">
+                {/* <Column width={70} align="center">
                   <HeaderCell>Edit</HeaderCell>
                   <EditCell dataKey="id" />
-                </Column>
+                </Column> */}
                 <Column width={70} align="center">
                   <HeaderCell>Delete</HeaderCell>
-                  <DeleteCell handleClick={removeNew} dataKey="id" />
+                  <DeleteCell handleClick={removeMessage} dataKey="id" />
                 </Column>
               </Table>
             </section>

@@ -5,6 +5,7 @@ import Head from "next/head";
 import Link from "next/link";
 import { useState } from "react";
 import { parseCookies } from "@/helpers/parseCookies";
+import { toast } from "react-toastify";
 
 const AdminOurPeople = ({ teams }) => {
   const [data, setData] = useState(teams);
@@ -13,12 +14,29 @@ const AdminOurPeople = ({ teams }) => {
     axios
       .delete(`/api/teams/${id}`)
       .then((res) => {
-        axios.get("/api/teams").then((response) => {
-          setData(response.data);
-        });
+        if (res.data?.status === "success") {
+          toast.success(res.data.message, {
+            position: "top-right",
+            autoClose: 5000,
+            hideProgressBar: true,
+            closeOnClick: true,
+            draggable: true,
+            theme: "light",
+          });
+          axios.get("/api/teams").then((response) => {
+            setData(response.data);
+          });
+        }
       })
       .catch((err) => {
-        console.log(err);
+        toast.error(err.message, {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: true,
+          closeOnClick: true,
+          draggable: true,
+          theme: "light",
+        });
       });
   };
   return (

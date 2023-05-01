@@ -55,7 +55,16 @@ const AdminEditBlog = ({ blog }) => {
     await axios
       .put(`/api/blogs/${id}`, data)
       .then((res) => {
-
+        if (res.data.status === "success") {
+          toast.success(res.data.message, {
+            position: "top-right",
+            autoClose: 5000,
+            hideProgressBar: true,
+            closeOnClick: true,
+            draggable: true,
+            theme: "light",
+          });
+        }
       })
       .catch((err) => {
         console.log(err);
@@ -139,7 +148,7 @@ export async function getServerSideProps({ params, query, req }) {
       },
       props: {},
     };
-  } 
+  }
   try {
     const blogRes = await axios.get(`/api/blogs/${query.id}`);
     return {

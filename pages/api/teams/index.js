@@ -16,7 +16,6 @@ const upload = multer({
 handler.use(cors({ origin: "*" }));
 
 handler.get(getAllTeam);
-console.log('hi');
 const uploadMiddleware = upload.single("image");
 handler.use(uploadMiddleware);
 

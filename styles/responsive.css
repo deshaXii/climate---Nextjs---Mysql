@@ -34,7 +34,76 @@
     }
 
     .team-box {
-        margin: 0 0 15px 0;
+        margin: 0 0 35px 0;
+    }
+
+    .intor .intro-content h1 {
+        font-size: 21px;
+        line-height: 29px;
+        margin-bottom: 15px;
+    }
+
+    .intor .intro-content h4 {
+        font-size: 18px;
+    }
+
+    .about-simple-content h4 {
+        font-size: 20px;
+        line-height: 30px;
+    }
+
+    .about-simple-content .marked {
+        margin-bottom: 10px;
+    }
+
+    .about-simple-content p {
+        font-size: 13px;
+    }
+
+    .first-ceo-word p {
+        font-size: 14px;
+        line-height: 23px;
+    }
+
+    .first-ceo-word h4 {
+        margin-top: 10px;
+    }
+
+    .vc-p p {
+        font-size: 14px;
+        line-height: 24px;
+        margin-bottom: 0;
+    }
+
+    .our-vision-page .pt80 {
+        padding: 20px 0;
+    }
+
+    .about-simple-content .btn {
+        padding: 10px 20px;
+        font-size: 12px;
+    }
+
+    section.video .video-play-btn button.video-play {
+        width: 150px;
+        height: 150px;
+    }
+
+    section.video .video-play-btn button.video-play i {
+        width: 85px;
+        height: 85px;
+    }
+
+    .latest-news ul.slick-dots {
+        bottom: -30px;
+    }
+
+    .about-simple-img {
+        margin-top: 30px;
+    }
+
+    .qodef-e-media-image {
+        margin-bottom: 5px;
     }
 
     .section-title h2 {

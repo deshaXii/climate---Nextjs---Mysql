@@ -7,6 +7,7 @@ import "react-quill/dist/quill.snow.css";
 import Link from "next/link";
 import ImageUploading from "react-images-uploading";
 import { parseCookies } from "@/helpers/parseCookies";
+import { toast } from "react-toastify";
 const ReactQuill = dynamic(() => import("react-quill"), {
   ssr: false,
 });
@@ -84,10 +85,27 @@ const AdminEditBlog = ({ blog }) => {
     await axios
       .put(`/api/blogs/${id}`, data, config)
       .then((res) => {
-
+        if (res.data?.status === "success") {
+          toast.success(res.data.message, {
+            position: "top-right",
+            autoClose: 5000,
+            hideProgressBar: true,
+            closeOnClick: true,
+            draggable: true,
+            theme: "light",
+          });
+          router.push("/admin/news");
+        }
       })
       .catch((err) => {
-        console.log(err);
+        toast.error(err.message, {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: true,
+          closeOnClick: true,
+          draggable: true,
+          theme: "light",
+        });
       });
   };
 

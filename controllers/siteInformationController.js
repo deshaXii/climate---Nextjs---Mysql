@@ -58,7 +58,7 @@ async function editSiteInformation(req, res) {
   if (result.affectedRows) {
     message = "site information updated successfully";
   }
-  res.send(result);
+  res.json({ message, status: "success", result });
   return {
     message,
   };

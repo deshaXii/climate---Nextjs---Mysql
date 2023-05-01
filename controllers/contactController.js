@@ -11,7 +11,7 @@ const sendMessage = async (req, res) => {
   if (result.affectedRows) {
     message = "Contact message sent successfully";
   }
-  res.send({ message, statues: "success" });
+  res.send({ message, status: "success" });
   return {
     message,
   };
@@ -26,7 +26,22 @@ const getMessages = async (req, res) => {
   };
 };
 
+const deleteMessageById = async (req, res) => {
+  const result = await db.query(
+    `DELETE FROM contacts WHERE id=${req.query.id};`
+  );
+  let message = "Error while deleting the message";
+  if (result.affectedRows) {
+    message = "Message deleted successfully";
+  }
+  res.json({ message, status: "success" });
+  return {
+    message
+  }
+};
+
 module.exports = {
   sendMessage,
   getMessages,
+  deleteMessageById,
 };

@@ -21,17 +21,21 @@ const showMember = async (req, res) => {
 
 const deleteMember = async (req, res) => {
   const result = await db.query(`DELETE FROM teams WHERE id=${req.query.id};`);
-  let message = "Error in deleting member";
+  let message = "Error while deleting member";
   if (result.affectedRows) {
     message = "Member deleted successfully";
   }
-  res.send(message);
+  res.json({ message, status: "success" });
   return {
     message,
   };
 };
 
 async function addMember(req, res) {
+  if (!req.file?.filename) {
+    res.json({ status: "failed", message: "please upload image" });
+    return;
+  }
   const result = await db.query(
     `INSERT INTO teams (name, jobname, image, facebook, instagram, linkedin) VALUES (?,?,?,?,?,?)`,
     [
@@ -44,11 +48,11 @@ async function addMember(req, res) {
     ]
   );
 
-  let message = "Error in creating teams";
+  let message = "Error while creating member";
   if (result.affectedRows) {
-    message = "teams created successfully";
+    message = "Member created successfully";
   }
-  res.send(message);
+  res.json({ message, status: "success" });
   return {
     message,
   };
@@ -71,7 +75,7 @@ async function editMember(req, res) {
   if (result.affectedRows) {
     message = "team member info updated successfully";
   }
-  res.send(message);
+  res.json({ message, status: "success" });
   return {
     message,
   };

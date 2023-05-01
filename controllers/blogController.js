@@ -4,6 +4,9 @@ const config = require("../config");
 
 const getAllBlogs = async (req, res) => {
   // const offset = helper.getOffset(1, config.listPerPage);
+  // const rows = await db.query(
+  //   `SELECT * FROM blogs LIMIT ${config.listPerPage} OFFSET ${offset}`
+  // );
   const rows = await db.query(`SELECT * FROM blogs`);
   const data = helper.emptyOrRows(rows);
   res.json(data);
@@ -13,7 +16,6 @@ const getAllBlogs = async (req, res) => {
 };
 
 const getBlogByID = async (req, res) => {
-  // const offset = helper.getOffset(1, config.listPerPage);
   const rows = await db.query(`SELECT * FROM blogs WHERE id = ${req.query.id}`);
   const data = helper.emptyOrRows(rows);
   res.json(data[0]);
@@ -24,11 +26,11 @@ const getBlogByID = async (req, res) => {
 
 const deleteBlogById = async (req, res) => {
   const result = await db.query(`DELETE FROM blogs WHERE id=${req.query.id};`);
-  let message = "Error in deleting blog";
+  let message = "Error while deleting blog";
   if (result.affectedRows) {
     message = "blog deleted successfully";
   }
-  res.send(message);
+  res.json({ message, status: "success" });
   return {
     message,
   };
@@ -36,15 +38,15 @@ const deleteBlogById = async (req, res) => {
 
 async function create(req, res) {
   const result = await db.query(
-    `INSERT INTO blogs (title, description, time) VALUES (?,?,?)`,
-    [req.body.title, req.body.description, req.body.time]
+    `INSERT INTO blogs (title, description, image) VALUES (?,?,?)`,
+    [req.body.title, req.body.description, req.file.filename]
   );
 
-  let message = "Error in creating blogs";
+  let message = "Error while creating blog";
   if (result.affectedRows) {
-    message = "blogs created successfully";
+    message = "blog created successfully";
   }
-  res.send(message);
+  res.json({ message, status: "success" });
   return {
     message,
   };
@@ -56,25 +58,11 @@ async function update(req, res) {
     [req.body.title, req.file.filename, req.body.description]
   );
 
-  let message = "Error in edit blog item";
+  let message = "Error while editing the blog";
   if (result.affectedRows) {
-    message = "blog item info updated successfully";
+    message = "blog updated successfully";
   }
-  res.send(message);
-  return {
-    message,
-  };
-}
-
-async function remove(id) {
-  const result = await db.query(`DELETE FROM blogs WHERE id=${id}`);
-
-  let message = "Error in deleting blogs";
-
-  if (result.affectedRows) {
-    message = "blogs deleted successfully";
-  }
-
+  res.json({ message, status: "success" });
   return {
     message,
   };
@@ -86,5 +74,4 @@ module.exports = {
   deleteBlogById,
   create,
   update,
-  remove,
 };

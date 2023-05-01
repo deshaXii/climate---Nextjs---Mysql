@@ -16,7 +16,7 @@ export default function Home({ data, error, seoData }) {
         <meta name="description" content={seoData?.home_description} />
       </Head>
       <Default siteInfo={data?.info}>
-        <Intro />
+        <Intro title={seoData?.intro_title} subTitle={seoData?.intro_subtitle} />
         <AboutSimple />
         {data?.video?.image.length ? (
           <Video
@@ -45,7 +45,6 @@ export default function Home({ data, error, seoData }) {
 }
 
 export async function getServerSideProps() {
- 
   try {
     const blogRes = await axios.get("/api/blogs");
     const teamRes = await axios.get("/api/teams");
