@@ -3,11 +3,11 @@ import axios from "@/components/axios";
 import dynamic from "next/dynamic";
 import { useRouter } from "next/router";
 import React, { useState } from "react";
-import "react-quill/dist/quill.snow.css";
 import Link from "next/link";
 import ImageUploading from "react-images-uploading";
 import { parseCookies } from "@/helpers/parseCookies";
 import { toast } from "react-toastify";
+import "react-quill/dist/quill.snow.css";
 const ReactQuill = dynamic(() => import("react-quill"), {
   ssr: false,
 });

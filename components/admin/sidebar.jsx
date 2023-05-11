@@ -48,13 +48,13 @@ const AdminSidebar = () => {
         <li className="nav-item">
           <Link
             className={`nav-link ${
-              router.pathname === "/admin/how-we-can-assist-our-clients"
+              router.pathname === "/admin/our-services"
                 ? "active"
                 : ""
             }`}
-            href="/how-we-can-assist-our-clients"
+            href="/admin/our-services"
           >
-            HOW WE CAN ASSIST OUR CLIENTS
+            Our Services
           </Link>
         </li>
         <li className="nav-item">
