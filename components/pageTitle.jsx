@@ -12,7 +12,7 @@ const PageTitle = ({ title, time, marked, image }) => {
             <div className="page-title-content">
               <span className="marked">{marked}</span>
               <h1>{title}</h1>
-              <p>{time}</p>
+              <p suppressHydrationWarning={true}>{time}</p>
             </div>
           </div>
         </div>

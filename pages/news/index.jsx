@@ -54,7 +54,10 @@ function News({ data, seoData }) {
                       <div className="new-content">
                         <div className="qodef-image-date">
                           <div className="new-info-item new-info-date entry-date published updated">
-                            <Link href={`/news/${item.id}`}>
+                            <Link
+                              href={`/news/${item.id}`}
+                              suppressHydrationWarning={true}
+                            >
                               <svg
                                 width="12.07"
                                 height="11.31"
