@@ -7,7 +7,36 @@ const getAllBlogs = async (req, res) => {
   // const rows = await db.query(
   //   `SELECT * FROM blogs LIMIT ${config.listPerPage} OFFSET ${offset}`
   // );
-  const rows = await db.query(`SELECT * FROM blogs`);
+  const rows = await db.query(`SELECT b.title, b.image, b.description, b.time,
+  GROUP_CONCAT(c.id SEPARATOR ', ') AS category_ids,
+  GROUP_CONCAT(c.name SEPARATOR ', ') AS category_names
+FROM blogs b
+JOIN blog_category bc ON bc.blog_id = b.id
+JOIN categories c ON c.id = bc.category_id
+GROUP BY b.id;`);
+  const data = helper.emptyOrRows(rows);
+  res.json(data);
+  return {
+    data,
+  };
+};
+
+const getBlogsByCategory = async (req, res) => {
+  const rows = await db.query(`SELECT b.*
+    FROM blogs b
+    JOIN blog_category bc ON bc.blog_id = b.id
+    JOIN categories c ON c.id = bc.category_id
+    WHERE c.id = ${req.query.id};`);
+  const data = helper.emptyOrRows(rows);
+  console.log(data);
+  res.json(data);
+  return {
+    data,
+  };
+};
+
+const getAllCategories = async (req, res) => {
+  const rows = await db.query(`SELECT * FROM categories`);
   const data = helper.emptyOrRows(rows);
   res.json(data);
   return {
@@ -36,6 +65,20 @@ const deleteBlogById = async (req, res) => {
   };
 };
 
+const deleteCategory = async (req, res) => {
+  const result = await db.query(
+    `DELETE FROM categories WHERE id=${req.query.id};`
+  );
+  let message = "Error while deleting category";
+  if (result.affectedRows) {
+    message = "category deleted successfully";
+  }
+  res.json({ message, status: "success" });
+  return {
+    message,
+  };
+};
+
 async function create(req, res) {
   const result = await db.query(
     `INSERT INTO blogs (title, description, image) VALUES (?,?,?)`,
@@ -45,6 +88,21 @@ async function create(req, res) {
   let message = "Error while creating blog";
   if (result.affectedRows) {
     message = "blog created successfully";
+  }
+  res.json({ message, status: "success" });
+  return {
+    message,
+  };
+}
+
+async function addNewCategory(req, res) {
+  const result = await db.query(`INSERT INTO categories (name) VALUES (?)`, [
+    req.body.name,
+  ]);
+
+  let message = "Error while creating category";
+  if (result.affectedRows) {
+    message = "category created successfully";
   }
   res.json({ message, status: "success" });
   return {
@@ -73,5 +131,9 @@ module.exports = {
   getBlogByID,
   deleteBlogById,
   create,
+  getBlogsByCategory,
   update,
+  getAllCategories,
+  deleteCategory,
+  addNewCategory,
 };

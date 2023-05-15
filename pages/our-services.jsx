@@ -47,8 +47,8 @@ const HowWeCanAssistOurClients = ({ info, seoData, services }) => {
           <section className="pt80 services-sec-section">
             <div className="container">
               <div className="row">
-                <div className="col-md-4">
-                  <div className="services-tabs">
+                <div className="col-md-12">
+                <div className="services-tabs">
                     <ul className="services-tabs-list">
                       {services.map((item, index) => (
                         <li
@@ -63,8 +63,6 @@ const HowWeCanAssistOurClients = ({ info, seoData, services }) => {
                       ))}
                     </ul>
                   </div>
-                </div>
-                <div className="col-md-8">
                   <div className="services-tabs-content">
                     {services.map((item, index) => (
                       <div

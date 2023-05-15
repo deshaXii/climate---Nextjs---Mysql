@@ -4,12 +4,15 @@ import * as dotenv from "dotenv";
 dotenv.config();
 
 async function query(sql, params) {
+  const pool = mysql.createPool(config.db);
+
+  // Use a connection from the pool
+  const connection = await pool.getConnection();
   try {
-    const connection = await mysql.createConnection(config.db);
     const [results] = await connection.execute(sql, params);
     return results;
-  } catch (err) {
-    console.log(err);
+  } finally {
+    connection.release();
   }
 }
 

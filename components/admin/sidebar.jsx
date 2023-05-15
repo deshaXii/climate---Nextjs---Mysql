@@ -48,9 +48,7 @@ const AdminSidebar = () => {
         <li className="nav-item">
           <Link
             className={`nav-link ${
-              router.pathname === "/admin/our-services"
-                ? "active"
-                : ""
+              router.pathname === "/admin/our-services" ? "active" : ""
             }`}
             href="/admin/our-services"
           >
@@ -65,6 +63,16 @@ const AdminSidebar = () => {
             href="/admin/our-people"
           >
             OUR PEOPLE
+          </Link>
+        </li>
+        <li className="nav-item">
+          <Link
+            className={`nav-link ${
+              router.pathname === "/admin/categories" ? "active" : ""
+            }`}
+            href="/admin/categories"
+          >
+            Categories
           </Link>
         </li>
         <li className="nav-item">
@@ -95,6 +103,16 @@ const AdminSidebar = () => {
             href="/admin/messages"
           >
             Messages
+          </Link>
+        </li>
+        <li className="nav-item">
+          <Link
+            className={`nav-link ${
+              router.pathname === "/admin/admins" ? "active" : ""
+            }`}
+            href="/admin/admins"
+          >
+            admins
           </Link>
         </li>
       </ul>

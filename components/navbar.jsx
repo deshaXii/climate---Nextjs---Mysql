@@ -59,9 +59,7 @@ const Navbar = ({ siteInfo }) => {
             <li className="nav-item">
               <Link
                 className={`nav-link ${
-                  router.pathname === "/our-services"
-                    ? "active"
-                    : ""
+                  router.pathname === "/our-services" ? "active" : ""
                 }`}
                 href="/our-services"
               >
@@ -86,6 +84,16 @@ const Navbar = ({ siteInfo }) => {
                 href="/news"
               >
                 NEWS
+              </Link>
+            </li>
+            <li className="nav-item">
+              <Link
+                className={`nav-link ${
+                  router.pathname === "/news/cop" ? "active" : ""
+                }`}
+                href="/category/1"
+              >
+                cop
               </Link>
             </li>
           </ul>

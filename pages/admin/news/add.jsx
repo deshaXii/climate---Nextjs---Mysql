@@ -11,11 +11,12 @@ import "react-quill/dist/quill.snow.css";
 const ReactQuill = dynamic(() => import("react-quill"), {
   ssr: false,
 });
-const AdminEditBlog = () => {
+const AdminEditBlog = ({ categories }) => {
   const router = useRouter();
   const [title, setTitle] = useState();
   const [image, setImage] = useState();
   const [images, setImages] = useState([]);
+  const [category, setCategory] = useState();
   const maxNumber = 1;
   const onChange = (imageList) => {
     if (!imageList.length) {
@@ -202,6 +203,15 @@ const AdminEditBlog = () => {
                             />
                           </div>
                           <div className="form-group">
+                            <select multiple>
+                              {categories.map((item) => (
+                                <option key={item.id} value={item.id}>
+                                  {item.name}
+                                </option>
+                              ))}
+                            </select>
+                          </div>
+                          <div className="form-group">
                             <ReactQuill
                               theme="snow"
                               value={value}
@@ -239,9 +249,19 @@ export async function getServerSideProps({ res, req }) {
       },
       props: {},
     };
-  } else {
+  }
+  try {
+    const catsRes = await axios.get(`/api/categories`);
     return {
-      props: {},
+      props: {
+        categories: catsRes.data,
+      },
+    };
+  } catch (err) {
+    return {
+      props: {
+        error: err.message,
+      },
     };
   }
 }
