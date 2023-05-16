@@ -4,7 +4,7 @@ import Head from "next/head";
 import React from "react";
 import PageTitle from "@/components/pageTitle";
 
-const OurVision = ({ info, vision, seoData }) => {
+const OurVision = ({ info, vision, seoData, pinnedCats }) => {
   return (
     <>
       <Head>
