@@ -91,13 +91,16 @@ const AdminEditAccount = ({ account }) => {
                             />
                           </div>
                           <div className="form-group with-label">
-                            <label htmlFor="isAdmin">Admin</label>
-                            <input
-                              id="isAdmin"
-                              type="checkbox"
-                              value={isAdmin}
-                              onChange={(e) => setIsAdmin(e.target.checked)}
-                            />
+                            <label className="checkbox-container">
+                              Admin
+                              <input
+                                id="isAdmin"
+                                type="checkbox"
+                                onChange={(e) => setIsAdmin(e.target.checked)}
+                                checked={isAdmin}
+                              />
+                              <span className="checkmark"></span>
+                            </label>
                           </div>
                           <div className="form-group form-btn-group">
                             <button>Edit Account</button>
@@ -129,7 +132,7 @@ export async function getServerSideProps({ params, query, req }) {
       props: {},
     };
   }
-  if (token === 'null') {
+  if (token === "null") {
     return {
       redirect: {
         destination: "/admin/login",

@@ -8,9 +8,7 @@ import { Component } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-function MyApp({ Component, pageProps, seoData }) {
-  const notify = () => toast("Wow so easy !");
-
+function MyApp({ Component, pageProps, seoData, pinnedCats }) {
   return (
     <>
       <Head>
@@ -26,19 +24,21 @@ function MyApp({ Component, pageProps, seoData }) {
         pauseOnHover
         theme="light"
       />
-      <Component {...pageProps} seoData={seoData} />
+      <Component {...pageProps} seoData={seoData} pinnedCats={pinnedCats} />
     </>
   );
 }
 
 MyApp.getInitialProps = async (appContext) => {
   const seoRes = await axios.get("/api/seo");
+  const pinnedCategories = await axios.get("/api/categories/pinned");
   const seoData = seoRes.data[0];
+  const pinnedCats = pinnedCategories.data;
   const pageProps = Component.getInitialProps
     ? await Component.getInitialProps(appContext)
     : {};
   if (seoData) {
-    return { pageProps, seoData };
+    return { pageProps, pinnedCats, seoData };
   } else {
     return { pageProps };
   }

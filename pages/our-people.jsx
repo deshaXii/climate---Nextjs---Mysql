@@ -5,14 +5,14 @@ import axios from "@/components/axios";
 import Head from "next/head";
 import React from "react";
 
-const OurPeople = ({ data, error, seoData }) => {
+const OurPeople = ({ data, error, seoData, pinnedCats }) => {
   return (
     <>
       <Head>
         <title>Our People - {seoData?.team_title}</title>
         <meta name="description" content={seoData?.team_description} />
       </Head>
-      <Default siteInfo={data.info}>
+      <Default pinnedCats={pinnedCats} siteInfo={data.info}>
         <PageTitle
           title={seoData?.team_title}
           description={seoData?.team_description}

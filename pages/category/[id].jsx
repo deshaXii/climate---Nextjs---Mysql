@@ -9,7 +9,7 @@ import Link from "next/link";
 import { htmlToText } from "html-to-text";
 import moment from "moment";
 
-function NewsByCategory({ data, seoData }) {
+function NewsByCategory({ data, seoData, pinnedCats }) {
   const [currentPage, setCurrentPage] = useState(1);
   const pageSize = 8;
   const { blogs } = data;
@@ -18,14 +18,13 @@ function NewsByCategory({ data, seoData }) {
   };
 
   const paginatedPosts = paginate(blogs, currentPage, pageSize);
-
   return (
     <>
       <Head>
         <title>News - {seoData?.news_title}</title>
         <meta name="description" content={seoData?.news_description} />
       </Head>
-      <Default siteInfo={data.info}>
+      <Default pinnedCats={pinnedCats} siteInfo={data.info}>
         <PageTitle
           title={seoData?.news_title}
           description={seoData?.news_description}

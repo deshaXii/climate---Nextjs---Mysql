@@ -60,7 +60,9 @@ const DeleteCell = ({ rowData, dataKey, handleClick, ...props }) => (
 );
 const TimeCell = ({ rowData, dataKey, ...props }) => (
   <Cell {...props}>
-    {moment(rowData[dataKey]).format("Do MMMM YYYY, h:mm a")}
+    <div suppressHydrationWarning={true}>
+      {moment(rowData[dataKey]).format("Do MMMM YYYY, h:mm a")}
+    </div>
   </Cell>
 );
 const DescriptionCell = ({ rowData, dataKey, ...props }) => (
@@ -173,7 +175,7 @@ export async function getServerSideProps({ res, req }) {
       props: {},
     };
   }
-  if (token === 'null') {
+  if (token === "null") {
     return {
       redirect: {
         destination: "/admin/login",

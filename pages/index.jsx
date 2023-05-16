@@ -8,14 +8,14 @@ import Video from "@/components/video";
 import LatestNews from "@/components/latestNews";
 import AboutSimple2 from "@/components/aboutSimple2";
 
-export default function Home({ data, error, seoData }) {
+export default function Home({ data, error, seoData, pinnedCats }) {
   return (
     <>
       <Head>
         <title>Climate - {seoData?.home_title}</title>
         <meta name="description" content={seoData?.home_description} />
       </Head>
-      <Default siteInfo={data?.info}>
+      <Default pinnedCats={pinnedCats} siteInfo={data?.info}>
         <Intro title={seoData?.intro_title} subTitle={seoData?.intro_subtitle} />
         <AboutSimple />
         {data?.video?.image.length ? (

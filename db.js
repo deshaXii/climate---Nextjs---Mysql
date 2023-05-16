@@ -9,8 +9,13 @@ async function query(sql, params) {
   // Use a connection from the pool
   const connection = await pool.getConnection();
   try {
+    await connection.beginTransaction();
     const [results] = await connection.execute(sql, params);
+    await connection.commit();
     return results;
+  } catch (err) {
+    await connection.rollback();
+    throw err;
   } finally {
     connection.release();
   }

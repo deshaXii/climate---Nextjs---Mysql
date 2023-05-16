@@ -39,6 +39,37 @@ const AdminCategories = ({ data }) => {
         });
       });
   };
+  const pinCategory = async (id, isPinned) => {
+    await axios
+      .post(`/api/category/${id}`, {
+        isPinned: !isPinned,
+      })
+      .then((res) => {
+        if (res.data?.status === "success") {
+          toast.success(res.data.message, {
+            position: "top-right",
+            autoClose: 5000,
+            hideProgressBar: true,
+            closeOnClick: true,
+            draggable: true,
+            theme: "light",
+          });
+          axios.get("/api/categories").then((response) => {
+            setCategories(response.data);
+          });
+        }
+      })
+      .catch((err) => {
+        toast.error(err.message, {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: true,
+          closeOnClick: true,
+          draggable: true,
+          theme: "light",
+        });
+      });
+  };
   return (
     <>
       <Head>
@@ -59,15 +90,27 @@ const AdminCategories = ({ data }) => {
                       <Link href={`/category/${item.id}`}>
                         <span>{item.name}</span>
                       </Link>
-                      <Link
-                        href={{
-                          pathname: "/admin/categories/edit",
-                          query: { id: item.id },
-                        }}
-                      >
-                        Edit
-                      </Link>
-                      <button onClick={() => deleteCategory(item.id)}>X</button>
+                      <div className="categories-list">
+                        <button
+                          className={`pinned-btn ${
+                            item.pinned ? "active" : ""
+                          }`}
+                          onClick={() => pinCategory(item.id, item.pinned)}
+                        >
+                          <i class="fa fa-thumbtack"></i>
+                        </button>
+                        <Link
+                          href={{
+                            pathname: "/admin/categories/edit",
+                            query: { id: item.id },
+                          }}
+                        >
+                          <i class="fa fa-edit"></i>
+                        </Link>
+                        <button onClick={() => deleteCategory(item.id)}>
+                          <i class="fa fa-trash"></i>
+                        </button>
+                      </div>
                     </li>
                   ))}
                 </ul>
@@ -93,7 +136,7 @@ export async function getServerSideProps({ res, req }) {
       props: {},
     };
   }
-  if (token === 'null') {
+  if (token === "null") {
     return {
       redirect: {
         destination: "/admin/login",

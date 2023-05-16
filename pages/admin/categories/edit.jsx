@@ -8,11 +8,11 @@ import { toast } from "react-toastify";
 
 const AdminEditCategory = ({ category }) => {
   const router = useRouter();
-  const [name, setName] = useState();
-  const addNew = async (e, id) => {
+  const [name, setName] = useState(category.name);
+  const addNew = async (e) => {
     e.preventDefault();
     await axios
-      .put(`/api/categories`, { name })
+      .put(`/api/category/${category.id}`, { name })
       .then((res) => {
         if (res.data?.status === "success") {
           toast.success(res.data.message, {
@@ -101,7 +101,7 @@ export async function getServerSideProps({ params, query, req }) {
       props: {},
     };
   }
-  if (token === 'null') {
+  if (token === "null") {
     return {
       redirect: {
         destination: "/admin/login",
@@ -110,7 +110,7 @@ export async function getServerSideProps({ params, query, req }) {
     };
   }
   try {
-    const categoryRes = await axios.get(`/api/categories/${query.id}`);
+    const categoryRes = await axios.get(`/api/category/${query.id}`);
     return {
       props: {
         category: categoryRes.data,

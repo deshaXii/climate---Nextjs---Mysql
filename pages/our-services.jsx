@@ -4,7 +4,7 @@ import Head from "next/head";
 import React, { useState } from "react";
 import PageTitle from "@/components/pageTitle";
 
-const HowWeCanAssistOurClients = ({ info, seoData, services }) => {
+const HowWeCanAssistOurClients = ({ info, seoData, services, pinnedCats }) => {
   const [activeTab, setActiveTab] = useState(`tab0`);
   return (
     <>
@@ -12,7 +12,7 @@ const HowWeCanAssistOurClients = ({ info, seoData, services }) => {
         <title>Climate - {seoData?.how_can_title}</title>
         <meta name="description" content={seoData?.how_can_description} />
       </Head>
-      <Default siteInfo={info}>
+      <Default pinnedCats={pinnedCats} siteInfo={info}>
         <div className="our-services-page">
           <PageTitle
             title={seoData?.how_can_title}
@@ -48,7 +48,7 @@ const HowWeCanAssistOurClients = ({ info, seoData, services }) => {
             <div className="container">
               <div className="row">
                 <div className="col-md-12">
-                <div className="services-tabs">
+                  <div className="services-tabs">
                     <ul className="services-tabs-list">
                       {services.map((item, index) => (
                         <li

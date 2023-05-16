@@ -57,15 +57,23 @@ const AdminAccounts = ({ data }) => {
                   {accounts.map((item) => (
                     <li key={item.id}>
                       <span>{item.name}</span>
-                      <Link
-                        href={{
-                          pathname: "/admin/accounts/edit",
-                          query: { id: item.id },
-                        }}
-                      >
-                        Edit
-                      </Link>
-                      <button onClick={() => deleteAccount(item.id)}>X</button>
+                      <div className="accout-list">
+                        <Link
+                          className="edit-btn"
+                          href={{
+                            pathname: "/admin/accounts/edit",
+                            query: { id: item.id },
+                          }}
+                        >
+                          <i className="fa fa-edit"></i>
+                        </Link>
+                        <button
+                          className="delete-btn"
+                          onClick={() => deleteAccount(item.id)}
+                        >
+                          <i className="fa fa-trash"></i>
+                        </button>
+                      </div>
                     </li>
                   ))}
                 </ul>
@@ -91,7 +99,7 @@ export async function getServerSideProps({ res, req }) {
       props: {},
     };
   }
-  if (token === 'null') {
+  if (token === "null") {
     return {
       redirect: {
         destination: "/admin/login",

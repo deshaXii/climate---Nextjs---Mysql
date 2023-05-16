@@ -3,7 +3,7 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 
-const Navbar = ({ siteInfo }) => {
+const Navbar = ({ siteInfo, pinnedCats }) => {
   const [open, setOpen] = useState(false);
   useEffect(() => {
     let navHeight = document.querySelector("nav.navbar.fixed-top").offsetHeight;
@@ -55,7 +55,6 @@ const Navbar = ({ siteInfo }) => {
                 OUR VISION
               </a>
             </li>
-
             <li className="nav-item">
               <Link
                 className={`nav-link ${
@@ -86,16 +85,19 @@ const Navbar = ({ siteInfo }) => {
                 NEWS
               </Link>
             </li>
-            <li className="nav-item">
-              <Link
-                className={`nav-link ${
-                  router.pathname === "/news/cop" ? "active" : ""
-                }`}
-                href="/category/1"
-              >
-                cop
-              </Link>
-            </li>
+            {pinnedCats &&
+              pinnedCats.map((item) => (
+                <li className="nav-item" key={item.id}>
+                  <Link
+                    className={`nav-link ${
+                      router.pathname === `/category/${item.id}` ? "active" : ""
+                    }`}
+                    href={`/category/${item.id}`}
+                  >
+                    {item.name}
+                  </Link>
+                </li>
+              ))}
           </ul>
           <div className="navbar-buttons ms-auto">
             <ul>

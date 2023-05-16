@@ -11,12 +11,12 @@ import "react-quill/dist/quill.snow.css";
 const ReactQuill = dynamic(() => import("react-quill"), {
   ssr: false,
 });
-const AdminEditBlog = ({ categories }) => {
+const AdminAddBlog = ({ categories }) => {
   const router = useRouter();
   const [title, setTitle] = useState();
   const [image, setImage] = useState();
   const [images, setImages] = useState([]);
-  const [category, setCategory] = useState();
+  const [selectedCategories, setSelectedCategories] = useState([]);
   const maxNumber = 1;
   const onChange = (imageList) => {
     if (!imageList.length) {
@@ -74,6 +74,7 @@ const AdminEditBlog = ({ categories }) => {
     const data = {
       title,
       image,
+      selectedCategories,
       description: value,
     };
     await axios
@@ -203,7 +204,18 @@ const AdminEditBlog = ({ categories }) => {
                             />
                           </div>
                           <div className="form-group">
-                            <select multiple>
+                            <select
+                              multiple
+                              onChange={(e) => {
+                                const selectedOptions = Array.from(
+                                  e.target.selectedOptions
+                                );
+                                const selectedCategories = selectedOptions.map(
+                                  (option) => option.value
+                                );
+                                setSelectedCategories(selectedCategories);
+                              }}
+                            >
                               {categories.map((item) => (
                                 <option key={item.id} value={item.id}>
                                   {item.name}
@@ -237,7 +249,7 @@ const AdminEditBlog = ({ categories }) => {
   );
 };
 
-export default AdminEditBlog;
+export default AdminAddBlog;
 
 export async function getServerSideProps({ res, req }) {
   const cookies = parseCookies(req);
@@ -250,7 +262,7 @@ export async function getServerSideProps({ res, req }) {
       props: {},
     };
   }
-  if (token === 'null') {
+  if (token === "null") {
     return {
       redirect: {
         destination: "/admin/login",

@@ -11,7 +11,7 @@ const OurVision = ({ info, vision, seoData }) => {
         <title>Climate - {seoData?.vision_title}</title>
         <meta name="description" content={seoData?.vision_description} />
       </Head>
-      <Default siteInfo={info}>
+      <Default pinnedCats={pinnedCats} siteInfo={info}>
         <div className="our-vision-page">
           <PageTitle
             title={seoData?.vision_title}

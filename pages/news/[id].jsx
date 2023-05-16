@@ -8,7 +8,7 @@ import LatestNews from "@/components/latestNews";
 import Author from "@/components/author";
 import ScrollBar from "@/components/scrollBar";
 
-const Blog = ({ data }) => {
+const Blog = ({ data, pinnedCats }) => {
   const { blog, blogs } = data;
   const blogRef = useRef();
   return (
@@ -17,7 +17,7 @@ const Blog = ({ data }) => {
         <title>Climate - {blog.title}</title>
       </Head>
       <ScrollBar element={blogRef} />
-      <Default siteInfo={data.info}>
+      <Default pinnedCats={pinnedCats} siteInfo={data.info}>
         <div className="blog-page">
           <PageTitle
             title={blog.title}
