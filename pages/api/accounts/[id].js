@@ -1,7 +1,8 @@
 import {
-  addService,
-  getOurServices,
-} from "@/controllers/ourServicesController";
+  editAccount,
+  getAccount,
+  deleteAccount,
+} from "@/controllers/usersController";
 import nc from "next-connect";
 import cors from "cors";
 import verifyToken from "@/middleware/verifyToken";
@@ -10,7 +11,8 @@ const handler = nc();
 
 handler.use(cors({ origin: "*" }));
 
-handler.get(getOurServices);
-handler.post(verifyToken, addService);
+handler.get(getAccount);
+handler.put(verifyToken, editAccount);
+handler.delete(verifyToken, deleteAccount);
 
 export default handler;

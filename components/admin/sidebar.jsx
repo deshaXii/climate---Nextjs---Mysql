@@ -105,16 +105,18 @@ const AdminSidebar = () => {
             Messages
           </Link>
         </li>
-        <li className="nav-item">
-          <Link
-            className={`nav-link ${
-              router.pathname === "/admin/admins" ? "active" : ""
-            }`}
-            href="/admin/admins"
-          >
-            admins
-          </Link>
-        </li>
+        {true && (
+          <li className="nav-item">
+            <Link
+              className={`nav-link ${
+                router.pathname === "/admin/accounts" ? "active" : ""
+              }`}
+              href="/admin/accounts"
+            >
+              Accounts
+            </Link>
+          </li>
+        )}
       </ul>
       <p className="sidebar-copyright">copyright 2023</p>
     </aside>

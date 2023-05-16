@@ -140,6 +140,14 @@ export async function getServerSideProps({ res, req, query }) {
       props: {},
     };
   }
+  if (token === 'null') {
+    return {
+      redirect: {
+        destination: "/admin/login",
+      },
+      props: {},
+    };
+  }
   try {
     const service = await axios.get(`/api/our-services/${query.id}`);
     if (service.data) {

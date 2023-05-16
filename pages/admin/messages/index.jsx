@@ -183,6 +183,14 @@ export async function getServerSideProps({ res, req }) {
       props: {},
     };
   }
+  if (token === 'null') {
+    return {
+      redirect: {
+        destination: "/admin/login",
+      },
+      props: {},
+    };
+  }
   try {
     const contactsRes = await axios.get("/api/contact");
     return {

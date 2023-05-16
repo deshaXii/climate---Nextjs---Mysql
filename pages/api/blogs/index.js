@@ -2,6 +2,7 @@ import nc from "next-connect";
 import cors from "cors";
 import { getAllBlogs, create } from "@/controllers/blogController";
 import multer from "multer";
+import verifyToken from "@/middleware/verifyToken";
 
 const handler = nc();
 
@@ -19,7 +20,7 @@ handler.get(getAllBlogs);
 const uploadMiddleware = upload.single("image");
 handler.use(uploadMiddleware);
 
-handler.post(create);
+handler.post(verifyToken, create);
 
 export default handler;
 

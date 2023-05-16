@@ -4,12 +4,13 @@ import {
   getAllCategories,
   addNewCategory,
 } from "@/controllers/blogController";
+import verifyToken from "@/middleware/verifyToken";
 
 const handler = nc();
 
 handler.use(cors({ origin: "*" }));
 
 handler.get(getAllCategories);
-handler.post(addNewCategory);
+handler.post(verifyToken, addNewCategory);
 
 export default handler;

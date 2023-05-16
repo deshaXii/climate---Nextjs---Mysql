@@ -1,7 +1,7 @@
 import { getAllTeam, addMember } from "@/controllers/teamController";
 import multer from "multer";
 import nc from "next-connect";
-
+import verifyToken from "@/middleware/verifyToken";
 import cors from "cors";
 
 const handler = nc();
@@ -19,7 +19,7 @@ handler.get(getAllTeam);
 const uploadMiddleware = upload.single("image");
 handler.use(uploadMiddleware);
 
-handler.post(addMember);
+handler.post(verifyToken, addMember);
 
 export default handler;
 

@@ -405,6 +405,14 @@ export async function getServerSideProps({ res, req }) {
       props: {},
     };
   }
+  if (token === 'null') {
+    return {
+      redirect: {
+        destination: "/admin/login",
+      },
+      props: {},
+    };
+  }
   try {
     const siteVision = await axios.get("/api/our-vision");
     if (siteVision.data[0]) {

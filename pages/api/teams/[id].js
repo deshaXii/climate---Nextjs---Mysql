@@ -6,6 +6,7 @@ import {
   deleteMember,
   editMember,
 } from "@/controllers/teamController";
+import verifyToken from "@/middleware/verifyToken";
 
 const handler = nc();
 
@@ -19,10 +20,10 @@ const upload = multer({
 handler.use(cors({ origin: "*" }));
 
 handler.get(showMember);
-handler.delete(deleteMember);
+handler.delete(verifyToken, deleteMember);
 const uploadMiddleware = upload.single("image");
 handler.use(uploadMiddleware);
-handler.put(editMember);
+handler.put(verifyToken, editMember);
 
 export default handler;
 

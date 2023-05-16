@@ -6,13 +6,16 @@ import Link from "next/link";
 import { parseCookies } from "@/helpers/parseCookies";
 import { toast } from "react-toastify";
 
-const AdminAddCategory = () => {
+const AdminAddAccount = () => {
   const router = useRouter();
   const [name, setName] = useState();
-  const addNew = async (e, id) => {
+  const [email, setEmail] = useState();
+  const [password, setPassword] = useState();
+  const [isAdmin, setIsAdmin] = useState(false);
+  const addNew = async (e) => {
     e.preventDefault();
     await axios
-      .post(`/api/categories`, { name })
+      .post(`/api/accounts`, { name, email, password, isAdmin })
       .then((res) => {
         if (res.data?.status === "success") {
           toast.success(res.data.message, {
@@ -23,7 +26,7 @@ const AdminAddCategory = () => {
             draggable: true,
             theme: "light",
           });
-          router.push("/admin/categories");
+          router.push("/admin/accounts");
         }
       })
       .catch((err) => {
@@ -46,7 +49,7 @@ const AdminAddCategory = () => {
               <div className="row">
                 <div className="col-12">
                   <div className="page-top-header admin-section-title">
-                    <h2>Add New Category</h2>
+                    <h2>Edit Account</h2>
                     <div>
                       <button
                         onClick={() => {
@@ -66,13 +69,38 @@ const AdminAddCategory = () => {
                           <div className="form-group">
                             <input
                               type="text"
-                              placeholder="Enter Category Name"
+                              placeholder="Enter Account Name"
                               value={name}
                               onChange={(e) => setName(e.target.value)}
                             />
                           </div>
+                          <div className="form-group">
+                            <input
+                              type="email"
+                              placeholder="Enter Account Email"
+                              value={email}
+                              onChange={(e) => setEmail(e.target.value)}
+                            />
+                          </div>
+                          <div className="form-group">
+                            <input
+                              type="text"
+                              placeholder="Enter New Password"
+                              value={password}
+                              onChange={(e) => setPassword(e.target.value)}
+                            />
+                          </div>
+                          <div className="form-group with-label">
+                            <label htmlFor="isAdmin">Admin</label>
+                            <input
+                              id="isAdmin"
+                              type="checkbox"
+                              value={isAdmin}
+                              onChange={(e) => setIsAdmin(e.target.checked)}
+                            />
+                          </div>
                           <div className="form-group form-btn-group">
-                            <button>Add Category</button>
+                            <button>Add Account</button>
                           </div>
                         </div>
                       </div>
@@ -88,9 +116,9 @@ const AdminAddCategory = () => {
   );
 };
 
-export default AdminAddCategory;
+export default AdminAddAccount;
 
-export async function getServerSideProps({ res, req }) {
+export async function getServerSideProps({ params, query, req }) {
   const cookies = parseCookies(req);
   const token = cookies.userToken;
   if (!token) {
@@ -101,7 +129,7 @@ export async function getServerSideProps({ res, req }) {
       props: {},
     };
   }
-  if (token === 'null') {
+  if (token === "null") {
     return {
       redirect: {
         destination: "/admin/login",

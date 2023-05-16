@@ -15,7 +15,7 @@ const AdminLogin = () => {
       .post("/api/login", { email, password })
       .then((res) => {
         if (res.data.status === "sucsses") {
-          Cookies.setItem("userToken", res.data.token);
+          Cookies.setItem("userToken", res.data.token, { path: "/" });
           setUserToken(res.data.token);
         }
       })
@@ -90,7 +90,7 @@ export default AdminLogin;
 export async function getServerSideProps({ req }) {
   const cookies = parseCookies(req);
   const token = cookies.userToken;
-  if (token) {
+  if (token && token !== "null") {
     return {
       redirect: {
         destination: "/admin",

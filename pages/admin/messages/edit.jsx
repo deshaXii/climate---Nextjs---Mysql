@@ -149,6 +149,14 @@ export async function getServerSideProps({ params, query, req }) {
       props: {},
     };
   }
+  if (token === 'null') {
+    return {
+      redirect: {
+        destination: "/admin/login",
+      },
+      props: {},
+    };
+  }
   try {
     const blogRes = await axios.get(`/api/blogs/${query.id}`);
     return {

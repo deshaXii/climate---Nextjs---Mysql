@@ -8,12 +8,11 @@ import { toast } from "react-toastify";
 
 const AdminEditCategory = ({ category }) => {
   const router = useRouter();
-  console.log(category);
   const [name, setName] = useState();
   const addNew = async (e, id) => {
     e.preventDefault();
     await axios
-      .post(`/api/categories`, { name })
+      .put(`/api/categories`, { name })
       .then((res) => {
         if (res.data?.status === "success") {
           toast.success(res.data.message, {
@@ -73,7 +72,7 @@ const AdminEditCategory = ({ category }) => {
                             />
                           </div>
                           <div className="form-group form-btn-group">
-                            <button>Add Category</button>
+                            <button>Edit Category</button>
                           </div>
                         </div>
                       </div>
@@ -95,6 +94,14 @@ export async function getServerSideProps({ params, query, req }) {
   const cookies = parseCookies(req);
   const token = cookies.userToken;
   if (!token) {
+    return {
+      redirect: {
+        destination: "/admin/login",
+      },
+      props: {},
+    };
+  }
+  if (token === 'null') {
     return {
       redirect: {
         destination: "/admin/login",

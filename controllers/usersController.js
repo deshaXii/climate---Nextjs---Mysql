@@ -4,6 +4,75 @@ import bcrypt from "bcrypt";
 import helper from "../helper";
 import jwt from "jsonwebtoken";
 
+const getAllAccounts = async (req, res) => {
+  const rows = await db.query(`SELECT * FROM admins`);
+  const data = helper.emptyOrRows(rows);
+  res.json(data);
+  return {
+    data,
+  };
+};
+
+const getAccount = async (req, res) => {
+  const rows = await db.query(`SELECT * FROM admins WHERE id=${req.query.id}`);
+  const data = helper.emptyOrRows(rows);
+  res.json(data);
+  return {
+    data,
+  };
+};
+
+const deleteAccount = async (req, res) => {
+  const result = await db.query(`DELETE FROM admins WHERE id=${req.query.id};`);
+  let message = "Error while deleting account";
+  if (result.affectedRows) {
+    message = "account deleted successfully";
+  }
+  res.json({ message, status: "success" });
+  return {
+    message,
+  };
+};
+
+const editAccount = async (req, res) => {
+  const saltRounds = 10;
+  const salt = bcrypt.genSaltSync(saltRounds);
+  const newHashedPassword = bcrypt.hashSync(req.body.password, salt);
+
+  const result = await db.query(
+    `UPDATE admins SET name = ?, email = ?, password = ?, isAdmin = ? WHERE id=${req.query.id}`,
+    [req.body.name, req.body.email, newHashedPassword, req.body.isAdmin]
+  );
+  let message = "Error while update account";
+  if (result.affectedRows) {
+    message = "Account Updated successfully";
+  }
+  res.json({ message, status: "success" });
+  return {
+    message,
+  };
+};
+
+async function addAccount(req, res) {
+  const saltRounds = 10;
+  const salt = bcrypt.genSaltSync(saltRounds);
+  const newHashedPassword = bcrypt.hashSync(req.body.password, salt);
+
+  const result = await db.query(
+    `INSERT INTO admins (name, email, password, isAdmin) VALUES (?,?,?,?)`,
+    [req.body.name, req.body.email, newHashedPassword, req.body.isAdmin]
+  );
+
+  let message = "Error while creating account";
+  if (result.affectedRows) {
+    message = "Account created successfully";
+  }
+  res.json({ message, status: "success" });
+  return {
+    message,
+  };
+}
+
 const loginAdmin = async (req, res) => {
   const rows = await db.query(`SELECT * FROM admins`);
   const data = helper.emptyOrRows(rows);
@@ -63,4 +132,9 @@ const loginAdmin = async (req, res) => {
 
 module.exports = {
   loginAdmin,
+  deleteAccount,
+  getAllAccounts,
+  addAccount,
+  getAccount,
+  editAccount,
 };

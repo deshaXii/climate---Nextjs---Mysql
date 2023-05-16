@@ -438,6 +438,14 @@ export async function getServerSideProps({ res, req }) {
       props: {},
     };
   }
+  if (token === 'null') {
+    return {
+      redirect: {
+        destination: "/admin/login",
+      },
+      props: {},
+    };
+  }
   try {
     const seoInfo = await axios.get("/api/seo");
     if (seoInfo.data[0]) {

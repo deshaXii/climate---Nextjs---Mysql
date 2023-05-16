@@ -6,6 +6,7 @@ import {
 import nc from "next-connect";
 import multer from "multer";
 import cors from "cors";
+import verifyToken from "@/middleware/verifyToken";
 
 const handler = nc();
 
@@ -23,8 +24,8 @@ handler.get(getOurVision);
 const uploadMiddleware = upload.any();
 handler.use(uploadMiddleware);
 
-handler.put(editOurVision);
-handler.post(addOurVision);
+handler.put(verifyToken, editOurVision);
+handler.post(verifyToken, addOurVision);
 
 export default handler;
 

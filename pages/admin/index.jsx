@@ -213,6 +213,14 @@ export async function getServerSideProps({ req }) {
       props: {},
     };
   }
+  if (token === 'null') {
+    return {
+      redirect: {
+        destination: "/admin/login",
+      },
+      props: {},
+    };
+  }
   try {
     const siteInfo = await axios.get("/api/site-information");
     return {

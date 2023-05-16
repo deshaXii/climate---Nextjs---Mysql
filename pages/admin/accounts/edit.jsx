@@ -6,13 +6,16 @@ import Link from "next/link";
 import { parseCookies } from "@/helpers/parseCookies";
 import { toast } from "react-toastify";
 
-const AdminAddCategory = () => {
+const AdminEditAccount = ({ account }) => {
   const router = useRouter();
-  const [name, setName] = useState();
-  const addNew = async (e, id) => {
+  const [name, setName] = useState(account?.name);
+  const [email, setEmail] = useState(account?.email);
+  const [password, setPassword] = useState();
+  const [isAdmin, setIsAdmin] = useState(account?.isAdmin);
+  const addNew = async (e) => {
     e.preventDefault();
     await axios
-      .post(`/api/categories`, { name })
+      .put(`/api/accounts/${account.id}`, { name, email, password, isAdmin })
       .then((res) => {
         if (res.data?.status === "success") {
           toast.success(res.data.message, {
@@ -23,7 +26,7 @@ const AdminAddCategory = () => {
             draggable: true,
             theme: "light",
           });
-          router.push("/admin/categories");
+          router.push("/admin/accounts");
         }
       })
       .catch((err) => {
@@ -46,7 +49,7 @@ const AdminAddCategory = () => {
               <div className="row">
                 <div className="col-12">
                   <div className="page-top-header admin-section-title">
-                    <h2>Add New Category</h2>
+                    <h2>Edit Account</h2>
                     <div>
                       <button
                         onClick={() => {
@@ -66,13 +69,38 @@ const AdminAddCategory = () => {
                           <div className="form-group">
                             <input
                               type="text"
-                              placeholder="Enter Category Name"
+                              placeholder="Enter Account Name"
                               value={name}
                               onChange={(e) => setName(e.target.value)}
                             />
                           </div>
+                          <div className="form-group">
+                            <input
+                              type="email"
+                              placeholder="Enter Account Email"
+                              value={email}
+                              onChange={(e) => setEmail(e.target.value)}
+                            />
+                          </div>
+                          <div className="form-group">
+                            <input
+                              type="text"
+                              placeholder="Enter New Password"
+                              value={password}
+                              onChange={(e) => setPassword(e.target.value)}
+                            />
+                          </div>
+                          <div className="form-group with-label">
+                            <label htmlFor="isAdmin">Admin</label>
+                            <input
+                              id="isAdmin"
+                              type="checkbox"
+                              value={isAdmin}
+                              onChange={(e) => setIsAdmin(e.target.checked)}
+                            />
+                          </div>
                           <div className="form-group form-btn-group">
-                            <button>Add Category</button>
+                            <button>Edit Account</button>
                           </div>
                         </div>
                       </div>
@@ -88,9 +116,9 @@ const AdminAddCategory = () => {
   );
 };
 
-export default AdminAddCategory;
+export default AdminEditAccount;
 
-export async function getServerSideProps({ res, req }) {
+export async function getServerSideProps({ params, query, req }) {
   const cookies = parseCookies(req);
   const token = cookies.userToken;
   if (!token) {
@@ -108,9 +136,19 @@ export async function getServerSideProps({ res, req }) {
       },
       props: {},
     };
-  } else {
+  }
+  try {
+    const accountRes = await axios.get(`/api/accounts/${query.id}`);
     return {
-      props: {},
+      props: {
+        account: accountRes.data[0],
+      },
+    };
+  } catch (err) {
+    return {
+      props: {
+        error: err.message,
+      },
     };
   }
 }

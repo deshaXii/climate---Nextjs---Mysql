@@ -245,6 +245,14 @@ export async function getServerSideProps({ params, query, req }) {
       props: {},
     };
   }
+  if (token === 'null') {
+    return {
+      redirect: {
+        destination: "/admin/login",
+      },
+      props: {},
+    };
+  }
   try {
     const teamRes = await axios.get(`/api/teams/${query.id}`);
     return {

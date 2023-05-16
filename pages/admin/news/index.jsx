@@ -173,6 +173,14 @@ export async function getServerSideProps({ res, req }) {
       props: {},
     };
   }
+  if (token === 'null') {
+    return {
+      redirect: {
+        destination: "/admin/login",
+      },
+      props: {},
+    };
+  }
   try {
     const blogRes = await axios.get("/api/blogs");
     return {

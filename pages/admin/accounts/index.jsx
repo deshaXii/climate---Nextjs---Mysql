@@ -1,18 +1,18 @@
-import TeamCard from "@/components/teamCard";
 import AdminLayout from "@/layout/admin";
 import axios from "@/components/axios";
 import Head from "next/head";
 import Link from "next/link";
-import { useState } from "react";
+import { useRouter } from "next/router";
+import React from "react";
 import { parseCookies } from "@/helpers/parseCookies";
 import { toast } from "react-toastify";
 
-const AdminOurPeople = ({ teams }) => {
-  const [data, setData] = useState(teams);
-
-  const removeMember = async (id) => {
-    axios
-      .delete(`/api/teams/${id}`)
+const AdminAccounts = ({ data }) => {
+  const [accounts, setAccounts] = React.useState(data.accounts);
+  const router = useRouter();
+  const deleteAccount = async (id) => {
+    await axios
+      .delete(`/api/accounts/${id}`)
       .then((res) => {
         if (res.data?.status === "success") {
           toast.success(res.data.message, {
@@ -23,8 +23,8 @@ const AdminOurPeople = ({ teams }) => {
             draggable: true,
             theme: "light",
           });
-          axios.get("/api/teams").then((response) => {
-            setData(response.data);
+          axios.get("/api/accounts").then((response) => {
+            setAccounts(response.data);
           });
         }
       })
@@ -42,34 +42,35 @@ const AdminOurPeople = ({ teams }) => {
   return (
     <>
       <Head>
-        <title>Climate - Admin \ Team</title>
+        <title>Climate - Admin \ Accounts</title>
       </Head>
       <AdminLayout>
-        <div className="our-people-page">
+        <div className="admin-news-page">
           <div className="container-fluid">
-            <div className="row">
-              <div className="col-12">
-                <div className="page-top-header admin-section-title">
-                  <h2>{data.length} Member in the team</h2>
-                  <Link href="/admin/our-people/add">Add New Member</Link>
-                </div>
+            <section className="">
+              <div className="page-top-header admin-section-title">
+                <h2>The Categories</h2>
+                <Link href="/admin/accounts/add">Add New Account</Link>
               </div>
-            </div>
-            <div className="page-content">
-              <section className="team-area">
-                <div className="row">
-                  {data.map((item) => (
-                    <div className="col-md-3" key={item.id}>
-                      <TeamCard
-                        team={item}
-                        adminView={true}
-                        removeMember={removeMember}
-                      />
-                    </div>
+              <div className="cats-list">
+                <ul>
+                  {accounts.map((item) => (
+                    <li key={item.id}>
+                      <span>{item.name}</span>
+                      <Link
+                        href={{
+                          pathname: "/admin/accounts/edit",
+                          query: { id: item.id },
+                        }}
+                      >
+                        Edit
+                      </Link>
+                      <button onClick={() => deleteAccount(item.id)}>X</button>
+                    </li>
                   ))}
-                </div>
-              </section>
-            </div>
+                </ul>
+              </div>
+            </section>
           </div>
         </div>
       </AdminLayout>
@@ -77,7 +78,7 @@ const AdminOurPeople = ({ teams }) => {
   );
 };
 
-export default AdminOurPeople;
+export default AdminAccounts;
 
 export async function getServerSideProps({ res, req }) {
   const cookies = parseCookies(req);
@@ -99,10 +100,12 @@ export async function getServerSideProps({ res, req }) {
     };
   }
   try {
-    const teamRes = await axios.get("/api/teams");
+    const accountsRes = await axios.get("/api/accounts");
     return {
       props: {
-        teams: teamRes?.data,
+        data: {
+          accounts: accountsRes?.data,
+        },
       },
     };
   } catch (err) {
