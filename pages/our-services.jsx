@@ -3,9 +3,10 @@ import axios from "@/components/axios";
 import Head from "next/head";
 import React, { useState } from "react";
 import PageTitle from "@/components/pageTitle";
+import { htmlToText } from "html-to-text";
 
 const HowWeCanAssistOurClients = ({ info, seoData, services, pinnedCats }) => {
-  const [activeTab, setActiveTab] = useState(`tab0`);
+  const [activeTab, setActiveTab] = useState();
   return (
     <>
       <Head>
@@ -52,13 +53,20 @@ const HowWeCanAssistOurClients = ({ info, seoData, services, pinnedCats }) => {
                     <ul className="services-tabs-list">
                       {services.map((item, index) => (
                         <li
+                          suppressHydrationWarning={true}
                           key={item.id}
                           className={
                             activeTab === `tab${index}` ? "active" : ""
                           }
                           onClick={() => setActiveTab(`tab${index}`)}
                         >
-                          <p>{item.text}</p>
+                          <h5>{item.text}</h5>
+
+                          <p>
+                            {htmlToText(item.value.substring(0, 150), {
+                              wordwrap: 130,
+                            })}
+                          </p>
                         </li>
                       ))}
                     </ul>
