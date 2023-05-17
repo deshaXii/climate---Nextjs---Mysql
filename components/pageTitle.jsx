@@ -10,7 +10,7 @@ const PageTitle = ({ title, time, marked, image }) => {
         <div className="row">
           <div className="col-12 col-md-6 col-lg-8">
             <div className="page-title-content">
-              <span className="marked">{marked}</span>
+              <span className="marked">&nbsp;</span>
               <h1>{title}</h1>
               <p suppressHydrationWarning={true}>{time}</p>
             </div>

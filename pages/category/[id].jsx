@@ -29,7 +29,7 @@ function NewsByCategory({ data, seoData, pinnedCats }) {
           title={seoData?.news_title}
           description={seoData?.news_description}
           image="/images/news-background-img.jpg"
-          marked="Everything new"
+          marked="&nbsp;"
         />
         <section className="pt80 news-page">
           <div className="container">

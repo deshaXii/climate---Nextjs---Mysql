@@ -9,7 +9,7 @@ import Link from "next/link";
 import { htmlToText } from "html-to-text";
 import moment from "moment";
 
-function News({ data, seoData, pinnedCats }) {
+function News({ data, seoData, pinnedCats, siteImages }) {
   const [currentPage, setCurrentPage] = useState(1);
   const pageSize = 8;
   const { blogs } = data;
@@ -29,8 +29,8 @@ function News({ data, seoData, pinnedCats }) {
         <PageTitle
           title={seoData?.news_title}
           description={seoData?.news_description}
-          image="/images/news-background-img.jpg"
-          marked="Everything new"
+          image={`/uploads/${siteImages?.news}`}
+          marked="&nbsp;"
         />
         <section className="pt80 news-page">
           <div className="container">

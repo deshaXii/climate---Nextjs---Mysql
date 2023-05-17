@@ -150,19 +150,38 @@ async function addNewCategory(req, res) {
 }
 
 async function update(req, res) {
-  const result = await db.query(
-    `UPDATE blogs SET title = ?, image = ?, description = ? WHERE id=${req.query.id}`,
-    [req.body.title, req.file.filename, req.body.description]
-  );
+  try {
+    const result1 = await db.query(
+      `UPDATE blogs set title =?, description = ?, image = ? WHERE id = ${req.query.id}`,
+      [
+        req.body.title,
+        req.body.description,
+        req.file ? req.file.filename : req.body.image,
+      ]
+    );
 
-  let message = "Error while editing the blog";
-  if (result.affectedRows) {
-    message = "blog updated successfully";
+    // Delete all existing rows for this blog_id
+    await db.query("DELETE FROM blog_category WHERE blog_id = ?", [req.query.id]);
+
+    // Insert categories into the 'blog_category' table
+    const result2 = await db.query(
+      "INSERT INTO blog_category (blog_id, category_id) SELECT ?, id FROM categories WHERE id IN (" +
+        req.body.selectedCategories.join() +
+        ")",
+      [req.query.id]
+    );
+
+    let message = "Error while creating blog";
+    if (result1.affectedRows && result2.affectedRows) {
+      message = "Blog updated successfully";
+    }
+    res.json({ message, status: "success" });
+    return { message };
+  } catch (error) {
+    console.error(error);
+    res.json({ message: "Error while updated blog", status: "error" });
+    return { message: "Error while updated blog" };
   }
-  res.json({ message, status: "success" });
-  return {
-    message,
-  };
 }
 
 async function editCategory(req, res) {

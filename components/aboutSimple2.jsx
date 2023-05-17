@@ -1,14 +1,14 @@
 import Link from "next/link";
 import React from "react";
 
-const AboutSimple2 = () => {
+const AboutSimple2 = ({ image }) => {
   return (
     <section className="pt80 about-2 bg-light">
       <div className="container">
         <div className="row">
           <div className="col-md-6">
             <div className="about-simple-content">
-              <span className="marked">innovative solutions</span>
+              <span className="marked">&nbsp;</span>
               <h4>our services</h4>
               <p>
                 We work with governments, banks, and other global institutions
@@ -24,7 +24,7 @@ const AboutSimple2 = () => {
           </div>
           <div className="col-md-6">
             <div className="about-simple-img">
-              <img src="/images/intro-img.jpg" alt="about us image" />
+              <img src={`/uploads/${image}`} alt="about us image" />
             </div>
           </div>
         </div>

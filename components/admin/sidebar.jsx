@@ -98,6 +98,16 @@ const AdminSidebar = () => {
         <li className="nav-item">
           <Link
             className={`nav-link ${
+              router.pathname === "/admin/images" ? "active" : ""
+            }`}
+            href="/admin/images"
+          >
+            images
+          </Link>
+        </li>
+        <li className="nav-item">
+          <Link
+            className={`nav-link ${
               router.pathname === "/admin/messages" ? "active" : ""
             }`}
             href="/admin/messages"

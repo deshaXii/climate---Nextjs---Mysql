@@ -8,7 +8,7 @@ import LatestNews from "@/components/latestNews";
 import Author from "@/components/author";
 import ScrollBar from "@/components/scrollBar";
 
-const Blog = ({ data, pinnedCats }) => {
+const Blog = ({ data, pinnedCats, siteImages }) => {
   const { blog, blogs } = data;
   const blogRef = useRef();
   return (
@@ -22,8 +22,8 @@ const Blog = ({ data, pinnedCats }) => {
           <PageTitle
             title={blog.title}
             time={moment(blog.time).format("Do MMMM YYYY, h:mm a")}
-            image={`/uploads/${blog.image}`}
-            marked={`Home - News - ${blog.title}`}
+            image={`/uploads/${siteImages?.news}`}
+            marked="&nbsp;"
           />
           <section className="pt80" ref={blogRef}>
             <div className="container">

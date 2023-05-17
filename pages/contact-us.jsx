@@ -1,5 +1,4 @@
 import Contact from "@/components/contact";
-import Map from "@/components/map";
 import Default from "@/layout/default";
 import Head from "next/head";
 import React from "react";
@@ -13,7 +12,6 @@ const ContactUs = ({ pinnedCats, info, seoData }) => {
         <meta name="description" content={seoData?.contact_description} />
       </Head>
       <Default pinnedCats={pinnedCats} siteInfo={info}>
-        <Map mapIframe={info.map_iframe} />
         <Contact
           siteInfo={info}
           title={seoData?.contact_title}

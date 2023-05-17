@@ -5,7 +5,7 @@ import axios from "@/components/axios";
 import Head from "next/head";
 import React from "react";
 
-const OurPeople = ({ data, error, seoData, pinnedCats }) => {
+const OurPeople = ({ data, error, seoData, pinnedCats, siteImages }) => {
   return (
     <>
       <Head>
@@ -16,8 +16,8 @@ const OurPeople = ({ data, error, seoData, pinnedCats }) => {
         <PageTitle
           title={seoData?.team_title}
           description={seoData?.team_description}
-          image="/images/Our-teaam-title-img.jpg"
-          marked="True experince"
+          image={`/uploads/${siteImages?.team}`}
+          marked="&nbsp;"
         />
         <section className="pt80">
           <div className="container">
@@ -92,7 +92,11 @@ const OurPeople = ({ data, error, seoData, pinnedCats }) => {
             </div>
           </div>
         </section>
-        <Contact siteInfo={data.info} />
+        <Contact
+          siteInfo={data.info}
+          title={seoData?.contact_title}
+          description={seoData?.contact_description}
+        />
       </Default>
     </>
   );

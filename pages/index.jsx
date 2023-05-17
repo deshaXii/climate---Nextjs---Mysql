@@ -8,7 +8,7 @@ import Video from "@/components/video";
 import LatestNews from "@/components/latestNews";
 import AboutSimple2 from "@/components/aboutSimple2";
 
-export default function Home({ data, error, seoData, pinnedCats }) {
+export default function Home({ data, error, seoData, pinnedCats, siteImages }) {
   return (
     <>
       <Head>
@@ -16,17 +16,22 @@ export default function Home({ data, error, seoData, pinnedCats }) {
         <meta name="description" content={seoData?.home_description} />
       </Head>
       <Default pinnedCats={pinnedCats} siteInfo={data?.info}>
-        <Intro title={seoData?.intro_title} subTitle={seoData?.intro_subtitle} />
-        <AboutSimple />
+        <Intro
+          image={siteImages?.intro}
+          title={seoData?.intro_title}
+          subTitle={seoData?.intro_subtitle}
+        />
+        <AboutSimple image={siteImages?.about1} />
         {data?.video?.image.length ? (
           <Video
+            image={siteImages?.video}
             data={data?.video}
             vide_url={data.info?.video_url || "Uszj_k0DGsg"}
           />
         ) : (
           "Add Video From DB"
         )}
-        <AboutSimple2 />
+        <AboutSimple2 image={siteImages?.about2} />
         <Team
           data={data?.teams?.slice(0, 4)}
           title={seoData?.meet_the_team_title}

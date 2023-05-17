@@ -228,6 +228,7 @@ a:active {
   color: #fff;
   width: 90%;
   margin-bottom: 25px;
+  text-transform: capitalize;
 }
 
 .page-title .page-title-content p {
@@ -362,6 +363,7 @@ nav.navbar li.nav-item:last-of-type {
   font-size: 55px;
   line-height: 1.182em;
   letter-spacing: -.02em;
+  text-transform: capitalize;
   margin: 0;
   -ms-word-wrap: break-word;
   word-wrap: break-word;
@@ -766,6 +768,10 @@ footer .footer-list h5 {
 footer .footer-list ul li a {
   color: #fff;
   font-size: 16px;
+}
+
+footer.site-footer .bottom-part ul li a {
+  text-transform: capitalize;
 }
 
 footer .footer-list ul li {
@@ -1226,7 +1232,29 @@ blockquote {
   font-style: italic;
   color: #111;
 }
+.images-page .form-group.image-uploader-area {
+  padding: 30px 10px;
+  background: #f3f3f3;
+  border: 1px solid #ddd;
+  margin-bottom: 20px;
+}
 
+.images-page .form-group.image-uploader-area label {
+  display: block;
+  margin-bottom: 9px;
+}
+
+.images-page .form-group.image-uploader-area .upload-img-btn {
+  margin-top: 20px;
+}
+
+.images-page .form-group.image-uploader-area .upload-img-btn button {
+  background: #333;
+  color: #fff;
+  border: 1px solid #333;
+  padding: 5px 10px;
+  border-radius: 6px;
+}
 
 
 
@@ -2499,3 +2527,7 @@ ul.services-tabs-list li h5 {
 }
 
 
+
+.our-services-page article.blog-item {
+  margin-bottom: 30px;
+}

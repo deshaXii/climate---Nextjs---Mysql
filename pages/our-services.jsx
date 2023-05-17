@@ -4,8 +4,17 @@ import Head from "next/head";
 import React, { useState } from "react";
 import PageTitle from "@/components/pageTitle";
 import { htmlToText } from "html-to-text";
+import Link from "next/link";
+import moment from "moment";
 
-const HowWeCanAssistOurClients = ({ info, seoData, services, pinnedCats }) => {
+const HowWeCanAssistOurClients = ({
+  info,
+  seoData,
+  services,
+  blogs,
+  pinnedCats,
+  siteImages,
+}) => {
   const [activeTab, setActiveTab] = useState();
   return (
     <>
@@ -18,15 +27,18 @@ const HowWeCanAssistOurClients = ({ info, seoData, services, pinnedCats }) => {
           <PageTitle
             title={seoData?.how_can_title}
             description={seoData?.how_can_description}
-            image="/images/Our-teaam-title-img.jpg"
-            marked="True experince"
+            image={`/uploads/${siteImages?.services}`}
+            marked="&nbsp;"
           />
           <section className="pt80 services-first-section">
             <div className="container">
               <div className="row">
                 <div className="col-md-6">
                   <div className="services-image">
-                    <img src="/images/h3-img-3.jpg" alt="" />
+                    <img
+                      src={`/uploads/${siteImages?.servicessection}`}
+                      alt="services image"
+                    />
                   </div>
                 </div>
                 <div className="col-md-6">
@@ -47,8 +59,8 @@ const HowWeCanAssistOurClients = ({ info, seoData, services, pinnedCats }) => {
           </section>
           <section className="pt80 services-sec-section">
             <div className="container">
-              <div className="row">
-                <div className="col-md-12">
+              <div className="row justify-content-center">
+                {/* <div className="col-md-12">
                   <div className="services-tabs">
                     <ul className="services-tabs-list">
                       {services.map((item, index) => (
@@ -87,7 +99,121 @@ const HowWeCanAssistOurClients = ({ info, seoData, services, pinnedCats }) => {
                       </div>
                     ))}
                   </div>
-                </div>
+                </div> */}
+                {blogs.map((item) => (
+                  <div
+                    className="col-md-4 col-lg-3 col-sm-6 col-12"
+                    key={item.id}
+                  >
+                    <article className="blog-item">
+                      <div className="new-inner">
+                        <div className="new-media-image">
+                          <Link href={`/news/${item.id}`}>
+                            <img
+                              src={`/uploads/${item.image}`}
+                              className="attachment-full size-full"
+                              alt={item.name}
+                            />
+                          </Link>
+                        </div>
+                        <div className="new-content">
+                          <div className="qodef-image-date">
+                            <div className="new-info-item new-info-date entry-date published updated">
+                              <Link
+                                href={`/news/${item.id}`}
+                                suppressHydrationWarning={true}
+                              >
+                                <svg
+                                  width="12.07"
+                                  height="11.31"
+                                  viewBox="0 0 12.07 11.31"
+                                >
+                                  <rect
+                                    x="0.48"
+                                    y="0.48"
+                                    width="11.12"
+                                    height="10.35"
+                                    fill="none"
+                                    stroke="#000"
+                                    strokeLinecap="square"
+                                    strokeWidth="0.95"
+                                  ></rect>
+                                  <rect
+                                    x="1.99"
+                                    y="3.37"
+                                    width="2.06"
+                                    height="1.65"
+                                  ></rect>
+                                  <rect
+                                    x="5.01"
+                                    y="3.37"
+                                    width="2.06"
+                                    height="1.65"
+                                  ></rect>
+                                  <rect
+                                    x="8.02"
+                                    y="3.37"
+                                    width="2.06"
+                                    height="1.65"
+                                  ></rect>
+                                  <rect
+                                    x="1.99"
+                                    y="6.29"
+                                    width="2.06"
+                                    height="1.65"
+                                  ></rect>
+                                  <rect
+                                    x="5.01"
+                                    y="6.29"
+                                    width="2.06"
+                                    height="1.65"
+                                  ></rect>
+                                  <rect
+                                    x="8.02"
+                                    y="6.29"
+                                    width="2.06"
+                                    height="1.65"
+                                  ></rect>
+                                </svg>
+                                {moment(item.time).format(
+                                  "Do MMMM YYYY, h:mm a"
+                                )}
+                              </Link>
+                            </div>
+                          </div>
+                          <div className="new-supertitle-holder"></div>
+                          <div className="new-text">
+                            <h4 className="new-title entry-title">
+                              <Link
+                                className="new-title-link"
+                                href={`/news/${item.id}`}
+                              >
+                                {item.title}
+                              </Link>
+                            </h4>
+                            <p className="new-excerpt">
+                              {htmlToText(item.description.substring(0, 500), {
+                                wordwrap: 130,
+                              })}
+                            </p>
+                          </div>
+                          <div className="new-info qodef-info--bottom">
+                            <div className="new-info-left">
+                              <div className="new-read-more">
+                                <Link href={`/news/${item.id}`} target="_self">
+                                  <span className="qodef-m-text">
+                                    Find out more
+                                  </span>
+                                </Link>
+                              </div>
+                            </div>
+                            <div className="new-info-slider"></div>
+                          </div>
+                        </div>
+                      </div>
+                    </article>
+                  </div>
+                ))}
               </div>
             </div>
           </section>
@@ -102,9 +228,11 @@ export default HowWeCanAssistOurClients;
 export async function getServerSideProps() {
   try {
     const siteInfo = await axios.get("/api/site-information");
+    const blogsRes = await axios.get(`/api/categories/${8}`);
     const siteServices = await axios.get("/api/our-services");
     return {
       props: {
+        blogs: blogsRes?.data,
         info: siteInfo.data[0],
         services: siteServices.data,
       },

@@ -49,7 +49,7 @@ const LatestNews = ({ data, title, description, subtitle }) => {
         <div className="row">
           <div className="col-12">
             <div className="section-title">
-              <span className="marked">{subtitle}</span>
+              <span className="marked">&nbsp;</span>
               <h2>{title}</h2>
             </div>
           </div>

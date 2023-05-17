@@ -3,7 +3,7 @@ import React, { useState } from "react";
 const ModalVideo = dynamic(() => import("react-modal-video"));
 import "react-modal-video/css/modal-video.css";
 
-const Video = ({ data, vide_url }) => {
+const Video = ({ data, vide_url, image }) => {
   const [isOpen, setOpen] = useState(false);
   return (
     <>
@@ -18,7 +18,7 @@ const Video = ({ data, vide_url }) => {
       )}
       <section
         className="video pt80"
-        style={{ backgroundImage: `url(${data?.image})` }}
+        style={{ backgroundImage: `url(/uploads/${image})` }}
       >
         <div className="video-play-btn">
           <button

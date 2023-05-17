@@ -11,8 +11,9 @@ import { toast } from "react-toastify";
 const ReactQuill = dynamic(() => import("react-quill"), {
   ssr: false,
 });
-const AdminEditBlog = ({ blog }) => {
+const AdminEditBlog = ({ blog, categories }) => {
   const router = useRouter();
+  const [selectedCategories, setSelectedCategories] = useState([]);
   const [title, setTitle] = useState(blog.title);
   const [image, setImage] = useState(blog.image);
   const [images, setImages] = useState([]);
@@ -80,6 +81,7 @@ const AdminEditBlog = ({ blog }) => {
     const data = {
       title,
       image,
+      selectedCategories,
       description: value,
     };
     await axios
@@ -216,6 +218,26 @@ const AdminEditBlog = ({ blog }) => {
                             />
                           </div>
                           <div className="form-group">
+                            <select
+                              multiple
+                              onChange={(e) => {
+                                const selectedOptions = Array.from(
+                                  e.target.selectedOptions
+                                );
+                                const selectedCategories = selectedOptions.map(
+                                  (option) => option.value
+                                );
+                                setSelectedCategories(selectedCategories);
+                              }}
+                            >
+                              {categories.map((item) => (
+                                <option key={item.id} selected value={item.id}>
+                                  {item.name}
+                                </option>
+                              ))}
+                            </select>
+                          </div>
+                          <div className="form-group">
                             <ReactQuill
                               theme="snow"
                               value={value}
@@ -254,7 +276,7 @@ export async function getServerSideProps({ params, query, req }) {
       props: {},
     };
   }
-  if (token === 'null') {
+  if (token === "null") {
     return {
       redirect: {
         destination: "/admin/login",
@@ -264,9 +286,11 @@ export async function getServerSideProps({ params, query, req }) {
   }
   try {
     const blogRes = await axios.get(`/api/blogs/${query.id}`);
+    const catsRes = await axios.get(`/api/categories`);
     return {
       props: {
         blog: blogRes.data,
+        categories: catsRes.data,
       },
     };
   } catch (err) {

@@ -4,7 +4,7 @@ import Head from "next/head";
 import React from "react";
 import PageTitle from "@/components/pageTitle";
 
-const OurVision = ({ info, vision, seoData, pinnedCats }) => {
+const OurVision = ({ info, vision, seoData, pinnedCats, siteImages }) => {
   return (
     <>
       <Head>
@@ -16,8 +16,8 @@ const OurVision = ({ info, vision, seoData, pinnedCats }) => {
           <PageTitle
             title={seoData?.vision_title}
             description={seoData?.vision_description}
-            image="/images/Our-teaam-title-img.jpg"
-            marked="True experince"
+            image={`/uploads/${siteImages?.vision}`}
+            marked="&nbsp;"
           />
           <section className="pt-40 first-ceo-word">
             <div className="container">

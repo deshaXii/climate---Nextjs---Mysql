@@ -87,7 +87,7 @@ const Contact = ({ siteInfo, title, description }) => {
         <div className="row align-items-center">
           <div className="col-md-6">
             <div className="section-title">
-              <span className="marked">FOR A NEW WORLD</span>
+              <span className="marked">&nbsp;</span>
               <h2>{title}</h2>
               <p>{description}</p>
             </div>

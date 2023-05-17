@@ -21,7 +21,7 @@ const Footer = ({ siteInfo }) => {
             </div>
             <div className="mid-part">
               <div className="footer-list">
-                <h5>Start Conversation:</h5>
+                <h5>Contact Us:</h5>
                 <ul>
                   <li>
                     <a href={siteInfo?.email}>{siteInfo?.email}</a>
@@ -32,15 +32,18 @@ const Footer = ({ siteInfo }) => {
                 </ul>
               </div>
               <div className="footer-list">
-                <h5>Find Our Address:</h5>
+                <h5>Our Address:</h5>
                 <ul>
+                  <li>
+                    <a href="#">{siteInfo?.address}</a>
+                  </li>
                   <li>
                     <a href="#">{siteInfo?.address}</a>
                   </li>
                 </ul>
               </div>
               <div className="footer-list footer-social-list">
-                <h5>Our Social:</h5>
+                <h5>Social Media:</h5>
                 <ul>
                   {siteInfo?.facebook && siteInfo?.facebook !== "#" && (
                     <li>
@@ -82,7 +85,7 @@ const Footer = ({ siteInfo }) => {
                   <span>&nbsp;</span>
                   <span>&nbsp;</span>
                   <span>&nbsp;</span>
-                  <Link href="/our-vision">OUR VISION</Link>
+                  <Link href="/our-vision">Our Vision</Link>
                 </li>
                 <li>
                   <Link href="/contact-us">Latest News</Link>
@@ -94,7 +97,9 @@ const Footer = ({ siteInfo }) => {
                   <Link href="/contact-us">Contact Us</Link>
                 </li>
                 <li className="copyright">
-                  <p>© 2023 Climate, All Rights Reserved</p>
+                  <p>
+                    © {new Date().getFullYear()} Climate, All Rights Reserved
+                  </p>
                 </li>
               </ul>
             </div>

@@ -1,19 +1,19 @@
 import Link from "next/link";
 import React from "react";
 
-const AboutSimple = () => {
+const AboutSimple = ({ image }) => {
   return (
     <section className="pt80 about-1">
       <div className="container">
         <div className="row">
           <div className="col-md-6">
             <div className="about-simple-img">
-              <img src="/images/h3-img-3.jpg" alt="about us image" />
+              <img src={`/uploads/${image}`} alt="about us image" />
             </div>
           </div>
           <div className="col-md-6">
             <div className="about-simple-content">
-              <span className="marked">Reshaping the future</span>
+              <span className="marked">&nbsp;</span>
               <h4>
                 Bold actions for a <br />
                 net zero future

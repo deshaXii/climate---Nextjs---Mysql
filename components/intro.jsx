@@ -1,10 +1,11 @@
 import React from "react";
 
-const Intro = ({ title, subTitle }) => {
+const Intro = ({ title, subTitle, image }) => {
+  console.log(`url(/uploads/${image})`);
   return (
     <div
       className="intor"
-      style={{ backgroundImage: "url(/images/intro-img.jpg)" }}
+      style={{ backgroundImage: `url(/uploads/${image})` }}
     >
       <div className="container">
         <div className="row">
