@@ -1,6 +1,7 @@
 const db = require("../db");
 const helper = require("../helper");
 const config = require("../config");
+const slugify = require("slugify");
 
 const getAllBlogs = async (req, res) => {
   // const offset = helper.getOffset(1, config.listPerPage);
@@ -23,13 +24,15 @@ GROUP BY b.id;`);
 };
 
 const getBlogsByCategory = async (req, res) => {
-  const rows = await db.query(`SELECT b.*
+  const rows = await db.query(
+    `SELECT b.*
     FROM blogs b
     JOIN blog_category bc ON bc.blog_id = b.id
     JOIN categories c ON c.id = bc.category_id
-    WHERE c.id = ${req.query.id};`);
+    WHERE c.slug = ?;`,
+    [req.query.slug]
+  );
   const data = helper.emptyOrRows(rows);
-  console.log(data);
   res.json(data);
   return {
     data,
@@ -88,7 +91,7 @@ const deleteBlogById = async (req, res) => {
 
 const deleteCategory = async (req, res) => {
   const result = await db.query(
-    `DELETE FROM categories WHERE id=${req.query.id};`
+    `DELETE FROM categories WHERE slug=${req.query.slug};`
   );
   let message = "Error while deleting category";
   if (result.affectedRows) {
@@ -135,18 +138,33 @@ async function create(req, res) {
 }
 
 async function addNewCategory(req, res) {
-  const result = await db.query(`INSERT INTO categories (name) VALUES (?)`, [
-    req.body.name,
-  ]);
+  const slug = slugify(req.body.name, {
+    lower: true,
+    strict: true,
+  });
+
+  let uniqueSlug = slug;
+  let counter = 1;
+
+  while (true) {
+    const rows = await db.query("SELECT * FROM categories WHERE slug = ?", [
+      uniqueSlug,
+    ]);
+    if (rows.length === 0) {
+      break;
+    }
+    counter++;
+    uniqueSlug = `${slug}-${counter}`;
+  }
+
+  const query = "INSERT INTO categories (name, slug) VALUES (?, ?)";
+  const result = await db.query(query, [req.body.name, uniqueSlug]);
 
   let message = "Error while creating category";
   if (result.affectedRows) {
     message = "category created successfully";
   }
   res.json({ message, status: "success" });
-  return {
-    message,
-  };
 }
 
 async function update(req, res) {
@@ -161,7 +179,9 @@ async function update(req, res) {
     );
 
     // Delete all existing rows for this blog_id
-    await db.query("DELETE FROM blog_category WHERE blog_id = ?", [req.query.id]);
+    await db.query("DELETE FROM blog_category WHERE blog_id = ?", [
+      req.query.id,
+    ]);
 
     // Insert categories into the 'blog_category' table
     const result2 = await db.query(
@@ -185,9 +205,28 @@ async function update(req, res) {
 }
 
 async function editCategory(req, res) {
+  const slug = slugify(req.body.name, {
+    lower: true,
+    strict: true,
+  });
+
+  let uniqueSlug = slug;
+  let counter = 1;
+
+  while (true) {
+    const rows = await db.query("SELECT * FROM categories WHERE slug = ?", [
+      uniqueSlug,
+    ]);
+    if (rows.length === 0) {
+      break;
+    }
+    counter++;
+    uniqueSlug = `${slug}-${counter}`;
+  }
+
   const result = await db.query(
-    `UPDATE categories SET name = ? WHERE id=${req.query.id}`,
-    [req.body.name]
+    `UPDATE categories SET name = ?, slug = ? WHERE id=${req.query.id}`,
+    [req.body.name, uniqueSlug]
   );
 
   let message = "Error while updating the category";

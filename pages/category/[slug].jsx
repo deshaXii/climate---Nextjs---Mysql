@@ -8,15 +8,16 @@ import axios from "@/components/axios";
 import Link from "next/link";
 import { htmlToText } from "html-to-text";
 import moment from "moment";
+import { useRouter } from "next/router";
 
 function NewsByCategory({ data, seoData, pinnedCats }) {
   const [currentPage, setCurrentPage] = useState(1);
   const pageSize = 8;
   const { blogs } = data;
+  const { query } = useRouter();
   const onPageChange = (page) => {
     setCurrentPage(page);
   };
-
   const paginatedPosts = paginate(blogs, currentPage, pageSize);
   return (
     <>
@@ -26,7 +27,7 @@ function NewsByCategory({ data, seoData, pinnedCats }) {
       </Head>
       <Default pinnedCats={pinnedCats} siteInfo={data.info}>
         <PageTitle
-          title={seoData?.news_title}
+          title={`${query.slug} News`}
           description={seoData?.news_description}
           image="/images/news-background-img.jpg"
           marked="&nbsp;"
@@ -168,7 +169,7 @@ export default NewsByCategory;
 
 export async function getServerSideProps({ query }) {
   try {
-    const blogsRes = await axios.get(`/api/categories/${query.id}`);
+    const blogsRes = await axios.get(`/api/categories/${query.slug}`);
     const siteInfo = await axios.get("/api/site-information");
     return {
       props: {

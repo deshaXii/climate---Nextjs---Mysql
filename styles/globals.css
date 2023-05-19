@@ -425,6 +425,8 @@ nav.navbar li.nav-item:last-of-type {
 .about-simple-content p {
   font-size: 14px;
   line-height: 25px;
+  color: #000;
+  opacity: 0.85;
 }
 
 .about-simple-content .btn {
@@ -443,6 +445,8 @@ nav.navbar li.nav-item:last-of-type {
 /* Strat Team Style */
 .qodef-e-media-image img {
   width: 100%;
+  height: 340px;
+  object-fit: cover;
 }
 
 .team-box {
@@ -565,6 +569,7 @@ section.video .video-play-btn button.video-play i {
   width: 100%;
   aspect-ratio: 3/2;
   object-fit: cover;
+  height: 240px;
 }
 
 .new-inner {
@@ -607,11 +612,17 @@ section.video .video-play-btn button.video-play i {
 
 .blog-item .new-text .new-title {
   margin-bottom: 0;
-  font-weight: 600;
-  font-size: 22px;
-  line-height: 32px;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 27px;
   color: #111;
   letter-spacing: 0.6px;
+  min-height: 46px;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+  -webkit-box-orient: vertical;
 }
 
 .blog-item .new-text p.new-excerpt {
@@ -1232,6 +1243,7 @@ blockquote {
   font-style: italic;
   color: #111;
 }
+
 .images-page .form-group.image-uploader-area {
   padding: 30px 10px;
   background: #f3f3f3;
@@ -2217,15 +2229,15 @@ ul.services-tabs-list li {
 
 ul.services-tabs-list li p {
   margin: 0;
-    font-size: 16px;
-    font-weight: 300;
-    color: #585858;
-    text-transform: lowercase;
-    overflow: hidden;
-    display: -webkit-box;
-    -webkit-line-clamp: 2;
-    line-clamp: 2;
-    -webkit-box-orient: vertical;
+  font-size: 16px;
+  font-weight: 300;
+  color: #585858;
+  text-transform: lowercase;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+  -webkit-box-orient: vertical;
 }
 
 ul.services-tabs-list li:last-of-type {

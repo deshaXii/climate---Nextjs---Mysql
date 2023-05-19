@@ -139,7 +139,7 @@ const LatestNews = ({ data, title, description, subtitle }) => {
                                 className="new-title-link"
                                 href={`/news/${item.id}`}
                               >
-                                Research that can give us a greener life
+                                {item.title}
                               </Link>
                             </h4>
                             <p className="new-excerpt">

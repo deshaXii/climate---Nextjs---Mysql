@@ -90,9 +90,9 @@ const Navbar = ({ siteInfo, pinnedCats }) => {
                 <li className="nav-item" key={item.id}>
                   <Link
                     className={`nav-link ${
-                      router.pathname === `/category/${item.id}` ? "active" : ""
+                      router.pathname === `/category/${item.slug}` ? "active" : ""
                     }`}
-                    href={`/category/${item.id}`}
+                    href={`/category/${item.slug}`}
                   >
                     {item.name}
                   </Link>
