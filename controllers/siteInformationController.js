@@ -12,13 +12,18 @@ const getSiteInformation = async (req, res) => {
 
 async function addSiteInformation(req, res) {
   const result = await db.query(
-    `INSERT INTO information (description, email, video_url, address, map_url, phone, facebook, instagram, twitter, linkedin) VALUES (?,?,?,?,?,?,?,?,?)`,
+    `INSERT INTO information (description, email, video_url, video_type, address1, address1_url, address2, address2_url, address3, address3_url, phone, facebook, instagram, twitter, linkedin) VALUES (?,?,?,?,?,?,?,?,?)`,
     [
       req.body.description,
       req.body.email,
       req.body.video_url,
-      req.body.address,
-      req.body.map_url,
+      req.body.video_type,
+      req.body.address1,
+      req.body.address1_url,
+      req.body.address2,
+      req.body.address2_url,
+      req.body.address3,
+      req.body.address3_url,
       req.body.phone,
       req.body.facebook,
       req.body.instagram,
@@ -39,13 +44,18 @@ async function addSiteInformation(req, res) {
 
 async function editSiteInformation(req, res) {
   const result = await db.query(
-    `UPDATE information SET description = ?, email = ?, video_url = ?, address = ?, map_url = ?, phone = ?, facebook = ?, instagram = ?, twitter = ?, linkedin = ?`,
+    `UPDATE information SET description = ?, email = ?, video_url = ?, video_type = ?, address1 = ?, address1_url = ?,address2 = ?, address2_url = ?, address3 = ?, address3_url = ?, phone = ?, facebook = ?, instagram = ?, twitter = ?, linkedin = ?`,
     [
       req.body.description,
       req.body.email,
       req.body.video_url,
-      req.body.address,
-      req.body.map_url,
+      req.body.video_type,
+      req.body.address1,
+      req.body.address1_url,
+      req.body.address2,
+      req.body.address2_url,
+      req.body.address3,
+      req.body.address3_url,
       req.body.phone,
       req.body.facebook,
       req.body.instagram,

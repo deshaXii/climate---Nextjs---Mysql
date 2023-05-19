@@ -11,8 +11,13 @@ const Admin = ({ info }) => {
   const [description, setDescription] = useState(info.description);
   const [email, setEmail] = useState(info.email);
   const [video_url, setVideo_url] = useState(info.video_url);
-  const [address, setAddress] = useState(info.address);
-  const [map_url, setMap_url] = useState(info.map_url);
+  const [video_type, setVideo_type] = useState(info.video_type);
+  const [address1, setAddress1] = useState(info.address1);
+  const [address1_url, setAddress1_url] = useState(info.address1_url);
+  const [address2, setAddress2] = useState(info.address2);
+  const [address2_url, setAddress2_url] = useState(info.address2_url);
+  const [address3, setAddress3] = useState(info.address3);
+  const [address3_url, setAddress3_url] = useState(info.address3_url);
   const [phone, setPhone] = useState(info.phone);
   const [facebook, setFacebook] = useState(info.facebook);
   const [instagram, setInstagram] = useState(info.instagram);
@@ -24,9 +29,14 @@ const Admin = ({ info }) => {
     const data = {
       description,
       email,
-      address,
-      map_url,
+      address1,
+      address1_url,
+      address2,
+      address2_url,
+      address3,
+      address3_url,
       video_url,
+      video_type,
       phone,
       facebook,
       instagram,
@@ -96,21 +106,69 @@ const Admin = ({ info }) => {
                       </div>
                       <div className="col-md-6">
                         <div className="form-group">
-                          <label> Address</label>
+                          <label> Address 1 Label</label>
                           <input
                             type="text"
-                            value={address}
-                            onChange={(e) => setAddress(e.target.value)}
-                            placeholder="Address"
+                            value={address1}
+                            onChange={(e) => setAddress1(e.target.value)}
+                            placeholder="Address 1 Label"
                           />
                         </div>
                         <div className="form-group">
-                          <label> map url</label>
+                          <label> Address 1 Url</label>
                           <input
                             type="text"
-                            value={map_url}
-                            onChange={(e) => setMap_url(e.target.value)}
-                            placeholder="map url"
+                            value={address1_url}
+                            onChange={(e) => setAddress1_url(e.target.value)}
+                            placeholder="Address 1 url"
+                          />
+                        </div>
+
+                        <div className="form-group">
+                          <label> Address 2 Label</label>
+                          <input
+                            type="text"
+                            value={address2}
+                            onChange={(e) => setAddress2(e.target.value)}
+                            placeholder="Address 2 label"
+                          />
+                        </div>
+                        <div className="form-group">
+                          <label> Address 2 url </label>
+                          <input
+                            type="text"
+                            value={address2_url}
+                            onChange={(e) => setAddress2_url(e.target.value)}
+                            placeholder="Address 1"
+                          />
+                        </div>
+                        <div className="form-group">
+                          <label> Address 3 label</label>
+                          <input
+                            type="text"
+                            value={address3}
+                            onChange={(e) => setAddress3(e.target.value)}
+                            placeholder="Address 3 label"
+                          />
+                        </div>
+
+                        <div className="form-group">
+                          <label> Address 3 url</label>
+                          <input
+                            type="text"
+                            value={address3_url}
+                            onChange={(e) => setAddress3_url(e.target.value)}
+                            placeholder="Address 3 url"
+                          />
+                        </div>
+
+                        <div className="form-group">
+                          <label> video type</label>
+                          <input
+                            type="text"
+                            value={video_type}
+                            onChange={(e) => setVideo_type(e.target.value)}
+                            placeholder="enter 'youtube' or 'vimeo' "
                           />
                         </div>
 
@@ -131,15 +189,6 @@ const Admin = ({ info }) => {
                             value={facebook}
                             onChange={(e) => setFacebook(e.target.value)}
                             placeholder="facebook page url"
-                          />
-                        </div>
-                        <div className="form-group">
-                          <label>twitter</label>
-                          <input
-                            type="text"
-                            value={twitter}
-                            onChange={(e) => setTwitter(e.target.value)}
-                            placeholder="twitter page url"
                           />
                         </div>
                       </div>
@@ -180,6 +229,15 @@ const Admin = ({ info }) => {
                             placeholder="linkedin page url"
                           />
                         </div>
+                        <div className="form-group">
+                          <label>twitter</label>
+                          <input
+                            type="text"
+                            value={twitter}
+                            onChange={(e) => setTwitter(e.target.value)}
+                            placeholder="twitter page url"
+                          />
+                        </div>
                       </div>
                       <div className="col-12">
                         <div className="form-group form-btn-group">
@@ -213,7 +271,7 @@ export async function getServerSideProps({ req }) {
       props: {},
     };
   }
-  if (token === 'null') {
+  if (token === "null") {
     return {
       redirect: {
         destination: "/admin/login",

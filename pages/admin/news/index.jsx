@@ -39,7 +39,7 @@ const EditCell = ({ rowData, dataKey, ...props }) => (
       className="edit-btn"
       href={{
         pathname: "/admin/news/edit",
-        query: { id: rowData.id },
+        query: { slug: rowData.slug },
       }}
     >
       <i className="fa fa-edit"></i>
@@ -51,7 +51,7 @@ const DeleteCell = ({ rowData, dataKey, handleClick, ...props }) => (
     <button
       className="delete-btn"
       onClick={async () => {
-        await handleClick(rowData.id);
+        await handleClick(rowData.slug);
       }}
     >
       <i className="fa fa-trash"></i>
@@ -78,9 +78,9 @@ const DescriptionCell = ({ rowData, dataKey, ...props }) => (
 const AdminNews = ({ data }) => {
   const [news, setNews] = React.useState(data.blogs);
   const tableRef = React.useRef();
-  const removeNew = async (id) => {
+  const removeNew = async (slug) => {
     axios
-      .delete(`/api/blogs/${id}`)
+      .delete(`/api/blogs/${slug}`)
       .then((res) => {
         if (res.data?.status === "success") {
           toast.success(res.data.message, {

@@ -43,7 +43,7 @@ function NewsByCategory({ data, seoData, pinnedCats }) {
                   <article className="blog-item">
                     <div className="new-inner">
                       <div className="new-media-image">
-                        <Link href={`/news/${item.id}`}>
+                        <Link href={`/news/${item.slug}`}>
                           <img
                             src={`/uploads/${item.image}`}
                             className="attachment-full size-full"
@@ -55,7 +55,7 @@ function NewsByCategory({ data, seoData, pinnedCats }) {
                         <div className="qodef-image-date">
                           <div className="new-info-item new-info-date entry-date published updated">
                             <Link
-                              href={`/news/${item.id}`}
+                              href={`/news/${item.slug}`}
                               suppressHydrationWarning={true}
                             >
                               <svg
@@ -119,7 +119,7 @@ function NewsByCategory({ data, seoData, pinnedCats }) {
                           <h4 className="new-title entry-title">
                             <Link
                               className="new-title-link"
-                              href={`/news/${item.id}`}
+                              href={`/news/${item.slug}`}
                             >
                               {item.title}
                             </Link>
@@ -133,7 +133,7 @@ function NewsByCategory({ data, seoData, pinnedCats }) {
                         <div className="new-info qodef-info--bottom">
                           <div className="new-info-left">
                             <div className="new-read-more">
-                              <Link href={`/news/${item.id}`} target="_self">
+                              <Link href={`/news/${item.slug}`} target="_self">
                                 <span className="qodef-m-text">
                                   Find out more
                                 </span>

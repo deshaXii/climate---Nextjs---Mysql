@@ -78,6 +78,17 @@ const AdminEditBlog = ({ blog, categories }) => {
   };
   const editBlogById = async (e, id) => {
     e.preventDefault();
+    if (!selectedCategories) {
+      toast.error("you must select one or more category", {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: true,
+        closeOnClick: true,
+        draggable: true,
+        theme: "light",
+      });
+      return;
+    }
     const data = {
       title,
       image,
@@ -134,7 +145,7 @@ const AdminEditBlog = ({ blog, categories }) => {
                       <span>&nbsp;</span>
                       <span>&nbsp;</span>
                       <span>&nbsp;</span>
-                      <Link href={`/news/${blog.id}`}>See Blog</Link>
+                      <Link href={`/news/${blog.slug}`}>See Blog</Link>
                     </div>
                   </div>
                 </div>
@@ -285,7 +296,7 @@ export async function getServerSideProps({ params, query, req }) {
     };
   }
   try {
-    const blogRes = await axios.get(`/api/blogs/${query.id}`);
+    const blogRes = await axios.get(`/api/blogs/${query.slug}`);
     const catsRes = await axios.get(`/api/categories`);
     return {
       props: {

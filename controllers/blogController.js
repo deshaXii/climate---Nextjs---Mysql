@@ -9,7 +9,7 @@ const getAllBlogs = async (req, res) => {
   //   `SELECT * FROM blogs LIMIT ${config.listPerPage} OFFSET ${offset}`
   // );
   const rows =
-    await db.query(`SELECT b.id, b.title, b.image, b.description, b.time,
+    await db.query(`SELECT b.id, b.title, b.image, b.description, b.time, b.slug,
   GROUP_CONCAT(c.id SEPARATOR ', ') AS category_ids,
   GROUP_CONCAT(c.name SEPARATOR ', ') AS category_names
 FROM blogs b
@@ -58,7 +58,8 @@ const getAllPinnedCategories = async (req, res) => {
 };
 
 const getBlogByID = async (req, res) => {
-  const rows = await db.query(`SELECT * FROM blogs WHERE id = ${req.query.id}`);
+  let query = `SELECT * FROM blogs WHERE slug = ?`;
+  const rows = await db.query(query, [req.query.slug]);
   const data = helper.emptyOrRows(rows);
   res.json(data[0]);
   return {
@@ -78,7 +79,9 @@ const getCategory = async (req, res) => {
 };
 
 const deleteBlogById = async (req, res) => {
-  const result = await db.query(`DELETE FROM blogs WHERE id=${req.query.id};`);
+  const result = await db.query(`DELETE FROM blogs WHERE slug = ?;`, [
+    req.query.slug,
+  ]);
   let message = "Error while deleting blog";
   if (result.affectedRows) {
     message = "blog deleted successfully";
@@ -109,10 +112,35 @@ async function create(req, res) {
       res.json({ message: "Please upload an image file", status: "error" });
       return { message: "Please upload an image file" };
     }
-    const result1 = await db.query(
-      "INSERT INTO blogs (title, description, image, time) VALUES (?, ?, ?, ?)",
-      [req.body.title, req.body.description, req.file.filename, new Date()]
-    );
+
+    const slug = slugify(req.body.title, {
+      lower: true,
+      strict: true,
+    });
+
+    let uniqueSlug = slug;
+    let counter = 1;
+
+    while (true) {
+      const rows = await db.query("SELECT * FROM blogs WHERE slug = ?", [
+        uniqueSlug,
+      ]);
+      if (rows.length === 0) {
+        break;
+      }
+      counter++;
+      uniqueSlug = `${slug}-${counter}`;
+    }
+
+    const query =
+      "INSERT INTO blogs (title, description, image, time, slug) VALUES (?, ?, ?, ?, ?)";
+    const result1 = await db.query(query, [
+      req.body.title,
+      req.body.description,
+      req.file.filename,
+      new Date(),
+      uniqueSlug,
+    ]);
 
     const blogId = result1.insertId;
 
@@ -169,18 +197,47 @@ async function addNewCategory(req, res) {
 
 async function update(req, res) {
   try {
+    const blog = await db.query("SELECT * FROM blogs WHERE id = ?", [
+      req.query.slug,
+    ]);
+
+    const existingSlug = blog[0].slug;
+    const newTitle = req.body.title;
+    const newSlug = slugify(newTitle, {
+      lower: true,
+      strict: true,
+    });
+
+    let uniqueSlug = newSlug;
+
+    // Check if title has been updated before generating a new uniqueSlug
+    if (newTitle !== blog[0].title) {
+      let counter = 1;
+      while (true) {
+        const rows = await db.query("SELECT * FROM blogs WHERE slug = ?", [
+          uniqueSlug,
+        ]);
+        if (rows.length === 0) {
+          break;
+        }
+        counter++;
+        uniqueSlug = `${newSlug}-${counter}`;
+      }
+    }
+
     const result1 = await db.query(
-      `UPDATE blogs set title =?, description = ?, image = ? WHERE id = ${req.query.id}`,
+      `UPDATE blogs SET title = ?, description = ?, image = ?, slug = ? WHERE id = ${req.query.slug}`,
       [
         req.body.title,
         req.body.description,
         req.file ? req.file.filename : req.body.image,
+        uniqueSlug,
       ]
     );
 
     // Delete all existing rows for this blog_id
     await db.query("DELETE FROM blog_category WHERE blog_id = ?", [
-      req.query.id,
+      req.query.slug,
     ]);
 
     // Insert categories into the 'blog_category' table
@@ -188,7 +245,7 @@ async function update(req, res) {
       "INSERT INTO blog_category (blog_id, category_id) SELECT ?, id FROM categories WHERE id IN (" +
         req.body.selectedCategories.join() +
         ")",
-      [req.query.id]
+      [req.query.slug]
     );
 
     let message = "Error while creating blog";

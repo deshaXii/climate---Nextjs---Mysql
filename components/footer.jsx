@@ -24,22 +24,37 @@ const Footer = ({ siteInfo }) => {
                 <h5>Contact Us:</h5>
                 <ul>
                   <li>
-                    <a href={siteInfo?.email}>{siteInfo?.email}</a>
+                    <a href={`mailto:${siteInfo?.email}`}>{siteInfo?.email}</a>
                   </li>
                   <li>
-                    <a href="#">{siteInfo?.phone}</a>
+                    <a href={`tel:${siteInfo?.phone}`}>{siteInfo?.phone}</a>
                   </li>
                 </ul>
               </div>
               <div className="footer-list">
                 <h5>Our Address:</h5>
                 <ul>
-                  <li>
-                    <a href="#">{siteInfo?.address}</a>
-                  </li>
-                  <li>
-                    <a href="#">{siteInfo?.address}</a>
-                  </li>
+                  {siteInfo?.address1 && (
+                    <li>
+                      <Link href={siteInfo?.address1_url} target="_blank">
+                        {siteInfo?.address1}
+                      </Link>
+                    </li>
+                  )}
+                  {siteInfo?.address2 && (
+                    <li>
+                      <a href={siteInfo?.address2_url} target="_blank">
+                        {siteInfo?.address2}
+                      </a>
+                    </li>
+                  )}
+                  {siteInfo?.address3 && (
+                    <li>
+                      <a href={siteInfo?.address3_url} target="_blank">
+                        {siteInfo?.address3}
+                      </a>
+                    </li>
+                  )}
                 </ul>
               </div>
               <div className="footer-list footer-social-list">
@@ -47,30 +62,30 @@ const Footer = ({ siteInfo }) => {
                 <ul>
                   {siteInfo?.facebook && siteInfo?.facebook !== "#" && (
                     <li>
-                      <a href={siteInfo?.facebook}>
+                      <Link target="_blank" href={siteInfo?.facebook}>
                         <i className="fab fa-facebook"></i>
-                      </a>
+                      </Link>
                     </li>
                   )}
                   {siteInfo?.twitter && siteInfo?.twitter !== "#" && (
                     <li>
-                      <a href={siteInfo?.twitter}>
+                      <Link target="_blank" href={siteInfo?.twitter}>
                         <i className="fab fa-twitter"></i>
-                      </a>
+                      </Link>
                     </li>
                   )}
                   {siteInfo?.linkedin && siteInfo?.linkedin !== "#" && (
                     <li>
-                      <a href={siteInfo?.linkedin}>
+                      <Link target="_blank" href={siteInfo?.linkedin}>
                         <i className="fab fa-linkedin"></i>
-                      </a>
+                      </Link>
                     </li>
                   )}
                   {siteInfo?.instagram && siteInfo?.instagram !== "#" && (
                     <li>
-                      <a href={siteInfo?.instagram}>
+                      <Link target="_blank" href={siteInfo?.instagram}>
                         <i className="fab fa-instagram"></i>
-                      </a>
+                      </Link>
                     </li>
                   )}
                 </ul>
@@ -88,7 +103,7 @@ const Footer = ({ siteInfo }) => {
                   <Link href="/our-vision">Our Vision</Link>
                 </li>
                 <li>
-                  <Link href="/contact-us">Latest News</Link>
+                  <Link href="/news">Latest News</Link>
                   <span>&nbsp;</span>
                   <span>&nbsp;</span>
                   <span>&nbsp;</span>

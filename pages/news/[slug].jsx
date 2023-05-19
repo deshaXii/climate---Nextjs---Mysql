@@ -56,8 +56,9 @@ export default Blog;
 
 export async function getServerSideProps({ query }) {
   try {
+    const slug = query.slug;
     const blogsRes = await axios.get(`/api/blogs`);
-    const blogRes = await axios.get(`/api/blogs/${query.id}`);
+    const blogRes = await axios.get(`/api/blogs/${slug}`);
     const siteInfo = await axios.get("/api/site-information");
     return {
       props: {

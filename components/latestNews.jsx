@@ -123,7 +123,7 @@ const LatestNews = ({ data, title, description, subtitle }) => {
                           </div>
                         </div>
                         <div className="new-media-image">
-                          <Link href={`/news/${item.id}`}>
+                          <Link href={`/news/${item.slug}`}>
                             <img
                               src={`/uploads/${item.image}`}
                               className="attachment-full size-full"
@@ -137,7 +137,7 @@ const LatestNews = ({ data, title, description, subtitle }) => {
                             <h4 className="new-title entry-title">
                               <Link
                                 className="new-title-link"
-                                href={`/news/${item.id}`}
+                                href={`/news/${item.slug}`}
                               >
                                 {item.title}
                               </Link>
@@ -151,7 +151,10 @@ const LatestNews = ({ data, title, description, subtitle }) => {
                           <div className="new-info qodef-info--bottom">
                             <div className="new-info-left">
                               <div className="new-read-more">
-                                <Link href={`/news/${item.id}`} target="_self">
+                                <Link
+                                  href={`/news/${item.slug}`}
+                                  target="_self"
+                                >
                                   <span className="qodef-m-text">
                                     Find out more
                                   </span>
@@ -174,7 +177,7 @@ const LatestNews = ({ data, title, description, subtitle }) => {
                           <div className="qodef-image-date">
                             <div className="new-info-item new-info-date entry-date published updated">
                               <Link
-                                href={`/news/${item.id}`}
+                                href={`/news/${item.slug}`}
                                 suppressHydrationWarning={true}
                               >
                                 <svg
@@ -234,7 +237,7 @@ const LatestNews = ({ data, title, description, subtitle }) => {
                             </div>
                           </div>
                           <div className="new-media-image">
-                            <Link href={`/news/${item.id}`}>
+                            <Link href={`/news/${item.slug}`}>
                               <img
                                 src={`/uploads/${item.image}`}
                                 className="attachment-full size-full"
@@ -248,7 +251,7 @@ const LatestNews = ({ data, title, description, subtitle }) => {
                               <h4 className="new-title entry-title">
                                 <Link
                                   className="new-title-link"
-                                  href={`/news/${item.id}`}
+                                  href={`/news/${item.slug}`}
                                 >
                                   Research that can give us a greener life
                                 </Link>
@@ -266,7 +269,7 @@ const LatestNews = ({ data, title, description, subtitle }) => {
                               <div className="new-info-left">
                                 <div className="new-read-more">
                                   <Link
-                                    href={`/news/${item.id}`}
+                                    href={`/news/${item.slug}`}
                                     target="_self"
                                   >
                                     <span className="qodef-m-text">
