@@ -3,16 +3,16 @@ import React, { useState } from "react";
 const ModalVideo = dynamic(() => import("react-modal-video"));
 import "react-modal-video/css/modal-video.css";
 
-const Video = ({ data, vide_url, image }) => {
+const Video = ({ video_url, video_type, image }) => {
   const [isOpen, setOpen] = useState(false);
   return (
     <>
       {typeof window !== "undefined" && (
         <ModalVideo
-          channel="youtube"
+          channel={video_type}
           autoplay
           isOpen={isOpen}
-          videoId={vide_url}
+          videoId={video_url}
           onClose={() => setOpen(false)}
         />
       )}

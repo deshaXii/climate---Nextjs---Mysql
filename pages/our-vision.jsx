@@ -26,7 +26,6 @@ const OurVision = ({ info, vision, seoData, pinnedCats, siteImages }) => {
                   {vision.first_section_description && (
                     <p>{vision.first_section_description}</p>
                   )}
-                  <h4>"ceo word"</h4>
                 </div>
               </div>
             </div>

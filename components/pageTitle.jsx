@@ -1,6 +1,6 @@
 import React from "react";
 
-const PageTitle = ({ title, time, marked, image }) => {
+const PageTitle = ({ title, time, subtitle, image }) => {
   return (
     <div
       className="page-title pt80"
@@ -12,6 +12,7 @@ const PageTitle = ({ title, time, marked, image }) => {
             <div className="page-title-content">
               <span className="marked">&nbsp;</span>
               <h1>{title}</h1>
+              {subtitle && <h4>{subtitle}</h4>}
               <p suppressHydrationWarning={true}>{time}</p>
             </div>
           </div>

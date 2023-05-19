@@ -9,25 +9,20 @@ const getOurServices = async (req, res) => {
     data,
   };
 };
-const getService = async (req, res) => {
-  const rows = await db.query(
-    `SELECT * FROM services WHERE id=${req.query.id}`
-  );
-  const data = helper.emptyOrRows(rows);
-  res.json(data);
-  return {
-    data,
-  };
-};
 
-async function addService(req, res) {
+async function addOurServices(req, res) {
+  if (!req.file?.filename) {
+    res.json({ status: "failed", message: "please upload image" });
+    return;
+  }
   const result = await db.query(
-    `INSERT INTO services (text, value) VALUES (?,?)`,
-    [req.body.text, req.body.value]
+    `INSERT INTO services (section_description, section_image) VALUES (?,?)`,
+    [req.body.description, req.file.filename]
   );
-  let message = "Error while adding service";
+
+  let message = "Error while creating Services Info";
   if (result.affectedRows) {
-    message = "service created successfully";
+    message = "Services Info created successfully";
   }
   res.json({ message, status: "success" });
   return {
@@ -35,40 +30,21 @@ async function addService(req, res) {
   };
 }
 
-async function deleteService(req, res) {
+async function editOurServices(req, res) {
   const result = await db.query(
-    `DELETE FROM services WHERE id=${req.query.id}`
-  );
-  let message = "Error while deleting service";
-  if (result.affectedRows) {
-    message = "service deleted successfully";
-  }
-  res.json({ message, status: "success" });
-  return {
-    message,
-  };
-}
-
-async function editService(req, res) {
-  const result = await db.query(
-    `UPDATE services SET text = ?, value = ? WHERE id=${req.query.id}`,
-    [req.body.text, req.body.value]
+    `UPDATE services SET section_description = ?, section_image = ?`,
+    [req.body.description, req.file ? req.file.filename : req.body.image]
   );
 
-  let message = "Error While update service";
+  let message = "Error in edit Services Info";
   if (result.affectedRows) {
-    message = "service updated successfully";
+    message = "Services Info updated successfully";
   }
   res.json({ message, status: "success" });
-  return {
-    message,
-  };
 }
 
 module.exports = {
-  addService,
   getOurServices,
-  editService,
-  getService,
-  deleteService,
+  editOurServices,
+  addOurServices,
 };

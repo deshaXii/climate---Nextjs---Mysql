@@ -24,8 +24,8 @@ export default function Home({ data, error, seoData, pinnedCats, siteImages }) {
         {data?.video?.image.length ? (
           <Video
             image={siteImages?.video}
-            data={data?.video}
-            vide_url={data.info?.video_url || "Uszj_k0DGsg"}
+            video_type={data.info?.video_type || "youtube"}
+            video_url={data.info?.video_url || "Uszj_k0DGsg"}
           />
         ) : (
           "Add Video From DB"

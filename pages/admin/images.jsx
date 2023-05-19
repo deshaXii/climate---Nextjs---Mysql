@@ -266,7 +266,11 @@ const AdminSiteImages = ({ siteImages }) => {
                             <label>Intro Image</label>
                             <img
                               src={
-                                intro[0]?.data_url || `/uploads/${introImage}`
+                                introImage && !intro[0]?.data_url
+                                  ? `/uploads/${introImage}`
+                                  : null ||
+                                    intro[0]?.data_url ||
+                                    "/images/No-Image-Placeholder.svg"
                               }
                               alt="user image"
                             />
@@ -332,7 +336,11 @@ const AdminSiteImages = ({ siteImages }) => {
                             <label>About 1 Image</label>
                             <img
                               src={
-                                about1[0]?.data_url || `/uploads/${about1Image}`
+                                about1Image && !about1[0]?.data_url
+                                  ? `/uploads/${about1Image}`
+                                  : null ||
+                                    about1[0]?.data_url ||
+                                    "/images/No-Image-Placeholder.svg"
                               }
                               alt="user image"
                             />
@@ -398,7 +406,11 @@ const AdminSiteImages = ({ siteImages }) => {
                             <label>About 2 Image</label>
                             <img
                               src={
-                                about2[0]?.data_url || `/uploads/${about2Image}`
+                                about2Image && !about2[0]?.data_url
+                                  ? `/uploads/${about2Image}`
+                                  : null ||
+                                    about2[0]?.data_url ||
+                                    "/images/No-Image-Placeholder.svg"
                               }
                               alt="user image"
                             />
@@ -464,7 +476,11 @@ const AdminSiteImages = ({ siteImages }) => {
                             <label>Video Image</label>
                             <img
                               src={
-                                video[0]?.data_url || `/uploads/${videoImage}`
+                                videoImage && !video[0]?.data_url
+                                  ? `/uploads/${videoImage}`
+                                  : null ||
+                                    video[0]?.data_url ||
+                                    "/images/No-Image-Placeholder.svg"
                               }
                               alt="user image"
                             />
@@ -530,8 +546,11 @@ const AdminSiteImages = ({ siteImages }) => {
                             <label>Vision Image</label>
                             <img
                               src={
-                                pVision[0]?.data_url ||
-                                `/uploads/${pVisionImage}`
+                                pVisionImage && !pVision[0]?.data_url
+                                  ? `/uploads/${pVisionImage}`
+                                  : null ||
+                                    pVision[0]?.data_url ||
+                                    "/images/No-Image-Placeholder.svg"
                               }
                               alt="user image"
                             />
@@ -597,8 +616,11 @@ const AdminSiteImages = ({ siteImages }) => {
                             <label>Services Image</label>
                             <img
                               src={
-                                pServices[0]?.data_url ||
-                                `/uploads/${pServicesImage}`
+                                pServicesImage && !pServices[0]?.data_url
+                                  ? `/uploads/${pServicesImage}`
+                                  : null ||
+                                    pServices[0]?.data_url ||
+                                    "/images/No-Image-Placeholder.svg"
                               }
                               alt="user image"
                             />
@@ -664,7 +686,11 @@ const AdminSiteImages = ({ siteImages }) => {
                             <label>Team Image</label>
                             <img
                               src={
-                                pTeam[0]?.data_url || `/uploads/${pTeamImage}`
+                                pTeamImage && !pTeam[0]?.data_url
+                                  ? `/uploads/${pTeamImage}`
+                                  : null ||
+                                    pTeam[0]?.data_url ||
+                                    "/images/No-Image-Placeholder.svg"
                               }
                               alt="user image"
                             />
@@ -796,8 +822,11 @@ const AdminSiteImages = ({ siteImages }) => {
                             <label>Services Section Image</label>
                             <img
                               src={
-                                sSection[0]?.data_url ||
-                                `/uploads/${sSectionImage}`
+                                sSectionImage && !sSection[0]?.data_url
+                                  ? `/uploads/${sSectionImage}`
+                                  : null ||
+                                    sSection[0]?.data_url ||
+                                    "/images/No-Image-Placeholder.svg"
                               }
                               alt="user image"
                             />

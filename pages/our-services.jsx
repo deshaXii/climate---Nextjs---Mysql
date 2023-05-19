@@ -15,7 +15,6 @@ const HowWeCanAssistOurClients = ({
   pinnedCats,
   siteImages,
 }) => {
-  const [activeTab, setActiveTab] = useState();
   return (
     <>
       <Head>
@@ -26,6 +25,7 @@ const HowWeCanAssistOurClients = ({
         <div className="our-services-page">
           <PageTitle
             title={seoData?.how_can_title}
+            subtitle={seoData?.services_subtitle}
             description={seoData?.how_can_description}
             image={`/uploads/${siteImages?.services}`}
             marked="&nbsp;"
@@ -36,22 +36,14 @@ const HowWeCanAssistOurClients = ({
                 <div className="col-md-6">
                   <div className="services-image">
                     <img
-                      src={`/uploads/${siteImages?.servicessection}`}
+                      src={`/uploads/${services.section_image}`}
                       alt="services image"
                     />
                   </div>
                 </div>
                 <div className="col-md-6">
                   <div className="services-text">
-                    <h3>
-                      Talking Sustainability, our team have extensive experience
-                      applying the principles of sustainability strategies and
-                      rating systems to national standards, city-scale
-                      solutions, high-end projects with multiple real-estate
-                      assets typologies and infrastructure, from concept all the
-                      way through to construction in a fully coordinated and
-                      streamlined process.
-                    </h3>
+                    <h3>{services.section_description}</h3>
                   </div>
                 </div>
               </div>
@@ -60,46 +52,6 @@ const HowWeCanAssistOurClients = ({
           <section className="pt80 services-sec-section">
             <div className="container">
               <div className="row justify-content-center">
-                {/* <div className="col-md-12">
-                  <div className="services-tabs">
-                    <ul className="services-tabs-list">
-                      {services.map((item, index) => (
-                        <li
-                          suppressHydrationWarning={true}
-                          key={item.id}
-                          className={
-                            activeTab === `tab${index}` ? "active" : ""
-                          }
-                          onClick={() => setActiveTab(`tab${index}`)}
-                        >
-                          <h5>{item.text}</h5>
-
-                          <p>
-                            {htmlToText(item.value.substring(0, 150), {
-                              wordwrap: 130,
-                            })}
-                          </p>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                  <div className="services-tabs-content">
-                    {services.map((item, index) => (
-                      <div
-                        key={item.id}
-                        className={`s-tab${index} s-tab ${
-                          activeTab === `tab${index}` ? "show" : ""
-                        }`}
-                      >
-                        <div
-                          dangerouslySetInnerHTML={{
-                            __html: item.value,
-                          }}
-                        ></div>
-                      </div>
-                    ))}
-                  </div>
-                </div> */}
                 {blogs.map((item) => (
                   <div
                     className="col-md-4 col-lg-3 col-sm-6 col-12"
@@ -234,7 +186,7 @@ export async function getServerSideProps() {
       props: {
         blogs: blogsRes?.data,
         info: siteInfo.data[0],
-        services: siteServices.data,
+        services: siteServices.data[0],
       },
     };
   } catch (err) {

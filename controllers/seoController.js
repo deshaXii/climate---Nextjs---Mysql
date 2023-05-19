@@ -12,7 +12,7 @@ const getSeo = async (req, res) => {
 
 async function addSeo(req, res) {
   const result = await db.query(
-    `INSERT INTO seo (intro_title, intro_subtitle, intro_description, meet_the_team_title, meet_the_team_subtitle, meet_the_team_description, latest_news_title, latest_news_subtitle, latest_news_description, contact_title, contact_description, news_title, news_description, team_title, team_description, how_can_title, how_can_description, vision_title, vision_description, home_title, home_description) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)`,
+    `INSERT INTO seo (intro_title, intro_subtitle, intro_description, meet_the_team_title, meet_the_team_subtitle, meet_the_team_description, latest_news_title, latest_news_subtitle, latest_news_description, contact_title, contact_description, news_title, news_description, team_title, team_description, how_can_title, how_can_description, services_subtitle, vision_title, vision_title, vision_description, home_title, home_description) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)`,
     [
       req.body.intro_title,
       req.body.intro_subtitle,
@@ -31,7 +31,9 @@ async function addSeo(req, res) {
       req.body.team_description,
       req.body.how_can_title,
       req.body.how_can_description,
+      req.body.how_can_subtitle,
       req.body.vision_title,
+      req.body.vision_subtitle,
       req.body.vision_description,
       req.body.home_title,
       req.body.home_description,
@@ -50,7 +52,7 @@ async function addSeo(req, res) {
 
 async function editSeo(req, res) {
   const result = await db.query(
-    `UPDATE seo SET intro_title = ?, intro_subtitle = ?, intro_description = ?, meet_the_team_title = ?, meet_the_team_subtitle = ?, meet_the_team_description = ?, latest_news_title = ?, latest_news_subtitle = ?, latest_news_description = ?, contact_title = ?, contact_description = ?, news_title = ?, news_description = ?, team_title = ?, team_description = ?, how_can_title = ?, how_can_description = ?, vision_title = ?, vision_description = ?, home_title = ?, home_description = ?`,
+    `UPDATE seo SET intro_title = ?, intro_subtitle = ?, intro_description = ?, meet_the_team_title = ?, meet_the_team_subtitle = ?, meet_the_team_description = ?, latest_news_title = ?, latest_news_subtitle = ?, latest_news_description = ?, contact_title = ?, contact_description = ?, news_title = ?, news_description = ?, team_title = ?, team_description = ?, how_can_title = ?, how_can_description = ?, services_subtitle = ?, vision_title = ?, vision_description = ?, vision_subtitle = ?, home_title = ?, home_description = ?`,
     [
       req.body.intro_title,
       req.body.intro_subtitle,
@@ -69,8 +71,10 @@ async function editSeo(req, res) {
       req.body.team_description,
       req.body.how_can_title,
       req.body.how_can_description,
+      req.body.how_can_subtitle,
       req.body.vision_title,
       req.body.vision_description,
+      req.body.vision_subtitle,
       req.body.home_title,
       req.body.home_description,
     ]

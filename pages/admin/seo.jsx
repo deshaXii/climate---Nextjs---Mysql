@@ -49,6 +49,12 @@ const AdminSeo = ({ seoData }) => {
   const [team_title, setTeam_title] = useState(
     seoData ? seoData?.team_title : ""
   );
+  const [how_can_subtitle, setHow_can_subtitle] = useState(
+    seoData ? seoData?.services_subtitle : ""
+  );
+  const [vision_subtitle, setVision_subtitle] = useState(
+    seoData ? seoData?.vision_subtitle : ""
+  );
   const [team_description, setTeam_description] = useState(
     seoData ? seoData?.team_description : ""
   );
@@ -92,6 +98,8 @@ const AdminSeo = ({ seoData }) => {
       how_can_title,
       how_can_description,
       vision_title,
+      vision_subtitle,
+      how_can_subtitle,
       vision_description,
       home_title,
       home_description,
@@ -106,8 +114,7 @@ const AdminSeo = ({ seoData }) => {
     } else {
       await axios
         .post("/api/seo", data)
-        .then((res) => {
-        })
+        .then((res) => {})
 
         .catch((err) => {
           console.log(err);
@@ -160,54 +167,6 @@ const AdminSeo = ({ seoData }) => {
                             </div>
                           </div>
                           <div className="ssb-item related-to-page">
-                            <h6>Our Vision Page</h6>
-                            <div className="form-group">
-                              <label>title</label>
-                              <input
-                                value={vision_title}
-                                onChange={(e) =>
-                                  setVision_title(e.target.value)
-                                }
-                                type="text"
-                                placeholder="Enter Our Vision Title Meta"
-                              />
-                            </div>
-                            <div className="form-group">
-                              <label>description</label>
-                              <textarea
-                                value={vision_description}
-                                onChange={(e) =>
-                                  setVision_description(e.target.value)
-                                }
-                                placeholder="Enter Our Vision description Meta"
-                              ></textarea>
-                            </div>
-                          </div>
-                          <div className="ssb-item related-to-page">
-                            <h6>How Can Assist Clicnts Page</h6>
-                            <div className="form-group">
-                              <label>title</label>
-                              <input
-                                value={how_can_title}
-                                onChange={(e) =>
-                                  setHow_can_title(e.target.value)
-                                }
-                                type="text"
-                                placeholder="Enter Page Title Meta"
-                              />
-                            </div>
-                            <div className="form-group">
-                              <label>description</label>
-                              <textarea
-                                value={how_can_description}
-                                onChange={(e) =>
-                                  setHow_can_description(e.target.value)
-                                }
-                                placeholder="Enter Page description Meta"
-                              ></textarea>
-                            </div>
-                          </div>
-                          <div className="ssb-item related-to-page">
                             <h6>Our People Page</h6>
                             <div className="form-group">
                               <label>title</label>
@@ -226,6 +185,76 @@ const AdminSeo = ({ seoData }) => {
                                   setTeam_description(e.target.value)
                                 }
                                 placeholder="Enter Our People description Meta"
+                              ></textarea>
+                            </div>
+                          </div>
+                          <div className="ssb-item related-to-page">
+                            <h6>Our Services</h6>
+                            <div className="form-group">
+                              <label>title</label>
+                              <input
+                                value={how_can_title}
+                                onChange={(e) =>
+                                  setHow_can_title(e.target.value)
+                                }
+                                type="text"
+                                placeholder="Enter Page Title Meta"
+                              />
+                            </div>
+                            <div className="form-group">
+                              <label>subtitle</label>
+                              <input
+                                value={how_can_subtitle}
+                                onChange={(e) =>
+                                  setHow_can_subtitle(e.target.value)
+                                }
+                                type="text"
+                                placeholder="Enter Page Title"
+                              />
+                            </div>
+                            <div className="form-group">
+                              <label>description</label>
+                              <textarea
+                                value={how_can_description}
+                                onChange={(e) =>
+                                  setHow_can_description(e.target.value)
+                                }
+                                placeholder="Enter Page description Meta"
+                              ></textarea>
+                            </div>
+                          </div>
+                          <div className="ssb-item related-to-page">
+                            <h6>Our Vision Page</h6>
+                            <div className="form-group">
+                              <label>title</label>
+                              <input
+                                value={vision_title}
+                                onChange={(e) =>
+                                  setVision_title(e.target.value)
+                                }
+                                type="text"
+                                placeholder="Enter Our Vision Title Meta"
+                              />
+                            </div>
+                            <div className="form-group">
+                              <label>subtitle</label>
+                              <input
+                                value={vision_subtitle}
+                                onChange={(e) =>
+                                  setVision_subtitle(e.target.value)
+                                }
+                                type="text"
+                                placeholder="Enter Our Vision subTitle"
+                              />
+                            </div>
+                            <div className="form-group">
+                              <label>description</label>
+                              <textarea
+                                value={vision_description}
+                                onChange={(e) =>
+                                  setVision_description(e.target.value)
+                                }
+                                placeholder="Enter Our Vision description Meta"
                               ></textarea>
                             </div>
                           </div>
@@ -438,7 +467,7 @@ export async function getServerSideProps({ res, req }) {
       props: {},
     };
   }
-  if (token === 'null') {
+  if (token === "null") {
     return {
       redirect: {
         destination: "/admin/login",

@@ -1,4 +1,5 @@
 import axios from "@/components/axios";
+import Link from "next/link";
 import { useRouter } from "next/router";
 import { useState } from "react";
 import PhoneInput from "react-phone-input-2";
@@ -93,17 +94,47 @@ const Contact = ({ siteInfo, title, description }) => {
             </div>
             <div className="contact-us-info">
               <ul>
-                <li>
-                  <i className="fa fa-phone"></i>
-                  <span>{siteInfo?.phone}</span>
-                </li>
-                <li>
-                  <i className="fa fa-map-marker"></i>
-                  <span>{siteInfo?.address}</span>
-                </li>
+                {siteInfo?.phone && (
+                  <li>
+                    <i className="fa fa-phone"></i>
+                    <a href={`tel:${siteInfo?.phone}`}>
+                      <span>{siteInfo?.phone}</span>
+                    </a>
+                  </li>
+                )}
+                {siteInfo?.address1 && (
+                  <li>
+                    <i className="fa fa-map-marker"></i>
+
+                    <Link href={siteInfo?.address1_url} target="_blank">
+                      <span>{siteInfo?.address1}</span>
+                    </Link>
+                  </li>
+                )}
+                {siteInfo?.address2 && (
+                  <li>
+                    <i className="fa fa-map-marker"></i>
+
+                    <Link href={siteInfo?.address2_url} target="_blank">
+                      <span>{siteInfo?.address2}</span>
+                    </Link>
+                  </li>
+                )}
+                {siteInfo?.address3 && (
+                  <li>
+                    <i className="fa fa-map-marker"></i>
+
+                    <Link href={siteInfo?.address3_url} target="_blank">
+                      <span>{siteInfo?.address3}</span>
+                    </Link>
+                  </li>
+                )}
+
                 <li>
                   <i className="fa fa-envelope"></i>
-                  <span>{siteInfo?.email}</span>
+                  <a href={`mailto:${siteInfo?.email}`}>
+                    <span>{siteInfo?.email}</span>
+                  </a>
                 </li>
               </ul>
             </div>

@@ -91,18 +91,14 @@ const AdminOurVision = ({ vision }) => {
     ) {
       await axios
         .put("/api/our-vision", data, config)
-        .then((res) => {
-
-        })
+        .then((res) => {})
         .catch((err) => {
           console.log(err);
         });
     } else {
       await axios
         .post("/api/our-vision", data, config)
-        .then((res) => {
-
-        })
+        .then((res) => {})
         .catch((err) => {
           console.log(err);
         });
@@ -161,8 +157,11 @@ const AdminOurVision = ({ vision }) => {
                             <label>Image</label>
                             <img
                               src={
-                                images[0]?.data_url ||
-                                `/uploads/${second_section_image}`
+                                second_section_image && !images[0]?.data_url
+                                  ? `/uploads/${second_section_image}`
+                                  : null ||
+                                    images[0]?.data_url ||
+                                    "/images/No-Image-Placeholder.svg"
                               }
                               alt="user image"
                             />
@@ -228,8 +227,11 @@ const AdminOurVision = ({ vision }) => {
                             <label>Image</label>
                             <img
                               src={
-                                sImages[0]?.data_url ||
-                                `/uploads/${third_section_image}`
+                                third_section_image && !sImages[0]?.data_url
+                                  ? `/uploads/${third_section_image}`
+                                  : null ||
+                                    sImages[0]?.data_url ||
+                                    "/images/No-Image-Placeholder.svg"
                               }
                               alt="user image"
                             />
@@ -319,8 +321,11 @@ const AdminOurVision = ({ vision }) => {
                             <label>Image</label>
                             <img
                               src={
-                                tImages[0]?.data_url ||
-                                `/uploads/${fourth_section_image}`
+                                fourth_section_image && !tImages[0]?.data_url
+                                  ? `/uploads/${fourth_section_image}`
+                                  : null ||
+                                    tImages[0]?.data_url ||
+                                    "/images/No-Image-Placeholder.svg"
                               }
                               alt="user image"
                             />
@@ -405,7 +410,7 @@ export async function getServerSideProps({ res, req }) {
       props: {},
     };
   }
-  if (token === 'null') {
+  if (token === "null") {
     return {
       redirect: {
         destination: "/admin/login",

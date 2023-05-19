@@ -7,8 +7,9 @@ import ImageUploading from "react-images-uploading";
 import { parseCookies } from "@/helpers/parseCookies";
 import { toast } from "react-toastify";
 
-const AdminOurPeopleEdit = ({ team }) => {
-  const [image, setImage] = useState(team.image);
+const AdminOurServices = ({ services }) => {
+  const [image, setImage] = useState(services?.section_image);
+  const [description, setDescription] = useState(services?.section_description);
   const [images, setImages] = useState([]);
   const maxNumber = 1;
   const router = useRouter();
@@ -21,11 +22,6 @@ const AdminOurPeopleEdit = ({ team }) => {
       setImages(imageList);
     }
   };
-  const [name, setName] = useState(team.name);
-  const [jobname, setJobname] = useState(team.jobname);
-  const [facebook, setFacebook] = useState(team.facebook);
-  const [instagram, setInstagram] = useState(team.instagram);
-  const [linkedin, setLinkedin] = useState(team.linkedin);
   const config = {
     headers: { "content-type": "multipart/form-data" },
     onUploadProgress: (event) => {
@@ -35,24 +31,42 @@ const AdminOurPeopleEdit = ({ team }) => {
       );
     },
   };
-  const editMember = async (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    axios
-      .put(
-        `/api/teams/${team.id}`,
-        {
-          name,
-          jobname,
-          image,
-          facebook,
-          instagram,
-          linkedin,
-        },
-        config
-      )
-      .then((res) => {
-        if (res.data?.status === "success") {
-          toast.success(res.data.message, {
+    if (services?.section_description || services?.section_image) {
+      axios
+        .put(
+          "/api/our-services",
+          {
+            description,
+            image,
+          },
+          config
+        )
+        .then((res) => {
+          if (res.data?.status === "success") {
+            toast.success(res.data.message, {
+              position: "top-right",
+              autoClose: 5000,
+              hideProgressBar: true,
+              closeOnClick: true,
+              draggable: true,
+              theme: "light",
+            });
+            router.push("/admin/our-services");
+          } else if (res.data?.status === "failed") {
+            toast.warn(res.data.message, {
+              position: "top-right",
+              autoClose: 5000,
+              hideProgressBar: true,
+              closeOnClick: true,
+              draggable: true,
+              theme: "light",
+            });
+          }
+        })
+        .catch((err) => {
+          toast.error(err.message, {
             position: "top-right",
             autoClose: 5000,
             hideProgressBar: true,
@@ -60,25 +74,56 @@ const AdminOurPeopleEdit = ({ team }) => {
             draggable: true,
             theme: "light",
           });
-          router.push("/admin/our-people");
-        }
-      })
-      .catch((err) => {
-        toast.error(err.message, {
-          position: "top-right",
-          autoClose: 5000,
-          hideProgressBar: true,
-          closeOnClick: true,
-          draggable: true,
-          theme: "light",
         });
-      });
+    } else {
+      axios
+        .post(
+          "/api/our-services",
+          {
+            description,
+            image,
+          },
+          config
+        )
+        .then((res) => {
+          if (res.data?.status === "success") {
+            toast.success(res.data.message, {
+              position: "top-right",
+              autoClose: 5000,
+              hideProgressBar: true,
+              closeOnClick: true,
+              draggable: true,
+              theme: "light",
+            });
+            router.push("/admin/our-services");
+          } else if (res.data?.status === "failed") {
+            toast.warn(res.data.message, {
+              position: "top-right",
+              autoClose: 5000,
+              hideProgressBar: true,
+              closeOnClick: true,
+              draggable: true,
+              theme: "light",
+            });
+          }
+        })
+        .catch((err) => {
+          toast.error(err.message, {
+            position: "top-right",
+            autoClose: 5000,
+            hideProgressBar: true,
+            closeOnClick: true,
+            draggable: true,
+            theme: "light",
+          });
+        });
+    }
   };
 
   return (
     <>
       <Head>
-        <title>Climate - Admin \ Edit Team member</title>
+        <title>Climate - Admin \ Services Info</title>
       </Head>
       <AdminLayout>
         <div className="our-people-page">
@@ -86,7 +131,7 @@ const AdminOurPeopleEdit = ({ team }) => {
             <div className="row">
               <div className="col-12">
                 <div className="page-top-header admin-section-title">
-                  <h2>Edit Member</h2>
+                  <h2>Services Info</h2>
                   <button
                     onClick={() => {
                       router.back();
@@ -102,7 +147,7 @@ const AdminOurPeopleEdit = ({ team }) => {
                 <div className="row">
                   <div className="col-12">
                     <form
-                      onSubmit={(e) => editMember(e)}
+                      onSubmit={(e) => handleSubmit(e)}
                       style={{ marginTop: "60px" }}
                     >
                       <div className="row">
@@ -111,9 +156,11 @@ const AdminOurPeopleEdit = ({ team }) => {
                             <label>Image</label>
                             <img
                               src={
-                                images[0]?.data_url ||
-                                `/uploads/${team.image}` ||
-                                `/images/No-Image-Placeholder.svg`
+                                image && !images[0]?.data_url
+                                  ? `/uploads/${image}`
+                                  : null ||
+                                    images[0]?.data_url ||
+                                    "/images/No-Image-Placeholder.svg"
                               }
                               alt="user image"
                             />
@@ -171,53 +218,17 @@ const AdminOurPeopleEdit = ({ team }) => {
                         </div>
                         <div className="col-md-7">
                           <div className="form-group">
-                            <label>Full Name</label>
-                            <input
-                              value={name}
-                              onChange={(e) => setName(e.target.value)}
-                              type="text"
-                              placeholder="...."
-                            />
-                          </div>
-                          <div className="form-group">
-                            <label>Job Name</label>
-                            <input
-                              value={jobname}
-                              onChange={(e) => setJobname(e.target.value)}
-                              type="text"
-                              placeholder="...."
-                            />
-                          </div>
-                          <div className="form-group">
-                            <label>facebook</label>
-                            <input
-                              value={facebook}
-                              onChange={(e) => setFacebook(e.target.value)}
-                              type="text"
-                              placeholder="...."
-                            />
-                          </div>
-                          <div className="form-group">
-                            <label>instagram</label>
-                            <input
-                              value={instagram}
-                              onChange={(e) => setInstagram(e.target.value)}
-                              type="text"
-                              placeholder="...."
-                            />
-                          </div>
-                          <div className="form-group">
-                            <label>linkedin</label>
-                            <input
-                              value={linkedin}
-                              onChange={(e) => setLinkedin(e.target.value)}
+                            <label>Description</label>
+                            <textarea
+                              value={description}
+                              onChange={(e) => setDescription(e.target.value)}
                               type="text"
                               placeholder="...."
                             />
                           </div>
                           <div className="form-submit">
                             <button type="submit" className="btn main-btn">
-                              Save Changes
+                              Save
                             </button>
                           </div>
                         </div>
@@ -234,9 +245,9 @@ const AdminOurPeopleEdit = ({ team }) => {
   );
 };
 
-export default AdminOurPeopleEdit;
+export default AdminOurServices;
 
-export async function getServerSideProps({ params, query, req }) {
+export async function getServerSideProps({ res, req }) {
   const cookies = parseCookies(req);
   const token = cookies.userToken;
   if (!token) {
@@ -256,13 +267,22 @@ export async function getServerSideProps({ params, query, req }) {
     };
   }
   try {
-    const teamRes = await axios.get(`/api/teams/${query.id}`);
-    return {
-      props: {
-        team: teamRes.data,
-      },
-    };
+    const siteServices = await axios.get("/api/our-services");
+    if (siteServices.data[0]) {
+      return {
+        props: {
+          services: siteServices.data[0],
+        },
+      };
+    } else {
+      return {
+        props: {
+          services: null,
+        },
+      };
+    }
   } catch (err) {
+    // console.log(err.response.data);
     return {
       props: {
         error: err.message,
