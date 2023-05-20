@@ -4,18 +4,15 @@ const config = require("../config");
 const slugify = require("slugify");
 
 const getAllBlogs = async (req, res) => {
-  // const offset = helper.getOffset(1, config.listPerPage);
-  // const rows = await db.query(
-  //   `SELECT * FROM blogs LIMIT ${config.listPerPage} OFFSET ${offset}`
-  // );
   const rows =
     await db.query(`SELECT b.id, b.title, b.image, b.description, b.time, b.slug,
   GROUP_CONCAT(c.id SEPARATOR ', ') AS category_ids,
   GROUP_CONCAT(c.name SEPARATOR ', ') AS category_names
-FROM blogs b
-JOIN blog_category bc ON bc.blog_id = b.id
-JOIN categories c ON c.id = bc.category_id
-GROUP BY b.id;`);
+  FROM blogs b
+  JOIN blog_category bc ON bc.blog_id = b.id
+  JOIN categories c ON c.id = bc.category_id
+  WHERE c.name != 'services'
+  GROUP BY b.id;`);
   const data = helper.emptyOrRows(rows);
   res.json(data);
   return {
